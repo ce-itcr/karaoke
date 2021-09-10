@@ -15,7 +15,7 @@ const Navbar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);
 
   const changeNav = () => {
-    if(window.scrollY >= 80) {
+    if(window.scrollY) {
       setScrollNav(true);
     }
     else{
@@ -42,7 +42,7 @@ const Navbar = ({ toggle }) => {
             </MobileIcon>
             <NavBtn>
               <NavBtnLink to="/app">Inicio</NavBtnLink>
-              <NavBtnLink to="/signin">Perfil</NavBtnLink>
+              <NavBtnLink to="/profile">Perfil</NavBtnLink>
             </NavBtn>
           </NavbarContainer>
         </Nav>
