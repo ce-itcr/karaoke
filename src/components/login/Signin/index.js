@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SigninClient } from '../../../clients/SigninClient';
+import { toast, Toaster } from 'react-hot-toast';
 import {
   Container,
   FormWrap,
@@ -36,9 +37,13 @@ class Signin extends Component {
   login = async() => {
       const response = await this.signinClient.verifyUser(this.state.form.username, this.state.form.password);
       console.log(response);
+
       if(response.data.length === 0){
+          toast()
+          toast.error("Nombre de usuario o contraseña incorrecta.");
           console.log("No existe el usuario");
       } else{
+          toast.success("Bienvenido " + this.state.form.username);
           console.log("Inicio de Sesión");
       }
   }
@@ -47,6 +52,7 @@ class Signin extends Component {
       return (
         <>
         <Container>
+            <div><Toaster/></div>
             <FormWrap>
             <Icon to="/">karaoke!</Icon>
             <FormContent>
@@ -61,6 +67,7 @@ class Signin extends Component {
                 </Form>
             </FormContent>
             </FormWrap>
+            
         </Container>
         </>
     )
