@@ -17,6 +17,7 @@ import {
 class Signin extends Component {
 
   signinClient = new SigninClient();
+  
 
   state= {
       form:{
@@ -41,10 +42,11 @@ class Signin extends Component {
       if(response.data.length === 0){
           toast()
           toast.error("Nombre de usuario o contraseña incorrecta.");
-          console.log("No existe el usuario");
+          // console.log("No existe el usuario");
       } else{
           toast.success("Bienvenido " + this.state.form.username);
-          console.log("Inicio de Sesión");
+          window.location.assign('/app')
+          // console.log("Inicio de Sesión");
       }
   }
 
@@ -62,7 +64,7 @@ class Signin extends Component {
                 <FormInput name="username" type="text" required onChange={this.handleChange}/>
                 <FormLabel htmlFor="for">Contraseña</FormLabel>
                 <FormInput name="password" type="password" required onChange={this.handleChange}/>
-                <FormButton type="button" onClick={this.login}>Iniciar Sesión</FormButton>
+                <FormButton type="button" onClick={this.login} >Iniciar Sesión</FormButton>
                 <Text>Olvidó su Contraseña?</Text>
                 </Form>
             </FormContent>
