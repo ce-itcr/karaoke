@@ -36,6 +36,7 @@ class Signin extends Component {
   }
 
   login = async() => {
+      localStorage.setItem('currentUsername', this.state.form.username);
       const response = await this.signinClient.verifyUser(this.state.form.username, this.state.form.password);
       console.log(response);
 
