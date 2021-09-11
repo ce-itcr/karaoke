@@ -17,45 +17,62 @@ import {
   Img
 } from "./ProfileElements";
 
-const InfoSection = ({lightBg, id, imgStart, topLine, lightText, headLine, darkText, description, buttonLabel, img, alt, primary, dark}) => {
-  const toggleHome = () => {
+export class ProfileSection extends React.Component{
+
+
+  toggleHome = () => {
+    //console.log(this.props.userData.data[0].username);
     scroll.scrollToTop();
   }
 
-  return (
-    <>
-      <InfoContainer2 lightBg='false' id='background'>
-        <InfoWrapper></InfoWrapper>
-      </InfoContainer2>
-      <InfoContainer lightBg={lightBg} id={id}>
-        <InfoWrapper>
-          <InfoRow imgStart={imgStart}>
-            <Column1>
-              <TextWrapper>
-                <TopLine>{topLine}</TopLine>
-                <Heading lightText={lightText}>{headLine}</Heading>
-                <Subtitle darkText={darkText}>{description} </Subtitle>
-                <Subtitle darkText={darkText}>{buttonLabel}</Subtitle>
-                <BtnWrap>
-                  <Button 
-                    to="/"
-                    onClick={toggleHome}
-                    primary={primary ? 1 : 0}
-                    dark={dark ? 1 : 0}
-                    >Agregar Canción</Button>
-                </BtnWrap>
-              </TextWrapper>
-            </Column1>
-            <Column2>
-              <ImgWrap>
-               <Img src={img} alt={alt}/>
-              </ImgWrap>
-            </Column2>
-          </InfoRow>
-        </InfoWrapper>
-      </InfoContainer>
-    </>
-  )
-}
+  render(){
+    var user = this.props.userData;
 
-export default InfoSection;
+    if(!this.props.userData){
+      return <></>;
+    }
+    return (
+      <>
+        <InfoContainer2 lightBg='false' id='background'>
+          <InfoWrapper></InfoWrapper>
+        </InfoContainer2>
+        <InfoContainer lightBg='true' id='profile'>
+          <InfoWrapper>
+            <InfoRow imgStart='true'>
+              <Column1>
+                <TextWrapper>
+                  <TopLine>{user.username}</TopLine>
+                  <Heading darkText='true'>{user.fullName}</Heading>
+                  <hr/>
+                  <Subtitle darkText='true'>Correo: {user.mail} </Subtitle>
+                  <hr/>
+                  <Subtitle darkText='true'>Ubicación: {user.location} </Subtitle>
+                  <hr/>
+                  <Subtitle darkText='true'>Tipo de Cuenta: {user.userType}</Subtitle>
+                  <BtnWrap>
+                    <Button 
+                      to="/"
+                      onClick={this.toggleHome}
+                      primary={'false' ? 1 : 0}
+                      dark={'false' ? 1 : 0}
+                      >Agregar Canción</Button>
+                  </BtnWrap>
+                </TextWrapper>
+              </Column1>
+              <Column2>
+                <ImgWrap>
+                 <Img src={user.profilePicture} alt='Profile Image'/>
+                </ImgWrap>
+              </Column2>
+            </InfoRow>
+          </InfoWrapper>
+        </InfoContainer>
+      </>
+    )
+  }
+
+}
+//const ProfileSection = ({lightBg, id, imgStart, topLine, lightText, headLine,disabledButton, darkText, description, location, buttonLabel, img, alt, primary, dark}) => {
+//}
+
+export default ProfileSection;

@@ -65,20 +65,3 @@ export const homeObjOne = {
     primary: false,
     darkText: true,
   }
-
-  export const profileObj = {
-    id: "profile",
-    lightBg: true,
-    lightText: false,
-    lightTextDesc: false,
-    topLine: "Nombre de Usuario",
-    headLine: "Nombre Completo",
-    description: "Correo // Ubicación",
-    buttonLabel: "Tipo de Usuario",
-    imgStart: true,
-    img: require("../../../assets/images/profilePicture.png").default,
-    alt: "bank",
-    dark: false,
-    primary: false,
-    darkText: true,
-  }
