@@ -19,10 +19,13 @@ import {
 
 export class ProfileSection extends React.Component{
 
-
   toggleHome = () => {
     //console.log(this.props.userData.data[0].username);
     scroll.scrollToTop();
+  }
+
+  logout = () => {
+    //window.location.assign('/');
   }
 
   render(){
@@ -41,7 +44,7 @@ export class ProfileSection extends React.Component{
             <InfoRow imgStart='true'>
               <Column1>
                 <TextWrapper>
-                  <TopLine>{user.username}</TopLine>
+                  <TopLine>@{user.username}</TopLine>
                   <Heading darkText='true'>{user.fullName}</Heading>
                   <hr/>
                   <Subtitle darkText='true'>Correo: {user.mail} </Subtitle>
@@ -55,8 +58,20 @@ export class ProfileSection extends React.Component{
                       onClick={this.toggleHome}
                       primary={'false' ? 1 : 0}
                       dark={'false' ? 1 : 0}
-                      >Agregar Canción</Button>
+                      >Actualizar Tipo de Cuenta</Button>
+                    <Button 
+                      to="/"
+                      onClick={this.toggleHome}
+                      primary={'false' ? 1 : 0}
+                      dark={'true' ? 1 : 0}
+                      >Actualizar Contraseña</Button>
                   </BtnWrap>
+                  <Button 
+                      marginTop='20px'
+                      to="/"
+                      type="button"
+                      onClick={this.logout}
+                      >Cerrar Sesión</Button>
                 </TextWrapper>
               </Column1>
               <Column2>
