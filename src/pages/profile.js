@@ -23,7 +23,7 @@ export class Profile extends Component{
   
   async loadProfileData(){
     const newData = await this.profileClient.getUserData(localStorage.getItem('currentUsername'));
-    console.log(newData);
+    //console.log(newData);
     this.setState({
       profileData: newData.data['0']
     });

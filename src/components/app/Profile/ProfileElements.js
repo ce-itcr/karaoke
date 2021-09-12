@@ -22,10 +22,10 @@ export const InfoContainer2 = styled.div`
 `
 
 export const InfoWrapper = styled.div`
-  margin-top: 70px;
+  margin-top: 120px;
   display: block;
   z-index: 1;
-  height: 571px;
+  height: 521px;
   max-width: 1100px;
   margin-right: auto;
   margin-left: auto;
@@ -97,7 +97,7 @@ export const BtnWrap =styled.div`
 `
 
 export const ImgWrap = styled.div`
-  max-width: 350px;
+  max-width: 280px;
   height: 100%;
 `
 

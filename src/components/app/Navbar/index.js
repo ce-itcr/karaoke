@@ -27,6 +27,9 @@ const Navbar = ({ toggle }) => {
     window.addEventListener("scroll", changeNav);
   }, []);
 
+  var currentUser = localStorage.getItem('currentUsername');
+  var profilePath = "/profile/" + currentUser;
+
   const toggleHome = () => {
     scroll.scrollToTop();
   }
@@ -42,7 +45,7 @@ const Navbar = ({ toggle }) => {
             </MobileIcon>
             <NavBtn>
               <NavBtnLink to="/app">Inicio</NavBtnLink>
-              <NavBtnLink to="/profile">Perfil</NavBtnLink>
+              <NavBtnLink to={profilePath}>Perfil</NavBtnLink>
             </NavBtn>
           </NavbarContainer>
         </Nav>

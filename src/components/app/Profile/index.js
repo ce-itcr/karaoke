@@ -12,7 +12,7 @@ import {
   TopLine,
   Heading,
   Subtitle,
-  BtnWrap,
+  //BtnWrap,
   ImgWrap,
   Img
 } from "./ProfileElements";
@@ -52,7 +52,7 @@ export class ProfileSection extends React.Component{
                   <Subtitle darkText='true'>Ubicación: {user.location} </Subtitle>
                   <hr/>
                   <Subtitle darkText='true'>Tipo de Cuenta: {user.userType}</Subtitle>
-                  <BtnWrap>
+                  {/*<BtnWrap>
                     <Button 
                       to="/"
                       onClick={this.toggleHome}
@@ -65,7 +65,7 @@ export class ProfileSection extends React.Component{
                       primary={'false' ? 1 : 0}
                       dark={'true' ? 1 : 0}
                       >Actualizar Contraseña</Button>
-                  </BtnWrap>
+                  </BtnWrap>*/}
                   <Button 
                       marginTop='20px'
                       to="/"

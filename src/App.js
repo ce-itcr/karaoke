@@ -14,7 +14,7 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/signin" component={SigninPage} exact />
         <Route path="/app" component={DefaultApp} exact />
-        <Route path="/profile" component={Profile} exact />
+        <Route path="/profile/:username" component={Profile} exact />
       </Switch>
     </Router>
   );
