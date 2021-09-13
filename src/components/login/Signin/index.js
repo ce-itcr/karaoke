@@ -41,7 +41,6 @@ class Signin extends Component {
       console.log(response);
 
       if(response.data.length === 0){
-          toast()
           toast.error("Nombre de usuario o contraseña incorrecta.");
           // console.log("No existe el usuario");
       } else{

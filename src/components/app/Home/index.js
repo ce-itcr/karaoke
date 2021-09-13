@@ -1,69 +1,80 @@
-import React, {useEffect, useState} from 'react';
+import React, { Component } from 'react';
 import { 
   InfoContainer,
   InfoContainer2,
   InfoWrapper,
   FormInput, 
   Form,
-  TopLine
+  //TopLine
 } from "./HomeScreenElements";
+import { toast, Toaster } from 'react-hot-toast';
+import DataTable from '../../utils/DataTable';
 import { Button2 } from '../../utils/ButtonElement';
 import { FaSearch } from 'react-icons/fa';
-import { SongsClient } from '../../../clients/SongsClient';
-import { DataGrid } from '@material-ui/data-grid';
-import { browserHistory } from 'react-router'
+import { SongsClient } from '../../../clients/SongsClient';;
 
-var columns = [
-    { field: 'songName', headerName: 'Nombre', width: 150 },
-    { field: 'songAuthor', headerName: 'Autor', width: 150},
-    { field: 'songAlbum', headerName: 'Album', width: 150},
-  ];
-  
-var data = []//[{id:"1","songName":"Fuentes de Ortiz","songAuthor":"Ed Maverick","songAlbum":"Mix Pa Llorar en Tu Cuarto","songLyrics":"songLyrics","creationAuthor":"angelortizv","creationDate":"09/08/2021 18:52:00","modificationAuthor":"angelortizv","modificationDate":"09/08/2021 20:52:00"},{id:"2","songName":"Forever Alone","songAuthor":"Paulo Londra","songAlbum":"Homerun","songLyrics":"songLyrics","creationAuthor":"angelortizv","creationDate":"09/08/2021 18:52:00","modificationAuthor":"joseagus00","modificationDate":"09/08/2021 21:52:00"}];
+export class HomeScreen extends   Component{
 
-//export class HomeScreen extends React.Component{
 
-function HomeScreen() {
+  songsClient = new SongsClient(); 
 
-  const songsClient = new SongsClient(); 
-  
-  const [localData, setLocalData] = useState([]);
-
-  const state= {
-      form:{
-          inputText: '',
-      },
-      data: data
+  constructor(){
+    super();
+    this.state = {
+      songsData: [],
+      inputText: ''
+    }
   }
 
+  componentDidMount(){
+    this.loadSongsDataAux();
+  }
 
-  useEffect(() => {
-    //console.log(`localData: ${localData}`);
-    localStorage.setItem('songsList', localData);
-    
-    if(localData === undefined){
-      data = [];
-    }
-    else {
-      data = localStorage.getItem('songsList');
-    }
-    console.log("data: " + data);
-  }, [localData])
-
-  const handleChange = async (e) => {
+  handleChange = async (e) => {
       this.setState({
-          form:{
-              ...state.form,
+              ...this.state.inputText,
               [e.target.name]: e.target.value
-          }
       });
   }
 
-  const handleClick = () => {
-    
+  loadSongsDataAux = async() => {
+    console.log('Entrando por primera vez');
   }
 
-  {/*const search = async() => {
+
+
+  loadSongsData = async() => {
+    //console.log(this.state.inputText)
+
+    if(this.state.inputText === ''){
+      
+      const response = await this.songsClient.getAllSongs();
+      this.setState({
+        songsData: response.data
+      })
+      toast.success("Mostrando " + response.data.length + " resultados" );
+
+    } else {
+      const response = await this.songsClient.getSong(this.state.inputText);
+      //console.log(response.data)
+      if(response.data.length === 0){
+        this.setState({
+          songsData: response.data
+        })
+        toast.error("No se encontraron resultados" );
+
+      } else{ 
+        this.setState({
+          songsData: response.data
+        })
+        toast.success("Mostrando " + response.data.length + " resultado(s)" );
+  
+      }
+
+    }
+  }
+
+  /*const search = async() => {
       
       localStorage.setItem('currentSearchData', state.form.searchSong);
       if(state.form.searchSong === undefined){
@@ -83,10 +94,10 @@ function HomeScreen() {
       } else {
           console.log('entro algo');
       }
-  }*/}
+  }*/
 
 
-  //render(){
+  render(){
 
     return (
       <>
@@ -95,19 +106,13 @@ function HomeScreen() {
         </InfoContainer2>
         <InfoContainer>
             <InfoWrapper>
+            <div><Toaster/></div>
             <Form >
-                <FormInput type="text" placeholder="Buscar canción..." name="searchSong" onChange={handleChange}></FormInput>
-                <Button2 type="button" onClick={handleClick}><FaSearch/></Button2>
+                <FormInput type="text" placeholder="Buscar canción..." name="inputText" onChange={this.handleChange}></FormInput>
+                <Button2 type="button" onClick={this.loadSongsData}><FaSearch/></Button2>
             </Form>
 
-            <div style={{ height: 480, width: '100%' }}>
-                <DataGrid
-                    rows={localData}
-                    columns={columns}
-                    pageSize={7}     
-                    disableSelectionOnClick           
-                />
-            </div>
+            <DataTable rows={this.state.songsData}></DataTable>
 
 
             </InfoWrapper>
@@ -117,6 +122,6 @@ function HomeScreen() {
     )
   }
 
-//}
+}
 
 export default HomeScreen;
