@@ -30,4 +30,19 @@ export class SongsClient {
         const response =  await axios(url, {params: {"songLyrics": songLyrics}})
         return response
     }
+
+    async postSong(songName, songAuthor, songAlbum, songLyrics, creationAuthor){
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"songLyrics":songLyrics,"creationAuthor":creationAuthor })
+        };
+        fetch('https://sheet.best/api/sheets/29ca71ea-830b-4bed-83b6-67f322773b53/tabs/songs', requestOptions)
+            .then(
+                function(response) {
+                response.text().then(function(data) {
+                    //alert(data)
+                });
+                })   
+    } 
 }

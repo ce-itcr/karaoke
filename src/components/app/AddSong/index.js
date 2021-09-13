@@ -1,10 +1,6 @@
 import React from 'react';
 import { 
-  InfoContainer,
-  InfoWrapper,
-  InfoContainer2,
   InfoRow,
-  Column1,
   TextWrapper,
   TopLine,
   Heading, 
@@ -14,14 +10,49 @@ import {
   ImgWrap2,
   Columnb
 } from "./../Profile/ProfileElements";
+import {toast, Toaster} from 'react-hot-toast';
+import { FormInput,FormLabel, FormButton} from '../../login/Signin/SigninElements';    
+import { InfoContainer, InfoWrapper, InfoContainer2, Form } from './AddSongElements';
+import { SongsClient } from '../../../clients/SongsClient';
 
 export class AddSong extends React.Component{
+
+    songsClient = new SongsClient();
+
+    state= {
+        form:{
+            songName: '',
+            songAuthor: '',
+            songAlbum: '',
+            songLyrics: '',
+            creationAuthor: localStorage.getItem('currentUsername')
+        }
+    }
+  
+    handleChange = async (e) => {
+        this.setState({
+            form:{
+                ...this.state.form,
+                [e.target.name]: e.target.value
+            }
+        });
+    }
+
+    createSong = async() => {
+        const data = this.state.form;
+        this.songsClient.postSong(data.songName, data.songAuthor, data.songAlbum, data.songLyrics, data.creationAuthor).then(
+            toast.success('Canción creada exitosamente')
+        );
+    }
+  
 
     render(){
 
     if(this.props.userType === 'basic'){
         return(
             <>
+            <div><Toaster/></div>
+
             <InfoContainer2 lightBg='false' id='background'>
                 <InfoWrapper></InfoWrapper>
                 </InfoContainer2>
@@ -51,17 +82,20 @@ export class AddSong extends React.Component{
         <InfoContainer2 lightBg='false' id='background'>
           <InfoWrapper></InfoWrapper>
         </InfoContainer2>
-        <InfoContainer lightBg='true' id='profile'>
+        
           <InfoWrapper>
-
-            <InfoRow imgStart='false'>
-              <Column1>
-                <TextWrapper>
-                  </TextWrapper>
-              </Column1>
-            </InfoRow>
+          <Form action="#">
+                    <FormLabel htmlFor="for">Nombre </FormLabel>
+                    <FormInput name="songName" type="text" required onChange={this.handleChange}/>
+                    <FormLabel htmlFor="for">Artista</FormLabel>
+                    <FormInput name="songAuthor" type="text" required onChange={this.handleChange}/>
+                    <FormLabel htmlFor="for">Album</FormLabel>
+                    <FormInput name="songAlbum" type="text" required onChange={this.handleChange}/>
+                    <FormLabel htmlFor="for">Letra</FormLabel>
+                    <FormInput name="songLyrics" type="text" required onChange={this.handleChange}/>
+                    <FormButton type="button" onClick={this.createSong} >Crear</FormButton>
+                </Form>
           </InfoWrapper>
-        </InfoContainer>
       </>
     )
   }
