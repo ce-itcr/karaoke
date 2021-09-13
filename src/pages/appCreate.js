@@ -27,6 +27,7 @@ export class AppCreate extends Component{
     this.setState({
       profileData: newData.data['0'].userType
     });
+    localStorage.setItem('userType', newData.data['0'].userType)
   }
 
 

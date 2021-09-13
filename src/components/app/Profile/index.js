@@ -18,7 +18,6 @@ import {
 } from "./ProfileElements";
 
 export class ProfileSection extends React.Component{
-
   toggleHome = () => {
     //console.log(this.props.userData.data[0].username);
     scroll.scrollToTop();

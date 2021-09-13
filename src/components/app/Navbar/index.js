@@ -48,7 +48,7 @@ const Navbar = ({ toggle }) => {
             <NavBtn>
               <NavBtnLink to="/app">Inicio</NavBtnLink>
               <NavBtnLink to={profilePath}>Perfil</NavBtnLink>
-              <NavBtnLinkB to="/app/create"><FaPlus/></NavBtnLinkB>
+              <NavBtnLinkB to="/app/songs/create"><FaPlus/></NavBtnLinkB>
             </NavBtn>
           </NavbarContainer>
         </Nav>

@@ -51,7 +51,6 @@ export class AddSong extends React.Component{
     if(this.props.userType === 'basic'){
         return(
             <>
-            <div><Toaster/></div>
 
             <InfoContainer2 lightBg='false' id='background'>
                 <InfoWrapper></InfoWrapper>
@@ -76,28 +75,41 @@ export class AddSong extends React.Component{
             </InfoContainer>
         </>
         );
-    }
-    return (
-      <>
+    }else if(this.props.userType === 'premium'){
+        return (
+            <>
+              <div><Toaster/></div>
+
+              <InfoContainer2 lightBg='false' id='background'>
+                <InfoWrapper></InfoWrapper>
+              </InfoContainer2>
+              
+                <InfoWrapper>
+                <Form action="#">
+                          <FormLabel htmlFor="for">Nombre </FormLabel>
+                          <FormInput name="songName" type="text" required onChange={this.handleChange}/>
+                          <FormLabel htmlFor="for">Artista</FormLabel>
+                          <FormInput name="songAuthor" type="text" required onChange={this.handleChange}/>
+                          <FormLabel htmlFor="for">Album</FormLabel>
+                          <FormInput name="songAlbum" type="text" required onChange={this.handleChange}/>
+                          <FormLabel htmlFor="for">Letra</FormLabel>
+                          <FormInput name="songLyrics" type="text" required onChange={this.handleChange}/>
+                          <FormButton type="button" onClick={this.createSong} >Crear</FormButton>
+                      </Form>
+                </InfoWrapper>
+            </>
+          )
+    }else {
+        return(<>
         <InfoContainer2 lightBg='false' id='background'>
-          <InfoWrapper></InfoWrapper>
-        </InfoContainer2>
-        
-          <InfoWrapper>
-          <Form action="#">
-                    <FormLabel htmlFor="for">Nombre </FormLabel>
-                    <FormInput name="songName" type="text" required onChange={this.handleChange}/>
-                    <FormLabel htmlFor="for">Artista</FormLabel>
-                    <FormInput name="songAuthor" type="text" required onChange={this.handleChange}/>
-                    <FormLabel htmlFor="for">Album</FormLabel>
-                    <FormInput name="songAlbum" type="text" required onChange={this.handleChange}/>
-                    <FormLabel htmlFor="for">Letra</FormLabel>
-                    <FormInput name="songLyrics" type="text" required onChange={this.handleChange}/>
-                    <FormButton type="button" onClick={this.createSong} >Crear</FormButton>
-                </Form>
-          </InfoWrapper>
-      </>
-    )
+                <InfoWrapper></InfoWrapper>
+              </InfoContainer2>
+              <InfoContainer lightBg='true' id='profile'>
+                <InfoWrapper>
+                </InfoWrapper>
+            </InfoContainer></>)
+    }
+
   }
 
 }
