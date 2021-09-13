@@ -31,6 +31,14 @@ export const InfoWrapper = styled.div`
   padding: 0 24px;
   justify-content: center;
 `
+
+export const ComponentsWrapper = styled.div`
+  margin-top: 70px;
+  display: flex;
+  z-index: 1;
+  justify-content: center;
+`
+
 export const Form = styled.form`
   width: 100%;
   z-index: 1;
@@ -47,7 +55,7 @@ export const FormInput = styled.input`
     font-size: 17px;
     border: 1px solid grey;
     float: left;
-    width: 80%;
+    width: 74%;
     background: #f1f1f1;
 `
 
@@ -59,3 +67,48 @@ export const TopLine = styled.p`
   letter-spacing: 1.4px;
   margin-bottom: 16px;
 `
+
+export const DropdownWrapper = styled.form`
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+`;
+
+export const StyledSelect = styled.select`
+
+
+  background: ${({primary}) => (primary ? "#1db954" : "#010606")};
+  padding: ${({big}) => (big ? "14px 48px" : "12px 30px")};
+  color: ${({dark}) => (dark ? "#010606" : "#fff")};
+  font-size: ${({fontbig}) => (fontbig ? "20px" : "16px")};
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  height:42px;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: ${({primary}) => (primary ? "#fff" : "#1db954")};
+  }
+`;
+
+export const StyledOption = styled.option`
+  color: ${(props) => (props.selected ? "lightgrey" : "black")};
+`;
+
+export const StyledLabel = styled.label`
+  margin-bottom: 1rem;
+`;
+
+export const StyledButton = styled.input`
+  max-width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  border: solid 2px blue;
+  padding: 0.5rem;
+  border-radius: 1rem;
+`;

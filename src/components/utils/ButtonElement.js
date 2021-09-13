@@ -27,13 +27,12 @@ export const Button = styled(Link)`
 export const Button2 = styled(Link)`
   //border-radius: 50px;
   background: ${({primary}) => (primary ? "#1db954" : "#010606")};
-  padding: ${({big}) => (big ? "14px 48px" : "12px 30px")};
+  padding: ${({big}) => (big ? "20px 60px" : "18px 53px")};
   color: ${({dark}) => (dark ? "#010606" : "#fff")};
   font-size: ${({fontbig}) => (fontbig ? "20px" : "16px")};
   outline: none;
   cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
   transition: all 0.2s ease-in-out;
   height:42px;
