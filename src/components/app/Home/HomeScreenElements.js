@@ -55,7 +55,7 @@ export const FormInput = styled.input`
     font-size: 17px;
     border: 1px solid grey;
     float: left;
-    width: 74%;
+    width: 72.5%;
     background: #f1f1f1;
 `
 

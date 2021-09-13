@@ -49,9 +49,14 @@ export const Column1 = styled.div`
   padding: 0 15px;
   grid-area: col1;
 `
+export const Columnb = styled.div`
+  margin-bottom: 125px;
+  padding: 0 15px;
+  grid-area: col1;
+`
 
 export const Column2 = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 45px;
   padding: 0 15px;
   grid-area: col2;
 `
@@ -104,4 +109,14 @@ export const ImgWrap = styled.div`
 export const Img = styled.img`
   width: 100%;
   padding-left: 0; 
+`
+
+export const ImgWrap2 = styled.div`
+  max-width: 150px;
+`
+
+export const Img2 = styled.img`
+  width: 80%;
+  padding-left: 0; 
+  padding-top: 0;
 `

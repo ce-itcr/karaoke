@@ -6,6 +6,7 @@ import Home from './pages';
 import SigninPage from "./pages/Signin";
 import DefaultApp from './pages/app'
 import Profile from "./pages/profile";
+import AppCreate from "./pages/appCreate";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/signin" component={SigninPage} exact />
         <Route path="/app" component={DefaultApp} exact />
+        <Route path="/app/create" component={AppCreate} exact />
         <Route path="/profile/:username" component={Profile} exact />
       </Switch>
     </Router>
