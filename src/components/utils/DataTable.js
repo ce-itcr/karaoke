@@ -9,6 +9,17 @@ import toast from 'react-hot-toast';
 export class DataTable extends React.Component {
 
     columns = [
+        /*{
+            field: "songCover",
+            width: 115,
+            renderCell: (cellValues) => {
+              return (
+                <img 
+                  width="50px" alt="Cover img"
+                />
+              );
+            }
+        },*/
         { field: 'songName', headerName: 'Nombre', width: 175 },
         { field: 'songAuthor', headerName: 'Autor', width: 175},
         { field: 'songAlbum', headerName: 'Album', width: 250},
@@ -51,8 +62,9 @@ export class DataTable extends React.Component {
       
     data = []//[{id:"1","songName":"Fuentes de Ortiz","songAuthor":"Ed Maverick","songAlbum":"Mix Pa Llorar en Tu Cuarto","songLyrics":"songLyrics","creationAuthor":"angelortizv","creationDate":"09/08/2021 18:52:00","modificationAuthor":"angelortizv","modificationDate":"09/08/2021 20:52:00"},{id:"2","songName":"Forever Alone","songAuthor":"Paulo Londra","songAlbum":"Homerun","songLyrics":"songLyrics","creationAuthor":"angelortizv","creationDate":"09/08/2021 18:52:00","modificationAuthor":"joseagus00","modificationDate":"09/08/2021 21:52:00"}];
 
-    playSong = (param, event) => {
-        console.log('asdasdsadasdas')
+    playSong = (param, cellValues) => {
+        localStorage.setItem('songIdToPlay', cellValues.id);
+        window.location.href='/app/player/'+cellValues.id;
     };
 
     editSong = (param, cellValues) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {toast, Toaster} from 'react-hot-toast';
+import {Toaster} from 'react-hot-toast';
 import { FormInput,FormLabel, FormButton} from '../../login/Signin/SigninElements';    
 import { InfoWrapper, InfoContainer2, Form } from './../AddSong/AddSongElements';
 import { SongsClient } from '../../../clients/SongsClient';
@@ -29,10 +29,10 @@ export class EditSong extends React.Component{
 
     editSong = async() => {
         console.log(this.state.form);
-        {/*const data = this.state.form;
+        /*const data = this.state.form;
         this.songsClient.postSong(data.songName, data.songAuthor, data.songAlbum, data.songLyrics, data.creationAuthor).then(
-            toast.success('Canción creada exitosamente')
-        );*/}
+            toast.success('Canción actualizada exitosamente')
+        );*/
     }
   
 
