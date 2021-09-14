@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { InfoContainer, InfoContainer2, InfoWrapper } from '../Home/HomeScreenElements';
 import { Column1, Column2, InfoRow } from '../Profile/ProfileElements';
 import MainPlayer from '../../utils/Player/MainPlayer';
@@ -28,6 +28,8 @@ export class Player extends React.Component {
             }
           ]
         
+        const songLyrics = this.props.songData.songLRC;
+        
 
         if(!this.props.songData){
             return(<></>)
@@ -44,9 +46,7 @@ export class Player extends React.Component {
                     <InfoRow imgStart='true'>
                         <Column1>
                             <LyricsPlayer 
-                                currentSongIndex={0} 
-                                setCurrentSongIndex={0} 
-                                songs={songs}
+                                songLyrics={songLyrics}
                             />
 
                         </Column1>

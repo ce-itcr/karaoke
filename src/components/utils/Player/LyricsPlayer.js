@@ -1,6 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react'
-import Controls from './Controls';
-import Details from './Details';
+import React from 'react'
+
 
 const LyricsPlayer = (props) => {
 
@@ -8,7 +7,7 @@ const LyricsPlayer = (props) => {
     return (
         <div className="lyricsPlayer">
             <div>
-                <h5>lyrics lyrics lyrics</h5>
+                <h5>{props.songLyrics}</h5>
             </div>
 
         </div>
