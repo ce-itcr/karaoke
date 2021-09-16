@@ -1,7 +1,6 @@
 import React from 'react';
 import { InfoContainer, InfoContainer2, InfoWrapper } from '../Home/HomeScreenElements';
-import PlayerBottom from '../PlayerBottom';
-
+import PlayerBottom from './PlayerBottom';
 export class Player extends React.Component {
 
     state = {

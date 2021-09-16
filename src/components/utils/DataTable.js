@@ -22,8 +22,7 @@ export class DataTable extends React.Component {
         },*/
         { field: 'songName', headerName: 'Nombre', width: 175 },
         { field: 'songAuthor', headerName: 'Autor', width: 175},
-        { field: 'songAlbum', headerName: 'Album', width: 250},
-        { field: 'creationAuthor', headerName: 'Creador', width: 200},
+        { field: 'songAlbum', headerName: 'Album', width: 450},
         {
             field: "Settings",
             width: 135,
@@ -75,6 +74,8 @@ export class DataTable extends React.Component {
             window.location.href='/app/songs/edit/'+cellValues.id;
         }
     };
+
+    
   
     render(){
         if (!this.props.rows) {
@@ -83,7 +84,7 @@ export class DataTable extends React.Component {
                 <DataGrid
                     rows={this.data}
                     columns={this.columns}
-                    pageSize={7}    
+                    pageSize={9}    
                     disableSelectionOnClick
                 />
                 </>
@@ -91,11 +92,11 @@ export class DataTable extends React.Component {
 
         }
         return (
-            <div style={{ height: 480, width: '100%' }}>
+            <div style={{ height: 600, width: '100%' }}>
                 <DataGrid
-                    rows={this.props.rows}
+                    rows={this.props.rows } 
                     columns={this.columns}
-                    pageSize={7}     
+                    pageSize={9}     
                     disableSelectionOnClick           
                 />
             </div>

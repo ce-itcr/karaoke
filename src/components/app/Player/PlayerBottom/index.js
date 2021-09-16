@@ -4,7 +4,7 @@ import SkipNextIcon from "@material-ui/icons/SkipNext";
 import VolumeDownIcon from "@material-ui/icons/VolumeDown";
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
 import { Slider } from "@material-ui/core";
-import MainPlayer from '../../utils/Player/MainPlayer';
+import MainPlayer from '../../../utils/Player/MainPlayer';
 
 
 const PlayerBottom = (props) => {
@@ -28,7 +28,7 @@ const PlayerBottom = (props) => {
                 />
                 <div className="footer__songinfo">
                   <h4>{songData.songName}</h4>
-                  <p>{songData.songAuthor}</p>
+                  <p>{songData.songAuthor} | {songData.songAlbum}</p>
                 </div>
               </div>
               <div className="footer__center">

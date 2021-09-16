@@ -50,8 +50,7 @@ export const FormContent = styled.div`
 `
 
 export const Form = styled.form`
-  background: #192f1f;
-  max-width: 400px;
+  background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));  max-width: 400px;
   height: auto;
   width: 100%;
   z-index: 1;
