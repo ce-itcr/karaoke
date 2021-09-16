@@ -9,6 +9,8 @@
   background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
 }
 
+.button {outline: 0}
+
 .lyricsPlayer {
   display: block;
   background-color: #192f1f;

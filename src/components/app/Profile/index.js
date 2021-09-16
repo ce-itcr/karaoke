@@ -16,6 +16,7 @@ import {
   ImgWrap,
   Img
 } from "./ProfileElements";
+import ProgressBar from '../../utils/ProgressBar';
 
 export class ProfileSection extends React.Component{
   toggleHome = () => {
@@ -40,6 +41,7 @@ export class ProfileSection extends React.Component{
         </InfoContainer2>
         <InfoContainer lightBg='true' id='profile'>
           <InfoWrapper>
+          <ProgressBar></ProgressBar>
             <InfoRow imgStart='true'>
               <Column1>
                 <TextWrapper>

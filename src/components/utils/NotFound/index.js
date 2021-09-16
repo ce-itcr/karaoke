@@ -8,7 +8,6 @@ import {
     HeroH1,
     HeroP
  } from '../../landing/HeroSection/HeroElements';
-import { Container2, Icon } from '../../login/Signin/SigninElements';
 
 
 class NotFound extends Component {

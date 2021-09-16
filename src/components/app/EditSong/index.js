@@ -3,6 +3,7 @@ import {Toaster} from 'react-hot-toast';
 import { FormInput,FormLabel, FormButton} from '../../login/Signin/SigninElements';    
 import { InfoWrapper, InfoContainer2, Form } from './../AddSong/AddSongElements';
 import { SongsClient } from '../../../clients/SongsClient';
+import ProgressBar from '../../utils/ProgressBar';
 
 export class EditSong extends React.Component{
 
@@ -52,6 +53,8 @@ export class EditSong extends React.Component{
               </InfoContainer2>
               
                 <InfoWrapper>
+                <ProgressBar></ProgressBar>
+
                 <Form action="#">
                           <FormLabel htmlFor="for">Nombre </FormLabel>
                           <FormInput name="songName" required type="text" value={song.songName} />
