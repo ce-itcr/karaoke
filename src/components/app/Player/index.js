@@ -1,6 +1,8 @@
 import React from 'react';
 import { InfoContainer, InfoContainer2, InfoWrapper } from '../Home/HomeScreenElements';
 import PlayerBottom from './PlayerBottom';
+import SongsLyrics from './SongsLyrics';
+
 export class Player extends React.Component {
 
     state = {
@@ -10,13 +12,12 @@ export class Player extends React.Component {
         }
     }
     src = localStorage.getItem('songMp3');
-
-
-
     
     render(){
         
-        
+        const lyrics = this.props.songData.songLRC;
+        console.log(lyrics)
+        localStorage.setItem('songLyrics', lyrics)
 
         if(!this.props.songData){
             return(<></>)
@@ -30,12 +31,12 @@ export class Player extends React.Component {
                 </InfoContainer2>
                 <InfoContainer>
 
-                <p>letra de la canción</p>
+                <SongsLyrics songLyrics={lyrics}></SongsLyrics>
                         
                 </InfoContainer>
                 <PlayerBottom songData={this.props.songData}></PlayerBottom>
         
-        
+            
             </div>
         );
     }
