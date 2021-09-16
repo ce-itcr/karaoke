@@ -1,7 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {toast, Toaster} from 'react-hot-toast';
 import Controls from './Controls';
-import Details from './Details';
 
 const MainPlayer = (props) => {
     const audioEl = useRef(null);
@@ -23,7 +22,6 @@ const MainPlayer = (props) => {
             <Toaster/>
             <audio src={props.songs[props.currentSongIndex].src} ref={audioEl}></audio>
             <div>
-                <Details song={props.songs[props.currentSongIndex]} />
                 <Controls isPlaying={isPlaying} setIsPlaying={setIsPlaying}  />
             </div>
 

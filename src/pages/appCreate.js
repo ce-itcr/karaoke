@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ProfileClient } from '../clients/ProfileClient';
-import Footer from '../components/landing/Footer';
 import Navbar from '../components/app/Navbar';
 import Sidebar from '../components/app/Sidebar';
 import AddSong from '../components/app/AddSong';
@@ -38,7 +37,7 @@ export class AppCreate extends Component{
         <Sidebar />
         <Navbar  />
         <AddSong userType={this.state.profileData}/>
-        <Footer />
+        {/*<Footer />*/}
       </>
     )
   }

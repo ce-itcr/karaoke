@@ -1,8 +1,6 @@
 import React from 'react';
 import { InfoContainer, InfoContainer2, InfoWrapper } from '../Home/HomeScreenElements';
-import { Column1, Column2, InfoRow } from '../Profile/ProfileElements';
-import MainPlayer from '../../utils/Player/MainPlayer';
-import LyricsPlayer from '../../utils/Player/LyricsPlayer';
+import PlayerBottom from '../PlayerBottom';
 
 export class Player extends React.Component {
 
@@ -18,17 +16,7 @@ export class Player extends React.Component {
 
     
     render(){
-
-        const songs = [
-            {
-              title: this.props.songData.songName,
-              artist: this.props.songData.songAuthor + " - " + this.props.songData.songAlbum,
-              img_src: this.props.songData.songCover,
-              src: this.props.songData.songMp3
-            }
-          ]
         
-        const songLyrics = this.props.songData.songLRC;
         
 
         if(!this.props.songData){
@@ -42,27 +30,11 @@ export class Player extends React.Component {
                 <InfoWrapper></InfoWrapper>
                 </InfoContainer2>
                 <InfoContainer>
-                    <InfoWrapper>
-                    <InfoRow imgStart='true'>
-                        <Column1>
-                            <LyricsPlayer 
-                                songLyrics={songLyrics}
-                            />
 
-                        </Column1>
-                        <Column2>
-                            <MainPlayer 
-                                currentSongIndex={0} 
-                                setCurrentSongIndex={0} 
-                                songs={songs}
-                            />
-                        </Column2>
-                    </InfoRow>
-
-
+                <p>letra de la canción</p>
                         
-                    </InfoWrapper>
                 </InfoContainer>
+                <PlayerBottom songData={this.props.songData}></PlayerBottom>
         
         
             </div>

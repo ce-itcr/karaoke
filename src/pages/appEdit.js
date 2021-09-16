@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Footer from '../components/landing/Footer';
 import Navbar from '../components/app/Navbar';
 import Sidebar from '../components/app/Sidebar';
 import EditSong from '../components/app/EditSong';
@@ -35,7 +34,7 @@ export class AppEdit extends Component{
         <Sidebar />
         <Navbar  />
         <EditSong songsData={this.state.songsData}/>
-        <Footer />
+        {/*<Footer />*/}
       </>
     )
   }

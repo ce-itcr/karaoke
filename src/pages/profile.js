@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Footer from '../components/landing/Footer';
 import Navbar from '../components/app/Navbar';
 import Sidebar from '../components/app/Sidebar';
 import UserProfile from '../components/app/Profile';
@@ -34,7 +33,7 @@ export class Profile extends Component{
         <Sidebar />
         <Navbar  />
         <UserProfile userData={this.state.profileData}/>
-        <Footer />
+        {/*<Footer />*/}
       </>
     )
   }
