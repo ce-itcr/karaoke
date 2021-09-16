@@ -28,7 +28,7 @@ export const InfoWrapper = styled.div`
 `
 
 export const Form = styled.form`
-  background: #192f1f;
+  background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
   display: grid;
   margin: 0 auto;
   padding: 45px 32px;

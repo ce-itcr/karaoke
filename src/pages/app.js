@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-
-import Footer from '../components/landing/Footer';
 import Navbar from '../components/app/Navbar';
 import Sidebar from '../components/app/Sidebar';
 import HomeScreen from '../components/app/Home';
@@ -17,7 +15,7 @@ const DefaultApp = () => {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
       <HomeScreen/>
-      <Footer />
+      {/*<Footer />*/}    
     </>
   )
 }
