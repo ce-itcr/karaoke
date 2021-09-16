@@ -90,7 +90,7 @@ export const ImgWrap = styled.div`
 `
 
 export const Img = styled.img`
-  width: 100%;
+  width: 50%;
   margin: 0 0 10 0;
-  padding-right: 0; 
+  padding-left: 10px; 
 `
