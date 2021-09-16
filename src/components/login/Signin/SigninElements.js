@@ -13,6 +13,18 @@ export const Container = styled.div`
   background: #1db954;
 `
 
+export const Container2 = styled.div`
+  min-height: 692px;
+  position: fixed;
+  padding-top: 40px;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  overflow: hidden;
+`
+
 export const FormWrap = styled.div`
   height: 100%;
   display: flex;
