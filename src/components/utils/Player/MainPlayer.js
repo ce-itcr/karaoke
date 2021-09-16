@@ -4,7 +4,7 @@ import Controls from './Controls';
 
 const MainPlayer = (props) => {
     const audioEl = useRef(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
 
     useEffect(() => {
         if (isPlaying) {

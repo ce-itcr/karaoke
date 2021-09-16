@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Lyric from "./lyric";
 
 const SongsLyrics = (props) => {
-  const [currentTime, setCurrentTime] = useState(10000);
+  const [currentTime, setCurrentTime] = useState(1900);
 
 
   const songLyrics = localStorage.getItem('songLyrics');
