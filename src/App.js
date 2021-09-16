@@ -9,6 +9,7 @@ import Profile from "./pages/profile";
 import AppCreate from "./pages/appCreate";
 import AppEdit from "./pages/appEdit";
 import AppPlayer from "./pages/appPlayer";
+import NotFound from "./components/utils/NotFound";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/app/songs/edit/:songId" component={AppEdit} exact />
         <Route path="/app/player/:songId" component={AppPlayer} exact />
         <Route path="/profile/:username" component={Profile} exact />
+
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );

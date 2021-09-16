@@ -21,14 +21,6 @@ const style = {
 
 const Wrapper = ({ songLyrics, currentTime }) => {
   const lrcRef = useRef();
-  const scrollToCurrentLine = useCallback(() => {
-    lrcRef.current.scrollToCurrentLine();
-    console.log("scroll");
-  }, []);
-  const getCurrentLine = useCallback(() => {
-    // eslint-disable-next-line no-undef
-    alert(JSON.stringify(lrcRef.current.getCurrentLine()));
-  }, []);
   const onCurrentLineChange = useCallback((lrcLine, index) => {
     console.log("\n");
     console.log(lrcLine, index);

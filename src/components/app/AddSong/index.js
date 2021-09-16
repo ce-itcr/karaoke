@@ -14,6 +14,7 @@ import {toast, Toaster} from 'react-hot-toast';
 import { FormInput,FormLabel, FormButton} from '../../login/Signin/SigninElements';    
 import { InfoContainer, InfoWrapper, InfoContainer2, Form } from './AddSongElements';
 import { SongsClient } from '../../../clients/SongsClient';
+import ProgressBar from '../../utils/ProgressBar';
 
 export class AddSong extends React.Component{
 
@@ -57,6 +58,7 @@ export class AddSong extends React.Component{
                 </InfoContainer2>
                 <InfoContainer lightBg='true' id='profile'>
                 <InfoWrapper>
+                    <ProgressBar></ProgressBar>
                     <InfoRow imgStart='true'>
                     <Columnb>
                         <ImgWrap2>
@@ -85,6 +87,8 @@ export class AddSong extends React.Component{
               </InfoContainer2>
               
                 <InfoWrapper>
+                <ProgressBar></ProgressBar>
+
                 <Form action="#">
                           <FormLabel htmlFor="for">Nombre </FormLabel>
                           <FormInput name="songName" type="text" required onChange={this.handleChange}/>

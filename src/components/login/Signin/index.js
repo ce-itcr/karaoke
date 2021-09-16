@@ -10,8 +10,7 @@ import {
   FormH1,
   FormLabel,
   FormInput,
-  FormButton,
-  Text
+  FormButton
 } from "./SigninElements";
 
 class Signin extends Component {
@@ -65,7 +64,7 @@ class Signin extends Component {
                 <FormLabel htmlFor="for">Contraseña</FormLabel>
                 <FormInput name="password" type="password" required onChange={this.handleChange}/>
                 <FormButton type="button" onClick={this.login} >Iniciar Sesión</FormButton>
-                <Text>Olvidó su Contraseña?</Text>
+                {/*<Text>Olvidó su Contraseña?</Text>*/}
                 </Form>
             </FormContent>
             </FormWrap>

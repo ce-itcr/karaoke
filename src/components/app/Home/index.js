@@ -14,9 +14,10 @@ import { toast, Toaster } from 'react-hot-toast';
 import DataTable from '../../utils/DataTable';
 import { Button2 } from '../../utils/ButtonElement';
 import { FaSearch } from 'react-icons/fa';
-import { SongsClient } from '../../../clients/SongsClient';;
+import { SongsClient } from '../../../clients/SongsClient';
+import ProgressBar from '../../utils/ProgressBar';
 
-export class HomeScreen extends   Component{
+export class HomeScreen extends Component{
 
 
   songsClient = new SongsClient(); 
@@ -26,8 +27,10 @@ export class HomeScreen extends   Component{
     this.state = {
       songsData: [],
       inputText: '',
-      selectedOption: ''
+      selectedOption: '',
+      progress: 0
     }
+
   }
 
   options = [
@@ -38,6 +41,7 @@ export class HomeScreen extends   Component{
 
   componentDidMount(){
     this.loadSongsDataAux();
+
   }
 
   handleChange = async (e) => {
@@ -71,8 +75,8 @@ export class HomeScreen extends   Component{
         this.setState({
           songsData: response.data
         })
+        this.renderProgressBar();
         toast.success("Mostrando " + response.data.length + " resultados" );
-  
       } else{
         switch (this.state.selectedOption) {
           case 'songName':
@@ -88,6 +92,7 @@ export class HomeScreen extends   Component{
               this.setState({
                 songsData: responseName.data
               })
+              this.renderProgressBar();
               toast.success("Mostrando " + responseName.data.length + " resultado(s)" );
             }
             break;
@@ -104,6 +109,7 @@ export class HomeScreen extends   Component{
               this.setState({
                 songsData: responseAuthor.data
               })
+              this.renderProgressBar();
               toast.success("Mostrando " + responseAuthor.data.length + " resultado(s)" );
             }
             break;
@@ -120,6 +126,7 @@ export class HomeScreen extends   Component{
               this.setState({
                 songsData: responseAlbum.data
               })
+              this.renderProgressBar();
               toast.success("Mostrando " + responseAlbum.data.length + " resultado(s)" );
             }
             break;
@@ -136,7 +143,8 @@ export class HomeScreen extends   Component{
               this.setState({
                 songsData: responseLyrics.data
               })
-              toast.success("Mostrando " + responseLyrics.data.length + " resultado(s)" );
+              this.renderProgressBar();
+              toast.success("Mostrando " + responseLyrics.data.length + " resultado(s)" ); 
             }
             break;
           default:
@@ -145,7 +153,10 @@ export class HomeScreen extends   Component{
       }
 
     }
+  }
 
+  renderProgressBar = () => {
+    return(<ProgressBar/>)
   }
 
   render(){
@@ -157,6 +168,7 @@ export class HomeScreen extends   Component{
         </InfoContainer2>
         <InfoContainer>
             <InfoWrapper>
+            <ProgressBar></ProgressBar>
             <div><Toaster/></div>
             <Form >
                 <FormInput type="text" placeholder="Buscar canción..." name="inputText" onChange={this.handleChange}></FormInput>

@@ -2,6 +2,7 @@ import React from 'react';
 import { InfoContainer, InfoContainer2, InfoWrapper } from '../Home/HomeScreenElements';
 import PlayerBottom from './PlayerBottom';
 import SongsLyrics from './SongsLyrics';
+import ProgressBar from '../../utils/ProgressBar';
 
 export class Player extends React.Component {
 
@@ -30,6 +31,7 @@ export class Player extends React.Component {
                 <InfoWrapper></InfoWrapper>
                 </InfoContainer2>
                 <InfoContainer>
+                <ProgressBar></ProgressBar>
 
                 <SongsLyrics songLyrics={lyrics}></SongsLyrics>
                         
