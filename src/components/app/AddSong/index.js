@@ -26,6 +26,9 @@ export class AddSong extends React.Component{
             songAuthor: '',
             songAlbum: '',
             songLyrics: '',
+            songMP3: '',
+            songLRC: '',
+            songCover: '',
             creationAuthor: localStorage.getItem('currentUsername')
         }
     }
@@ -39,10 +42,24 @@ export class AddSong extends React.Component{
         });
     }
 
+    showFile = async (e) => {
+        e.preventDefault()
+        const reader = new FileReader()
+        reader.onload = async (e) => { 
+          const text = (e.target.result)
+          //console.log(text)
+          toast.success('El archivo fue subido exitosamente');
+          this.state.form.songLRC = text;
+          //alert(text)
+        };
+        reader.readAsText(e.target.files[0])
+      }
+
     createSong = async() => {
         const data = this.state.form;
-        this.songsClient.postSong(data.songName, data.songAuthor, data.songAlbum, data.songLyrics, data.creationAuthor).then(
-            toast.success('Canción creada exitosamente')
+        this.songsClient.postSong(data.songName, data.songAuthor, data.songAlbum, data.creationAuthor, data.songMP3, data.songLRC, data.songCover).then(
+            toast.success('Canción creada exitosamente'),
+            //window.location.assign('/app')
         );
     }
   
@@ -90,15 +107,23 @@ export class AddSong extends React.Component{
                 <ProgressBar></ProgressBar>
 
                 <Form action="#">
-                          <FormLabel htmlFor="for">Nombre </FormLabel>
+                          <FormLabel htmlFor="for">Nombre de la Canción</FormLabel>
                           <FormInput name="songName" type="text" required onChange={this.handleChange}/>
                           <FormLabel htmlFor="for">Artista</FormLabel>
                           <FormInput name="songAuthor" type="text" required onChange={this.handleChange}/>
                           <FormLabel htmlFor="for">Album</FormLabel>
                           <FormInput name="songAlbum" type="text" required onChange={this.handleChange}/>
-                          <FormLabel htmlFor="for">Letra</FormLabel>
-                          <FormInput name="songLyrics" type="text" required onChange={this.handleChange}/>
-                          <FormButton type="button" onClick={this.createSong} >Crear</FormButton>
+                          <FormLabel htmlFor="for">Link de Cover Album</FormLabel>
+                          <FormInput name="songCover" type="text" required onChange={this.handleChange}/>
+                          {/*<FormLabel htmlFor="for">Letra</FormLabel>
+                          <FormInput name="songLyrics" type="text" required onChange={this.handleChange}/>*/}
+                          <FormLabel htmlFor="for">Link de Canción MP3</FormLabel>
+                          <FormInput name="songMP3" type="text" required onChange={this.handleChange}/>
+                          {/*<FormLabel htmlFor="for">Letra de canción en formato LRC</FormLabel>
+                          <FormInput name="songLRC" type="text" height="48" required onChange={this.handleChange}/>*/}
+                          <FormLabel htmlFor="for">Letra de canción en formato LRC</FormLabel>
+                          <FormInput name="songMP3" type="file" required onChange={(e) => this.showFile(e)}/>
+                          <FormButton type="button" onClick={this.createSong} >Añadir Canción</FormButton>
                       </Form>
                 </InfoWrapper>
             </>

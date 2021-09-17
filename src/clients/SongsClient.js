@@ -37,17 +37,48 @@ export class SongsClient {
         return response
     }
 
-    async postSong(songName, songAuthor, songAlbum, songLyrics, creationAuthor){
+
+    async postSong(songName, songAuthor, songAlbum, creationAuthor, songMP3, songLRC, songCover){
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"songLyrics":songLyrics,"creationAuthor":creationAuthor })
+            body: JSON.stringify({ "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"creationAuthor":creationAuthor, "songMp3":songMP3, "songLRC":songLRC, "songCover":songCover})
         };
         fetch('https://sheet.best/api/sheets/8b1096dd-0af6-4b5b-b6f6-bbdb3d71d09d/tabs/songs', requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
                     //alert(data)
+                });
+                })   
+    } 
+
+    async updateSong(songId, songMP3, songLRC, modificationAuthor){
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "songMp3":songMP3, "songLRC":songLRC, "modificationAuthor":modificationAuthor})
+        };
+        fetch('https://sheet.best/api/sheets/8b1096dd-0af6-4b5b-b6f6-bbdb3d71d09d/tabs/songs/id/' + songId, requestOptions)
+            .then(
+                function(response) {
+                response.text().then(function(data) {
+                    alert(data)
+                });
+                })   
+    } 
+
+    async deleteSong(songId){
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify()
+        };
+        fetch('https://sheet.best/api/sheets/8b1096dd-0af6-4b5b-b6f6-bbdb3d71d09d/tabs/songs/id/' + songId, requestOptions)
+            .then(
+                function(response) {
+                response.text().then(function(data) {
+                    alert(data)
                 });
                 })   
     } 

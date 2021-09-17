@@ -62,3 +62,13 @@ export const Button3 = styled(Link)`
     background: ${({primary}) => (primary ? "#fff" : "#1db954")};
   }
 `
+
+export const Button4 = styled(Link)`
+  color: ${({primary}) => (primary ? "#000" : "#000")};
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top:50px;
+
+`
