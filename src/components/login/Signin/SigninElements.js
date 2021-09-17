@@ -98,6 +98,16 @@ export const FormInput = styled.input`
   border-radius: 4px;
 `
 
+export const FormInputBig = styled.input`
+  float:right;
+  height:50px;
+  padding: 16px 16px;
+  margin-bottom: 32px;
+  border: none;
+  border-radius: 4px;
+`
+
+
 export const FormButton = styled.button`
   background: #1db954;
   padding: 16px 0;

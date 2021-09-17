@@ -9,7 +9,7 @@
   background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
 }
 
-.button {outline: 0}
+.loadingBtn {outline: 0}
 
 .lyricsPlayer {
   display: block;
