@@ -1,9 +1,11 @@
 import React from 'react';
-import {Toaster} from 'react-hot-toast';
 import { FormInput,FormLabel, FormButton} from '../../login/Signin/SigninElements';    
 import { InfoWrapper, InfoContainer2, Form } from './../AddSong/AddSongElements';
 import { SongsClient } from '../../../clients/SongsClient';
 import ProgressBar from '../../utils/ProgressBar';
+import {toast, Toaster} from 'react-hot-toast';
+import  {FaTrash} from 'react-icons/fa';
+import { Button4 } from '../../utils/ButtonElement';
 
 export class EditSong extends React.Component{
 
@@ -11,11 +13,14 @@ export class EditSong extends React.Component{
 
     state= {
         form:{
+            songId: '',
             songName: '',
             songAuthor: '',
             songAlbum: '',
             songLyrics: '',
-            creationAuthor: localStorage.getItem('currentUsername')
+            songMP3: '',
+            songLRC: '',
+            modificationAuthor: localStorage.getItem('currentUsername')
         }
     }
   
@@ -28,18 +33,40 @@ export class EditSong extends React.Component{
         });
     }
 
+    showFile = async (e) => {
+        e.preventDefault()
+        const reader = new FileReader()
+        reader.onload = async (e) => { 
+          const text = (e.target.result)
+          //console.log(text)
+          toast.success('El archivo fue subido exitosamente');
+          this.state.form.songLRC = text;
+          //alert(text)
+        };
+        reader.readAsText(e.target.files[0])
+      }
+
     editSong = async() => {
         console.log(this.state.form);
-        /*const data = this.state.form;
-        this.songsClient.postSong(data.songName, data.songAuthor, data.songAlbum, data.songLyrics, data.creationAuthor).then(
+        const data = this.state.form;
+        this.songsClient.updateSong(data.songId,data.songMP3, data.songLRC, data.modificationAuthor).then(
             toast.success('Canción actualizada exitosamente')
-        );*/
+        );
+    }
+
+    removeSong = async() => {
+        const data = this.state.form;
+        this.songsClient.deleteSong(data.songId).then(
+            toast.success('Canción eliminada exitosamente')
+        );
+        window.location.assign("/")
     }
   
 
     render(){
 
         var song = this.props.songsData;
+        this.state.form.songId = localStorage.getItem('songIdToEdit');
         if(!this.props.songsData){
             return <></>;
           }
@@ -51,21 +78,35 @@ export class EditSong extends React.Component{
               <InfoContainer2 lightBg='false' id='background'>
                 <InfoWrapper></InfoWrapper>
               </InfoContainer2>
+              <div><Toaster/></div>
               
                 <InfoWrapper>
                 <ProgressBar></ProgressBar>
 
                 <Form action="#">
                           <FormLabel htmlFor="for">Nombre </FormLabel>
-                          <FormInput name="songName" required type="text" value={song.songName} />
+                          <FormInput name="songName" readOnly type="text" value={song.songName} />
                           <FormLabel htmlFor="for">Artista</FormLabel>
-                          <FormInput name="songAuthor" type="text"  value={song.songAuthor} onChange={this.handleChange}/>
+                          <FormInput name="songAuthor" type="text" readOnly value={song.songAuthor} />
                           <FormLabel htmlFor="for">Album</FormLabel>
-                          <FormInput name="songAlbum" type="text"  value={song.songAlbum} onChange={this.handleChange}/>
-                          <FormLabel htmlFor="for">Letra</FormLabel>
-                          <FormInput name="songLyrics" type="text"  value={song.songLyrics} onChange={this.handleChange}/>
-                          <FormButton type="button" onClick={this.editSong} >Modificar</FormButton>
+                          <FormInput name="songAlbum" type="text" readOnly value={song.songAlbum}/>
+                          <FormLabel htmlFor="for">Link a canción en formato Mp3</FormLabel>
+                          <FormInput name="songMP3" type="text" />
+                          <FormLabel htmlFor="for">Letra de canción en formato LRC</FormLabel>
+                          <FormInput name="songMP3" type="file" required onChange={(e) => this.showFile(e)}/>
+                          <FormButton type="button" onClick={this.editSong} >Modificar Canción</FormButton>
+
                       </Form>
+                      <Button4
+                            variant="contained"
+                            color="primary"
+                            onClick={(event) => {
+                            this.removeSong();
+                            }}
+                            >
+                            <FaTrash />
+                            </Button4>
+
                 </InfoWrapper>
             </>
           )

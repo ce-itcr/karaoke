@@ -52,4 +52,34 @@ export class SongsClient {
                 });
                 })   
     } 
+
+    async updateSong(songId, songMP3, songLRC, modificationAuthor){
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "songMp3":songMP3, "songLRC":songLRC, "modificationAuthor":modificationAuthor})
+        };
+        fetch('https://sheet.best/api/sheets/8b1096dd-0af6-4b5b-b6f6-bbdb3d71d09d/tabs/songs/id/' + songId, requestOptions)
+            .then(
+                function(response) {
+                response.text().then(function(data) {
+                    alert(data)
+                });
+                })   
+    } 
+
+    async deleteSong(songId){
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify()
+        };
+        fetch('https://sheet.best/api/sheets/8b1096dd-0af6-4b5b-b6f6-bbdb3d71d09d/tabs/songs/id/' + songId, requestOptions)
+            .then(
+                function(response) {
+                response.text().then(function(data) {
+                    alert(data)
+                });
+                })   
+    } 
 }
