@@ -1,5 +1,5 @@
 import React from 'react';
-import { InfoContainer, InfoContainer2, InfoWrapper } from '../Home/HomeScreenElements';
+import { InfoContainer, InfoContainer2, InfoContainer3, InfoWrapper } from '../Home/HomeScreenElements';
 import PlayerBottom from './PlayerBottom';
 import SongsLyrics from './SongsLyrics';
 import ProgressBar from '../../utils/ProgressBar';
@@ -30,12 +30,10 @@ export class Player extends React.Component {
                 <InfoContainer2 lightBg='false' id='background'>
                 <InfoWrapper></InfoWrapper>
                 </InfoContainer2>
-                <InfoContainer>
-                <ProgressBar></ProgressBar>
-
-                <SongsLyrics songLyrics={lyrics}></SongsLyrics>
-                        
-                </InfoContainer>
+                <InfoContainer3>
+                    <ProgressBar></ProgressBar>
+                    <SongsLyrics songLyrics={lyrics}></SongsLyrics>
+                </InfoContainer3>
                 <PlayerBottom songData={this.props.songData}></PlayerBottom>
         
             

@@ -1,9 +1,12 @@
+
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: "Encode Sans Expanded", sans-serif;
 }
+
 
 .dataGridBackground {
   background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
@@ -71,7 +74,6 @@
 
 .c-player--controls .play-btn {
   display: flex;
-  margin: 0 40px;
   padding: 15px;
   border-radius: 50%;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8), -4px -4px 10px rgba(255, 255, 255, 0.4), inset -4px -4px 10px rgba(0, 0, 0, 0.4), inset 4px 4px 10px rgba(255, 255, 255, 0.4);
@@ -143,10 +145,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 ;
+  padding-left: 150px;
 }
 .footer__green {
-  color: #1ed15e;
+  color: #1db954;
 }
 
 .footer__icon:hover,
@@ -161,11 +163,10 @@
   align-items: center;
   color: white;
   flex: 0.25;
-  margin-right: 50px;
 }
 
 .footer__right__slider {
-  color: #1ed15e !important;
+  color: #1db954 !important;
   padding-left: 5px !important;
   width: 100% !important;
 }

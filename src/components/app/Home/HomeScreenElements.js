@@ -3,10 +3,7 @@ import styled from "styled-components";
 export const InfoContainer = styled.div`
   color: #fff;
   background: ${({lightBg}) => (lightBg ? "#fff" : "#fff")};
-
-  @media screen and (max-width: 768px) {
-    padding: 100px 0;
-  }
+  justify-content: space-between;
 `
 export const InfoContainer2 = styled.div`
   color: #000;
@@ -19,6 +16,12 @@ export const InfoContainer2 = styled.div`
   height: 80px;
   width: 100%;
   padding: 0 24px;
+`
+export const InfoContainer3 = styled.div`
+  color: #fff;
+  background: ${({lightBg}) => (lightBg ? "#fff" : "#fff")};
+  justify-content: space-between;
+
 `
 export const InfoWrapper = styled.div`
   margin-top: 70px;
