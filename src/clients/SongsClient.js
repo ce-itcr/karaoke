@@ -2,37 +2,37 @@ import axios from "axios";
 
 export class SongsClient {
     async getAllSongs() {
-        const url = "https://sheet.best/api/sheets/b5fc9c7a-0f86-43e6-a8c7-23881a278ddf/tabs/songs"
+        const url = "http://localhost:5000/karaoke/getAllSongs"
         const response =  await axios(url)
         return response
     }
 
     async getSongById(songId){
-        const url = "https://sheet.best/api/sheets/b5fc9c7a-0f86-43e6-a8c7-23881a278ddf/tabs/songs/search?"
-        const response =  await axios(url, {params: {"id": songId}})
+        const url = `http://localhost:5000/karaoke/getSong/{"id":"` + songId + `"}`
+        const response =  await axios(url)
         return response
     }
 
     async getSongsByName(songName){
-        const url = "https://sheet.best/api/sheets/b5fc9c7a-0f86-43e6-a8c7-23881a278ddf/tabs/songs/search?"
-        const response =  await axios(url, {params: {"songName": songName}})
+        const url = `http://localhost:5000/karaoke/getSong/{"songName":"` + songName + `"}`
+        const response =  await axios(url)
         return response
     }
 
     async getSongsByAuthor(songAuthor){
-        const url = "https://sheet.best/api/sheets/b5fc9c7a-0f86-43e6-a8c7-23881a278ddf/tabs/songs/search?"
-        const response =  await axios(url, {params: {"songAuthor": songAuthor}})
+        const url = `http://localhost:5000/karaoke/getSong/{"songAuthor":"` + songAuthor + `"}`
+        const response =  await axios(url)
         return response
     }
 
     async getSongsByAlbum(songAlbum){
-        const url = "https://sheet.best/api/sheets/b5fc9c7a-0f86-43e6-a8c7-23881a278ddf/tabs/songs/search?"
+        const url = `http://localhost:5000/karaoke/getSong/{"songAlbum":"` + songAlbum + `"}`
         const response =  await axios(url, {params: {"songAlbum": songAlbum}})
         return response
     }
 
     async getSongsByLyrics(songLyrics){
-        const url = "https://sheet.best/api/sheets/b5fc9c7a-0f86-43e6-a8c7-23881a278ddf/tabs/songs/search?"
+        const url = `http://localhost:5000/karaoke/getSong/{"songLyrics":"` + songLyrics + `"}`
         const response =  await axios(url, {params: {"songLyrics": songLyrics}})
         return response
     }

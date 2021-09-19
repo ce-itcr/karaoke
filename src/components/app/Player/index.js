@@ -15,11 +15,10 @@ export class Player extends React.Component {
     src = localStorage.getItem('songMp3');
     
     render(){
-        
+        alert(JSON.stringify(this.props.songData))
         const lyrics = this.props.songData.songLRC;
         console.log(lyrics)
         localStorage.setItem('songLyrics', lyrics)
-
         if(!this.props.songData){
             return(<></>)
         }
