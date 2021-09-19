@@ -1,82 +1,83 @@
-## Hoja de Control
+# Karaoke-app
+
+## Control sheet
 
 ```
-Organismo: ce-itcr
-Proyecto: karaoke-app
-Fecha de Aprobación: 18/09/2021
+Author: ce-itcr
+Project: karaoke-app
+Approval Date: 09/18/2021
 ```
 
-#### Registro de Cambios
+#### Change Log
 
 <table>
-  <tr>
-    <th align="center">
-      <img width="441" height="1">
-      <p><small>Versión</small></p>
-    </th>
-    <th align="center">
-      <img width="441" height="1">
-      <p><small>Causa del cambio</small></p>
-    </th>
-    <th align="center">
-      <img width="441" height="1">
-      <p><small>Responsable del cambio</small></p>
-    </th>
-    <th align="center">
-      <img width="441" height="1">
-      <p><small>Fecha del cambio</small></p>
-    </th>
-  </tr>
-  <tr>
-    <td align="center">
-      001
-    </td>
-    <td align="center">
-      Versión Inicial
-    </td>
-    <td align="center">
-      Angelo Ortiz Vega
-    </td>
-    <td align="center">
-      18/09/2021
-    </td>
-  </tr>
+   <tr>
+     <th align = "center">
+       <img width = "441" height = "1">
+       <p> <small> Version </small> </p>
+     </th>
+     <th align = "center">
+       <img width = "441" height = "1">
+       <p> <small> Cause of change </small> </p>
+     </th>
+     <th align = "center">
+       <img width = "441" height = "1">
+       <p> <small> Responsible for the change </small> </p>
+     </th>
+     <th align = "center">
+       <img width = "441" height = "1">
+       <p> <small> Date of change </small> </p>
+     </th>
+   </tr>
+   <tr>
+     <td align = "center">
+       001
+     </td>
+     <td align = "center">
+       Initial Version
+     </td>
+     <td align = "center">
+       Angelo Ortiz Vega
+     </td>
+     <td align = "center">
+       09/18/2021
+     </td>
+   </tr>
 </table>
 
-#### Equipo de Desarrollo
-
+#### Development team
 
 ```
-Angelo Ortiz Vega: @angelortizv - Funciones:
-Agustín Venegas Vega: @JoseAgus00 - Funciones:
-Jonathan Esquivel Sánchez: @jesquivel48 - Funciones: 
+Angelo Ortiz Vega: @angelortizv - Functions:
+Agustín Venegas Vega: @ JoseAgus00 - Features:
+Jonathan Esquivel Sánchez: @ jesquivel48 - Functions:
 ```
 
-## Presentación 
+## Presentation
 
-La presente documentación es asociada al Proyecto I - Karaoke! del curso de Arquitectura de Software (CE5508) del Instituto Tecnólogico de Costa Rica. El mismo tiene como idea general, diseñar un software para proveer un servicio de karaoke. 
+This documentation is associated with Project I - Karaoke! of the Software Architecture course (CE5508) of the Technological Institute of Costa Rica. Its general idea is to design software to provide a karaoke service.
 
-### Objetivos
+### Objectives
 
-#### Objetivo General
+#### General objective
 
-* Construir una aplicación web para karaoke.
+* Build a web application for karaoke.
 
-#### Objetivos Específicos
+#### Specific objectives
 
-* Aprender sobre el modelo C4 para documentar arquitectura de software.
-* Diseñar una aplicación web que consuma servicios web.
+* Learn about the C4 model to document software architecture.
+* Design a web application that consumes web services.
 
-### Descripción del problema
+### Description of the problem
 
-Dentro de los principales requerimientos (a nivel muy general) que se han previsto son los siguientes:
+Among the main requirements (at a very general level) that have been foreseen are the following:
 
-* El usuario debe autenticarse mediante Forms y el sistema lo valida contra su propia base de datos de usuarios. 
-* El usuario puede agregar/eliminar/modificar canciones y letras existentes. Esto solo se permite para usuarios premium. 
-* El usuario debe ser capaz de buscar entre una lista de canciones, la que desea reproducir. Puede buscarla por nombre de la canción, artista, álbum y fragmentos de la letra. 
-* El usuario puede reproducir una canción para lo cual la aplicación de Karaoke, hará streaming del audio y sincronizará la letra para que el usuario pueda cantar al ritmo de la música
+* The user must authenticate through Forms and the system validates it against its own user database.
+* User can add / delete / modify existing songs and lyrics. This is only allowed for premium users.
+* The user must be able to search through a list of songs, the one they want to play. You can search for it by song name, artist, album, and lyric snippets.
+* The user can play a song for which the Karaoke application will stream the audio and synchronize the lyrics so that the user can sing to the rhythm of the music
 
-#### Diagrama de Funcionalidades
+#### Functionalities Diagram
 
 <h1 align="center">
   <br>
@@ -84,24 +85,23 @@ Dentro de los principales requerimientos (a nivel muy general) que se han previs
   alt="karaoke - Diagrama de Funcionalidades">
 </h1>
 
-## Decisiones de Diseño e implementación 
+## Design and implementation decisions
 
-### Lenguaje de Programación 
-### Frameworks/Toolkits
-### Tecnología de base de datos
-### Estándares de programación
-### Organización/layout de los proyectos de código
+### Programming language
+### Frameworks / Toolkits
+### Database technology
+### Programming standards
+### Organization / layout of code projects
 
-## Descripción del modelo de arquitectura
+## Description of the architecture model
 
-### Diagrama de primer nivel
+### First Level Diagram (Context Diagram)
 
-### Diagrama de segundo nivel
+### Second level diagram (Container diagram)
 
-### Diagrama de tercer nivel
+### Third level diagram (Component diagram)
 
-### Diagrama de cuarto nivel
+### Fourth level diagram (Code)
 
 
-## Soporte y Contacto
-
+## Support and Contact
