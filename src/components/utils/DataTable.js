@@ -9,22 +9,24 @@ import toast from 'react-hot-toast';
 export class DataTable extends React.Component {
 
     columns = [
-        /*{
+        {
             field: "songCover",
-            width: 115,
-            renderCell: (cellValues) => {
+            headerName: "Portada",
+            width: 150,
+            renderCell: (params) => {
               return (
                 <img 
-                  width="50px" alt="Cover img"
+                  width="100px" alt="Cover img" src={params.row.songCover}
                 />
               );
             }
-        },*/
+        },
         { field: 'songName', headerName: 'Nombre', width: 175 },
         { field: 'songAuthor', headerName: 'Autor', width: 175},
-        { field: 'songAlbum', headerName: 'Album', width: 450},
+        { field: 'songAlbum', headerName: 'Album', width: 300},
         {
             field: "Settings",
+            headerName: "Editar",
             width: 135,
             renderCell: (cellValues) => {
               return (
@@ -42,6 +44,7 @@ export class DataTable extends React.Component {
         },
         {
             field: "Play",
+            headerName: "",
             width: 105,
             renderCell: (cellValues) => {
               return (
@@ -59,7 +62,7 @@ export class DataTable extends React.Component {
         },
       ];
       
-    data = []//[{id:"1","songName":"Fuentes de Ortiz","songAuthor":"Ed Maverick","songAlbum":"Mix Pa Llorar en Tu Cuarto","songLyrics":"songLyrics","creationAuthor":"angelortizv","creationDate":"09/08/2021 18:52:00","modificationAuthor":"angelortizv","modificationDate":"09/08/2021 20:52:00"},{id:"2","songName":"Forever Alone","songAuthor":"Paulo Londra","songAlbum":"Homerun","songLyrics":"songLyrics","creationAuthor":"angelortizv","creationDate":"09/08/2021 18:52:00","modificationAuthor":"joseagus00","modificationDate":"09/08/2021 21:52:00"}];
+    data = [];
 
     playSong = (param, cellValues) => {
         localStorage.setItem('songIdToPlay', cellValues.id);
@@ -74,14 +77,13 @@ export class DataTable extends React.Component {
             window.location.href='/app/songs/edit/'+cellValues.id;
         }
     };
-
-    
   
     render(){
         if (!this.props.rows) {
             return (
                 <>
                 <DataGrid
+                    rowHeight={100}
                     rows={this.data}
                     columns={this.columns}
                     pageSize={9}    
@@ -92,11 +94,12 @@ export class DataTable extends React.Component {
 
         }
         return (
-            <div style={{ height: 600, width: '100%' }}>
+            <div style={{ height: 700, width: '100%' }}>
                 <DataGrid
+                    rowHeight={70}
                     rows={this.props.rows } 
                     columns={this.columns}
-                    pageSize={9}     
+                    pageSize={8}     
                     disableSelectionOnClick           
                 />
             </div>

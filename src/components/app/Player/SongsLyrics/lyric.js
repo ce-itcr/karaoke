@@ -6,7 +6,8 @@ const style = {
     flex: 1,
     height: "100%",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    overflow: 'hidden !important'
   },
   lrc: {
     flex: 1,
@@ -15,7 +16,7 @@ const style = {
   line: {
     textAlign: "center",
     padding: 10,
-    fontSize: 16
+    fontSize: 18
   }
 };
 
@@ -28,33 +29,30 @@ const Wrapper = ({ songLyrics, currentTime }) => {
 
   return (
     <div style={style.wrapper}>
-      <div style={{ position: "fixed" }}>
-        {/*<button type="button" onClick={scrollToCurrentLine}>
-          scroll to current line
-        </button>
-        <button type="button" onClick={getCurrentLine}>
-          alert current line
-        </button>*/}
-      </div>
+      <div >
       <Lrc
+        className="lrc"
         lrc={songLyrics}
         currentTime={currentTime}
         onCurrentLineChange={onCurrentLineChange}
         style={style.lrc}
         ref={lrcRef}
+        intervalOfRecoveringAutoScrollAfterUserScroll={0}
       >
         {(line, active) => (
           <LrcLine
             key={line.millisecond}
             style={{
               ...style.line,
-              color: active ? "red" : "gray"
+              color: active ? "red" : "black"
             }}
           >
             {line.content}
           </LrcLine>
         )}
       </Lrc>
+      </div>
+
     </div>
   );
 };
