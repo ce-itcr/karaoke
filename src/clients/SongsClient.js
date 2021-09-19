@@ -42,9 +42,9 @@ export class SongsClient {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"creationAuthor":creationAuthor, "songMp3":songMP3, "songLRC":songLRC, "songCover":songCover})
+            body: JSON.stringify({"id":songName+"&"+songAuthor, "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"creationAuthor":creationAuthor, "songMp3":songMP3, "songLRC":songLRC, "songCover":songCover})
         };
-        fetch('https://sheet.best/api/sheets/b5fc9c7a-0f86-43e6-a8c7-23881a278ddf/tabs/songs', requestOptions)
+        fetch('http://localhost:5000/karaoke/createSong/', requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
@@ -59,7 +59,7 @@ export class SongsClient {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ "songMp3":songMP3, "songLRC":songLRC, "modificationAuthor":modificationAuthor})
         };
-        fetch('https://sheet.best/api/sheets/b5fc9c7a-0f86-43e6-a8c7-23881a278ddf/tabs/songs/id/' + songId, requestOptions)
+        fetch(`http://localhost:5000/karaoke/updateSong/{"id":"` + songId + `"}`, requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
@@ -74,7 +74,7 @@ export class SongsClient {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify()
         };
-        fetch('https://sheet.best/api/sheets/b5fc9c7a-0f86-43e6-a8c7-23881a278ddf/tabs/songs/id/' + songId, requestOptions)
+        fetch(`http://localhost:5000/karaoke/deleteSong/{"id":"` + songId + `"}`, requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
