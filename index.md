@@ -97,11 +97,44 @@ Among the main requirements (at a very general level) that have been foreseen ar
 
 ### First Level Diagram (Context Diagram)
 
+Level 1, a system context diagram, shows the software system you are building and how it fits into the world in terms of the people who use it and the other software systems with which it interacts.
+
+<h1 align="center">
+  <br>
+  <img width="45%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632074879/karaoke-app/Documentaci%C3%B3n/Modelo_C4-1er_nivel.png" 
+  alt="karaoke - Diagrama de Funcionalidades">
+</h1>
+
 ### Second level diagram (Container diagram)
+
+Level 2, a container diagram, expands the software system and shows the containers (applications, data warehouses, microservices, etc.) that make up this software system. Technology decisions are also a critical part of this diagram.
+
+<h1 align="center">
+  <br>
+  <img width="55%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632074880/karaoke-app/Documentaci%C3%B3n/Modelo_C4-2do_nivel.png" 
+  alt="karaoke - Diagrama de Funcionalidades">
+</h1>
 
 ### Third level diagram (Component diagram)
 
+Level 3, a component diagram, expands an individual container to display the components it contains. These components must be mapped to actual abstractions (for example, a tag grouping) based on your code.
+
+<h1 align="center">
+  <br>
+  <img width="55%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632074880/karaoke-app/Documentaci%C3%B3n/Modelo_C4-3er_nivel.png" 
+  alt="karaoke - Diagrama de Funcionalidades">
+</h1>
+
 ### Fourth level diagram (Code)
 
+Finally, if you really want or need it, you can extend an individual component to show how this component is implemented.
+
+<h1 align="center">
+  <br>
+  <img width="55%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632074880/karaoke-app/Documentaci%C3%B3n/Modelo_C4-4to_nivel.png" 
+  alt="karaoke - Diagrama de Funcionalidades">
+</h1>
 
 ## Support and Contact
+
+If you want to contact us visit the site on Github for more information [ce-itcr](https://github.com/ce-itcr/karaoke/)
