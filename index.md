@@ -81,11 +81,29 @@ Among the main requirements (at a very general level) that have been foreseen ar
 
 <h1 align="center">
   <br>
-  <img width="45%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632070194/karaoke-app/Documentaci%C3%B3n/karaoke_-_Diagrama_de_Funcionalides.drawio.png" 
+  <img width="45%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632237558/karaoke-app/Documentaci%C3%B3n/karaoke_-_Diagrama_de_Funcionalides.png" 
   alt="karaoke - Diagram">
 </h1>
 
+## Working application
+
+Check out the live application -> [https://karaoke-ceitcr.netlify.app/](https://karaoke-ceitcr.netlify.app/)
+
+If you need to test functionalities for different users, log in with the following credentials:
+
+Basic level user: 
+
+* username: basic
+* password: basic1
+
+Premium user (With this type of user, you can edit/delete and add songs to the database):
+
+* username: premium
+* password: premium1
+
+
 ## Design and implementation decisions
+
 
 
 <table>
@@ -132,14 +150,21 @@ Among the main requirements (at a very general level) that have been foreseen ar
      <td align = "center">
        The project is divided into two main stages: Backend - Node Js and Frontend made with React.
         <b>Frontend: </b><br> 
-        <h1 align="center">
         <img width="45%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632175833/karaoke-app/Documentaci%C3%B3n/Screenshot_2021-09-20_160701.png" 
         alt="karaoke - Diagram">
-      </h1><br>
+     <br>
         <b>Backend: </b><br>
         <img width="45%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632175833/karaoke-app/Documentaci%C3%B3n/Screenshot_2021-09-20_160858.png" 
         alt="karaoke - Diagram">
-      </h1>
+     </td>
+   </tr>
+   <tr>
+     <td align = "center">
+        Branching
+     </td>
+     <td align = "center">
+        <img width="88%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632236557/karaoke-app/Documentaci%C3%B3n/Screenshot_2021-09-21_090216.png" 
+        alt="karaoke - Diagram">
      </td>
    </tr>
 </table>
@@ -181,6 +206,7 @@ Finally, if you really want or need it, you can extend an individual component t
   <img width="55%" src="https://res.cloudinary.com/dek4evg4t/image/upload/v1632074880/karaoke-app/Documentaci%C3%B3n/Modelo_C4-4to_nivel.png" 
   alt="karaoke - Diagram">
 </h1>
+
 
 ## Support and Contact
 
