@@ -102,15 +102,6 @@ Premium user (With this type of user, you can edit/delete and add songs to the d
 * username: premium
 * password: premium1
 
-### Landing Page
-![app-landing](https://github.com/ce-itcr/karaoke/blob/develop/src/assets/videos/app-landing.gif)
-### Login and Profile
-![app-login](https://github.com/ce-itcr/karaoke/blob/develop/src/assets/videos/app-login.gif)
-### Song Search and Playback
-![app-songs](https://github.com/ce-itcr/karaoke/blob/develop/src/assets/videos/app-songs.gif)
-
-
-
 ## Design and implementation decisions
 
 
