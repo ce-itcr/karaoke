@@ -40,7 +40,7 @@ Approval Date: 09/18/2021
        Angelo Ortiz Vega
      </td>
      <td align = "center">
-       09/18/2021
+       09/21/2021
      </td>
    </tr>
 </table>
@@ -48,9 +48,9 @@ Approval Date: 09/18/2021
 #### Development team
 
 ```
-Angelo Ortiz Vega: @angelortizv - Functions:
-Agustín Venegas Vega: @ JoseAgus00 - Features:
-Jonathan Esquivel Sánchez: @ jesquivel48 - Functions:
+Angelo Ortiz Vega: @angelortizv 
+Agustín Venegas Vega: @ JoseAgus00 
+Jonathan Esquivel Sánchez: @ jesquivel48
 ```
 
 ## Presentation
@@ -77,6 +77,7 @@ Among the main requirements (at a very general level) that have been foreseen ar
 * The user must be able to search through a list of songs, the one they want to play. You can search for it by song name, artist, album, and lyric snippets.
 * The user can play a song for which the Karaoke application will stream the audio and synchronize the lyrics so that the user can sing to the rhythm of the music
 
+
 #### Functionalities Diagram
 
 <h1 align="center">
@@ -101,9 +102,16 @@ Premium user (With this type of user, you can edit/delete and add songs to the d
 * username: premium
 * password: premium1
 
+### Landing Page
+![app-landing](https://github.com/ce-itcr/karaoke/blob/develop/src/assets/videos/app-landing.gif)
+### Login and Profile
+![app-login](https://github.com/ce-itcr/karaoke/blob/develop/src/assets/videos/app-login.gif)
+### Song Search and Playback
+![app-songs](https://github.com/ce-itcr/karaoke/blob/develop/src/assets/videos/app-songs.gif)
+
+
 
 ## Design and implementation decisions
-
 
 
 <table>
