@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: Production
-      url: 'http://www.myapp.com'
+      url: 'https://karaoke-ceitcr.netlify.app/'
     steps:
       - name: Deploy
         run: echo I am deploying! 
