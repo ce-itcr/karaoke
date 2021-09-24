@@ -42,7 +42,7 @@ export class SongsClient {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"creationAuthor":creationAuthor, "songMp3":songMP3, "songLRC":songLRC, "songCover":songCover})
+            body: JSON.stringify({"id":songName+"&"+songAuthor, "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"creationAuthor":creationAuthor, "songMp3":songMP3, "songLRC":songLRC, "songCover":songCover})
         };
         fetch('https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs', requestOptions)
             .then(
@@ -63,7 +63,7 @@ export class SongsClient {
             .then(
                 function(response) {
                 response.text().then(function(data) {
-                    alert(data)
+                    //alert(data)
                 });
                 })   
     } 
@@ -78,7 +78,7 @@ export class SongsClient {
             .then(
                 function(response) {
                 response.text().then(function(data) {
-                    alert(data)
+                    //alert(data)
                 });
                 })   
     } 
