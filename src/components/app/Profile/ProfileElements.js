@@ -22,10 +22,10 @@ export const InfoContainer2 = styled.div`
 `
 
 export const InfoWrapper = styled.div`
-  margin-top: 70px;
+  margin-top: 120px;
   display: block;
   z-index: 1;
-  height: 571px;
+  height: 521px;
   max-width: 1100px;
   margin-right: auto;
   margin-left: auto;
@@ -49,9 +49,14 @@ export const Column1 = styled.div`
   padding: 0 15px;
   grid-area: col1;
 `
+export const Columnb = styled.div`
+  margin-bottom: 125px;
+  padding: 0 15px;
+  grid-area: col1;
+`
 
 export const Column2 = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 0px;
   padding: 0 15px;
   grid-area: col2;
 `
@@ -97,11 +102,21 @@ export const BtnWrap =styled.div`
 `
 
 export const ImgWrap = styled.div`
-  max-width: 350px;
+  max-width: 280px;
   height: 100%;
 `
 
 export const Img = styled.img`
   width: 100%;
   padding-left: 0; 
+`
+
+export const ImgWrap2 = styled.div`
+  max-width: 150px;
+`
+
+export const Img2 = styled.img`
+  width: 80%;
+  padding-left: 0; 
+  padding-top: 0;
 `

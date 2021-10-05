@@ -12,20 +12,20 @@ import {
   TopLine,
   Heading,
   Subtitle,
-  BtnWrap,
+  //BtnWrap,
   ImgWrap,
   Img
 } from "./ProfileElements";
+import ProgressBar from '../../utils/ProgressBar';
 
 export class ProfileSection extends React.Component{
-
   toggleHome = () => {
     //console.log(this.props.userData.data[0].username);
     scroll.scrollToTop();
   }
 
   logout = () => {
-    //window.location.assign('/');
+    window.location.assign('/signin');
   }
 
   render(){
@@ -41,6 +41,7 @@ export class ProfileSection extends React.Component{
         </InfoContainer2>
         <InfoContainer lightBg='true' id='profile'>
           <InfoWrapper>
+          <ProgressBar></ProgressBar>
             <InfoRow imgStart='true'>
               <Column1>
                 <TextWrapper>
@@ -52,7 +53,7 @@ export class ProfileSection extends React.Component{
                   <Subtitle darkText='true'>Ubicación: {user.location} </Subtitle>
                   <hr/>
                   <Subtitle darkText='true'>Tipo de Cuenta: {user.userType}</Subtitle>
-                  <BtnWrap>
+                  {/*<BtnWrap>
                     <Button 
                       to="/"
                       onClick={this.toggleHome}
@@ -65,7 +66,7 @@ export class ProfileSection extends React.Component{
                       primary={'false' ? 1 : 0}
                       dark={'true' ? 1 : 0}
                       >Actualizar Contraseña</Button>
-                  </BtnWrap>
+                  </BtnWrap>*/}
                   <Button 
                       marginTop='20px'
                       to="/"

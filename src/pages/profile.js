@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import Footer from '../components/landing/Footer';
 import Navbar from '../components/app/Navbar';
 import Sidebar from '../components/app/Sidebar';
 import UserProfile from '../components/app/Profile';
@@ -22,12 +20,11 @@ export class Profile extends Component{
   }  
   
   async loadProfileData(){
-    const newData = await this.profileClient.getUserData(localStorage.getItem('currentUsername'));
-    console.log(newData);
+    const newData = await this.profileClient.getUserData(localStorage.getItem('currentUsername'), localStorage.getItem('currentPassword'));
+    //console.log(newData);
     this.setState({
-      profileData: newData.data['0']
+      profileData: newData.data[0]
     });
-    
   }
 
   render(){
@@ -36,7 +33,7 @@ export class Profile extends Component{
         <Sidebar />
         <Navbar  />
         <UserProfile userData={this.state.profileData}/>
-        <Footer />
+        {/*<Footer />*/}
       </>
     )
   }

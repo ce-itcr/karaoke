@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {FaBars} from "react-icons/fa";
+import { FaPlus } from 'react-icons/fa';
 import {IconContext} from "react-icons/lib"; // this allows the changing of all icons to a specific color instead of styling each one {line 34}
 import {animateScroll as scroll} from "react-scroll";
 import {
@@ -9,6 +10,7 @@ import {
   MobileIcon, 
   NavBtn,
   NavBtnLink,
+  NavBtnLinkB
 } from "./NavbarElements";
 
 const Navbar = ({ toggle }) => {
@@ -27,6 +29,9 @@ const Navbar = ({ toggle }) => {
     window.addEventListener("scroll", changeNav);
   }, []);
 
+  var currentUser = localStorage.getItem('currentUsername');
+  var profilePath = "/profile/" + currentUser;
+
   const toggleHome = () => {
     scroll.scrollToTop();
   }
@@ -42,7 +47,8 @@ const Navbar = ({ toggle }) => {
             </MobileIcon>
             <NavBtn>
               <NavBtnLink to="/app">Inicio</NavBtnLink>
-              <NavBtnLink to="/profile">Perfil</NavBtnLink>
+              <NavBtnLink to={profilePath}>Perfil</NavBtnLink>
+              <NavBtnLinkB to="/app/songs/create"><FaPlus/></NavBtnLinkB>
             </NavBtn>
           </NavbarContainer>
         </Nav>

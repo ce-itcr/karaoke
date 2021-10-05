@@ -13,6 +13,18 @@ export const Container = styled.div`
   background: #1db954;
 `
 
+export const Container2 = styled.div`
+  min-height: 692px;
+  position: fixed;
+  padding-top: 40px;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  overflow: hidden;
+`
+
 export const FormWrap = styled.div`
   height: 100%;
   display: flex;
@@ -50,8 +62,7 @@ export const FormContent = styled.div`
 `
 
 export const Form = styled.form`
-  background: #010101;
-  max-width: 400px;
+  background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));  max-width: 400px;
   height: auto;
   width: 100%;
   z-index: 1;
@@ -79,6 +90,13 @@ export const FormLabel = styled.label`
   font-size: 14px;
   color: #fff;
 `
+export const FormLabelBottom = styled.label`
+  margin-left: auto; 
+  margin-right: 0;  
+  margin-bottom: 8px;
+  font-size: 10px;
+  color: #1db954;
+`
 
 export const FormInput = styled.input`
   padding: 16px 16px;
@@ -86,6 +104,24 @@ export const FormInput = styled.input`
   border: none;
   border-radius: 4px;
 `
+
+export const FormInputBlocked = styled.input`
+  background: #cecece;
+  padding: 16px 16px;
+  margin-bottom: 32px;
+  border: none;
+  border-radius: 4px;
+`
+
+export const FormInputBig = styled.input`
+  float:right;
+  height:50px;
+  padding: 16px 16px;
+  margin-bottom: 32px;
+  border: none;
+  border-radius: 4px;
+`
+
 
 export const FormButton = styled.button`
   background: #1db954;

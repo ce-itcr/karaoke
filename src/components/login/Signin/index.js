@@ -10,8 +10,7 @@ import {
   FormH1,
   FormLabel,
   FormInput,
-  FormButton,
-  Text
+  FormButton
 } from "./SigninElements";
 
 class Signin extends Component {
@@ -37,11 +36,12 @@ class Signin extends Component {
 
   login = async() => {
       localStorage.setItem('currentUsername', this.state.form.username);
+      localStorage.setItem('currentPassword', this.state.form.password);
       const response = await this.signinClient.verifyUser(this.state.form.username, this.state.form.password);
       console.log(response);
+      localStorage.setItem('userType', response.data[0].userType)
 
       if(response.data.length === 0){
-          toast()
           toast.error("Nombre de usuario o contraseña incorrecta.");
           // console.log("No existe el usuario");
       } else{
@@ -66,7 +66,7 @@ class Signin extends Component {
                 <FormLabel htmlFor="for">Contraseña</FormLabel>
                 <FormInput name="password" type="password" required onChange={this.handleChange}/>
                 <FormButton type="button" onClick={this.login} >Iniciar Sesión</FormButton>
-                <Text>Olvidó su Contraseña?</Text>
+                {/*<Text>Olvidó su Contraseña?</Text>*/}
                 </Form>
             </FormContent>
             </FormWrap>

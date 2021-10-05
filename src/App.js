@@ -6,6 +6,10 @@ import Home from './pages';
 import SigninPage from "./pages/Signin";
 import DefaultApp from './pages/app'
 import Profile from "./pages/profile";
+import AppCreate from "./pages/appCreate";
+import AppEdit from "./pages/appEdit";
+import AppPlayer from "./pages/appPlayer";
+import NotFound from "./components/utils/NotFound";
 
 function App() {
   return (
@@ -14,7 +18,12 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/signin" component={SigninPage} exact />
         <Route path="/app" component={DefaultApp} exact />
-        <Route path="/profile" component={Profile} exact />
+        <Route path="/app/songs/create" component={AppCreate} exact />
+        <Route path="/app/songs/edit/:songId" component={AppEdit} exact />
+        <Route path="/app/player/:songId" component={AppPlayer} exact />
+        <Route path="/profile/:username" component={Profile} exact />
+
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );
