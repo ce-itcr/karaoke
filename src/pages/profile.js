@@ -20,10 +20,10 @@ export class Profile extends Component{
   }  
   
   async loadProfileData(){
-    const newData = await this.profileClient.getUserData(localStorage.getItem('currentUsername'));
+    const newData = await this.profileClient.getUserData(localStorage.getItem('currentUsername'), localStorage.getItem('currentPassword'));
     //console.log(newData);
     this.setState({
-      profileData: newData.data['0']
+      profileData: newData.data[0]
     });
   }
 

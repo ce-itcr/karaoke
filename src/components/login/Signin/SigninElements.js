@@ -90,8 +90,23 @@ export const FormLabel = styled.label`
   font-size: 14px;
   color: #fff;
 `
+export const FormLabelBottom = styled.label`
+  margin-left: auto; 
+  margin-right: 0;  
+  margin-bottom: 8px;
+  font-size: 10px;
+  color: #1db954;
+`
 
 export const FormInput = styled.input`
+  padding: 16px 16px;
+  margin-bottom: 32px;
+  border: none;
+  border-radius: 4px;
+`
+
+export const FormInputBlocked = styled.input`
+  background: #cecece;
   padding: 16px 16px;
   margin-bottom: 32px;
   border: none;

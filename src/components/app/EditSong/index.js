@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormInput,FormLabel, FormButton} from '../../login/Signin/SigninElements';    
+import { FormInput, FormInputBlocked, FormLabelBottom, FormLabel, FormButton} from '../../login/Signin/SigninElements';    
 import { InfoWrapper, InfoContainer2, Form } from './../AddSong/AddSongElements';
 import { SongsClient } from '../../../clients/SongsClient';
 import ProgressBar from '../../utils/ProgressBar';
@@ -46,20 +46,25 @@ export class EditSong extends React.Component{
         reader.readAsText(e.target.files[0])
       }
 
+
     editSong = async() => {
+
         console.log(this.state.form);
-        const data = this.state.form;
-        this.songsClient.updateSong(data.songId,data.songMP3, data.songLRC, data.modificationAuthor).then(
+        alert(this.state.form.songLRC)
+        if(this.state.form.songLRC  === ''){
+          this.state.form.songLRC = this.props.songsData.songLRC;
+          const data = this.state.form;
+          this.songsClient.updateSong(data.songId,data.songMP3, data.songLRC, data.modificationAuthor).then(
             toast.success('Canción actualizada exitosamente')
-        );
+          );
+        }  
     }
 
     removeSong = async() => {
         const data = this.state.form;
-        this.songsClient.deleteSong(data.songId).then(
-            toast.success('Canción eliminada exitosamente')
-        );
-        window.location.assign("/")
+        this.songsClient.deleteSong(data.songId);
+        toast.success('Canción eliminada exitosamente')
+        window.location.assign("/app")
     }
   
 
@@ -84,16 +89,19 @@ export class EditSong extends React.Component{
                 <ProgressBar></ProgressBar>
 
                 <Form action="#">
-                          <FormLabel htmlFor="for">Nombre </FormLabel>
-                          <FormInput name="songName" readOnly type="text" value={song.songName} />
+                          <FormLabel htmlFor="for">Nombre</FormLabel>
+                          <FormLabelBottom >***** Espacio no editable</FormLabelBottom>
+                          <FormInputBlocked name="songName" readOnly type="text" value={song.songName} />
                           <FormLabel htmlFor="for">Artista</FormLabel>
-                          <FormInput name="songAuthor" type="text" readOnly value={song.songAuthor} />
+                          <FormLabelBottom >***** Espacio no editable</FormLabelBottom>
+                          <FormInputBlocked name="songAuthor" type="text" readOnly value={song.songAuthor} />
                           <FormLabel htmlFor="for">Album</FormLabel>
-                          <FormInput name="songAlbum" type="text" readOnly value={song.songAlbum}/>
+                          <FormLabelBottom >***** Espacio no editable</FormLabelBottom>
+                          <FormInputBlocked name="songAlbum" type="text" readOnly value={song.songAlbum}/>
                           <FormLabel htmlFor="for">Link a canción en formato Mp3</FormLabel>
-                          <FormInput name="songMP3" type="text" />
+                          <FormInput name="songMP3" type="text"  onChange={this.handleChange}/>
                           <FormLabel htmlFor="for">Letra de canción en formato LRC</FormLabel>
-                          <FormInput name="songMP3" type="file" required onChange={(e) => this.showFile(e)}/>
+                          <FormInput name="songLRC" type="file" required onChange={(e) => this.showFile(e)}/>
                           <FormButton type="button" onClick={this.editSong} >Modificar Canción</FormButton>
 
                       </Form>

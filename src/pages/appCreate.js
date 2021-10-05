@@ -21,12 +21,12 @@ export class AppCreate extends Component{
   }  
   
   async loadProfileData(){
-    const newData = await this.profileClient.getUserData(localStorage.getItem('currentUsername'));
-    //console.log(newData);
+    const newData = await this.profileClient.getUserData(localStorage.getItem('currentUsername'), localStorage.getItem('currentPassword'));
+    console.log(newData);
     this.setState({
-      profileData: newData.data['0'].userType
+      profileData: newData.data[0].userType
     });
-    localStorage.setItem('userType', newData.data['0'].userType)
+    localStorage.setItem('userType', newData.data.userType)
   }
 
 
