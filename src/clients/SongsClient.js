@@ -2,37 +2,37 @@ import axios from "axios";
 
 export class SongsClient {
     async getAllSongs() {
-        const url = "https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs"
+        const url = "https://karaokeapi.josevenegasv.com/karaoke/getAllSongs"
         const response =  await axios(url)
         return response
     }
 
     async getSongById(songId){
-        const url = "https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs/search?"
-        const response =  await axios(url, {params: {"id": songId}})
+        const url = `https://karaokeapi.josevenegasv.com/karaoke/getSong/{"id":"` + songId + `"}`
+        const response =  await axios(url)
         return response
     }
 
     async getSongsByName(songName){
-        const url = "https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs/search?"
-        const response =  await axios(url, {params: {"songName": songName}})
+        const url = `https://karaokeapi.josevenegasv.com/karaoke/getSong/{"songName":"` + songName + `"}`
+        const response =  await axios(url)
         return response
     }
 
     async getSongsByAuthor(songAuthor){
-        const url = "https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs/search?"
-        const response =  await axios(url, {params: {"songAuthor": songAuthor}})
+        const url = `https://karaokeapi.josevenegasv.com/karaoke/getSong/{"songAuthor":"` + songAuthor + `"}`
+        const response =  await axios(url)
         return response
     }
 
     async getSongsByAlbum(songAlbum){
-        const url = "https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs/search?"
+        const url = `https://karaokeapi.josevenegasv.com/karaoke/getSong/{"songAlbum":"` + songAlbum + `"}`
         const response =  await axios(url, {params: {"songAlbum": songAlbum}})
         return response
     }
 
     async getSongsByLyrics(songLyrics){
-        const url = "https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs/search?"
+        const url = `https://karaokeapi.josevenegasv.com/karaoke/getSong/{"songLyrics":"` + songLyrics + `"}`
         const response =  await axios(url, {params: {"songLyrics": songLyrics}})
         return response
     }
@@ -44,7 +44,7 @@ export class SongsClient {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({"id":songName+"&"+songAuthor, "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"creationAuthor":creationAuthor, "songMp3":songMP3, "songLRC":songLRC, "songCover":songCover})
         };
-        fetch('https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs', requestOptions)
+        fetch('https://karaokeapi.josevenegasv.com/karaoke/createSong/', requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
@@ -59,11 +59,11 @@ export class SongsClient {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ "songMp3":songMP3, "songLRC":songLRC, "modificationAuthor":modificationAuthor})
         };
-        fetch('https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs/id/' + songId, requestOptions)
+        fetch(`https://karaokeapi.josevenegasv.com/karaoke/updateSong/{"id":"` + songId + `"}`, requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
-                    //alert(data)
+                    alert(data)
                 });
                 })   
     } 
@@ -74,11 +74,11 @@ export class SongsClient {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify()
         };
-        fetch('https://sheet.best/api/sheets/ae7ba662-75c1-4a38-ac2a-70d2e2c8e069/tabs/songs/id/' + songId, requestOptions)
+        fetch(`https://karaokeapi.josevenegasv.com/karaoke/deleteSong/{"id":"` + songId + `"}`, requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
-                    //alert(data)
+                    alert(data)
                 });
                 })   
     } 
