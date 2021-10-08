@@ -32,7 +32,7 @@ export class SongsClient {
     }
 
     async getSongsByLyrics(songLyrics){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songLyrics", "filter":"` + songLyrics + `"}`
+        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songLRC", "filter":"` + songLyrics + `"}`
         const response =  await axios(url, {params: {"songLyrics": songLyrics}})
         return response
     }
