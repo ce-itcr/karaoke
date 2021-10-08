@@ -24,7 +24,7 @@ export class AppCreate extends Component{
     const newData = await this.profileClient.getUserData(localStorage.getItem('currentUsername'), localStorage.getItem('currentPassword'));
     console.log(newData);
     this.setState({
-      profileData: newData.data[0].userType
+      profileData: newData.data.userType
     });
     localStorage.setItem('userType', newData.data.userType)
   }

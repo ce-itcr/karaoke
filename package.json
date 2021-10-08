@@ -40,7 +40,8 @@
     "reactstrap": "^8.10.0",
     "styled-components": "^5.3.1",
     "universal-cookie": "^4.0.4",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "pm2": "^5.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

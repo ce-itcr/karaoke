@@ -23,7 +23,7 @@ export class Profile extends Component{
     const newData = await this.profileClient.getUserData(localStorage.getItem('currentUsername'), localStorage.getItem('currentPassword'));
     //console.log(newData);
     this.setState({
-      profileData: newData.data[0]
+      profileData: newData.data
     });
   }
 
