@@ -63,7 +63,7 @@ export class SongsClient {
             .then(
                 function(response) {
                 response.text().then(function(data) {
-                    alert(data)
+                    //alert(data)
                 });
                 })   
     } 
@@ -78,7 +78,7 @@ export class SongsClient {
             .then(
                 function(response) {
                 response.text().then(function(data) {
-                    alert(data)
+                    //alert(data)
                 });
                 })   
     } 

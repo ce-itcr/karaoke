@@ -57,7 +57,21 @@ export class EditSong extends React.Component{
           this.songsClient.updateSong(data.songId,data.songMP3, data.songLRC, data.modificationAuthor).then(
             toast.success('Canción actualizada exitosamente')
           );
-        }  
+          window.location.assign("/app")
+        } else if(this.state.form.songMP3 === ''){
+          this.state.form.songMP3 = this.props.songsData.songMP3;
+          const data = this.state.form;
+          this.songsClient.updateSong(data.songId,data.songMP3, data.songLRC, data.modificationAuthor).then(
+            toast.success('Canción actualizada exitosamente')
+          );
+          window.location.assign("/app")
+        } else{
+          const data = this.state.form;
+          this.songsClient.updateSong(data.songId,data.songMP3, data.songLRC, data.modificationAuthor).then(
+            toast.success('Canción actualizada exitosamente')
+          );
+          window.location.assign("/app")
+        }
     }
 
     removeSong = async() => {
