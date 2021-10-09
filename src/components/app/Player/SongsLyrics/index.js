@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { InfoContainer } from "../../Home/HomeScreenElements";
 import Lyric from "./lyric";
 
 const SongsLyrics = (props) => {
@@ -9,7 +10,7 @@ const SongsLyrics = (props) => {
 
   const update = () => {
     setCurrentTime(currentTime + 1000);
-    console.log("update");
+    //console.log("update");
   };
 
   useEffect(() => {
@@ -20,9 +21,9 @@ const SongsLyrics = (props) => {
   }, [currentTime]);
 
   return (
-    <div>
-      <Lyric currentTime={currentTime} songLyrics={songLyrics}/>
-    </div>
+      <InfoContainer>
+        <Lyric currentTime={currentTime} songLyrics={songLyrics}/>
+      </InfoContainer>
   );
 }
 
