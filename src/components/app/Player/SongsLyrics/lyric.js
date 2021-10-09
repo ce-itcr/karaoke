@@ -1,5 +1,7 @@
 import React, { useRef, useCallback } from "react";
 import { Lrc, LrcLine } from "@mebtte/react-lrc";
+import { animateScroll as scroll} from 'react-scroll';
+
 
 const style = {
   wrapper: {
@@ -22,10 +24,15 @@ const style = {
 
 const Wrapper = ({ songLyrics, currentTime }) => {
   const lrcRef = useRef();
+
+
   const onCurrentLineChange = useCallback((lrcLine, index) => {
     console.log("\n");
     console.log(lrcLine, index);
+    scroll.scrollMore(15);
   }, []);
+
+
 
   return (
     <div style={style.wrapper}>
@@ -33,18 +40,21 @@ const Wrapper = ({ songLyrics, currentTime }) => {
       <Lrc
         className="lrc"
         lrc={songLyrics}
-        currentTime={currentTime}
-        onCurrentLineChange={onCurrentLineChange}
-        style={style.lrc}
+        currentTime={currentTime }
+        onCurrentLineChange= {onCurrentLineChange}
+        style={{ overflow: 'hidden !important' }}
         ref={lrcRef}
-        intervalOfRecoveringAutoScrollAfterUserScroll={0}
       >
         {(line, active) => (
           <LrcLine
             key={line.millisecond}
             style={{
               ...style.line,
-              color: active ? "red" : "black"
+              textAlign: 'center',
+              padding: '10px 0',
+              color: active ? 'red' : 'black',
+              transform: `scale(${active ? 1.2 : 1})`,
+              transition: 'transform 300ms'
             }}
           >
             {line.content}
