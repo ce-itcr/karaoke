@@ -61,6 +61,7 @@ export class AddSong extends React.Component{
             toast.success('Canción creada exitosamente'),
             //window.location.assign('/app')
         );
+        window.location.assign("/app")
     }
   
 

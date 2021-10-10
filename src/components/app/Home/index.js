@@ -81,7 +81,6 @@ export class HomeScreen extends Component{
         switch (this.state.selectedOption) {
           case 'songName':
             const responseName = await this.songsClient.getSongsByName(this.state.inputText);
-            //console.log(response.data)
             if(responseName.data.length === 0){
               this.setState({
                 songsData: responseName.data

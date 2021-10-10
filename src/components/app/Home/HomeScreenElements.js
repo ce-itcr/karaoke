@@ -19,6 +19,8 @@ export const InfoContainer2 = styled.div`
 `
 export const InfoContainer3 = styled.div`
   color: #fff;
+  margin-top: 100px;
+  margin-bottom: 100px;
   background: ${({lightBg}) => (lightBg ? "#fff" : "#fff")};
   justify-content: space-between;
 

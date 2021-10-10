@@ -22,11 +22,11 @@ export class AppPlayer extends Component{
   
   async loadSongsData(){
     const newData = await this.songsClient.getSongById(localStorage.getItem('songIdToPlay'));
-    localStorage.setItem('songMp3', newData.data['0'].songMp3)
+    localStorage.setItem('songMp3', newData.data[0].songMp3)
     this.setState({
-        songsData: newData.data['0']
+        songsData: newData.data[0]
     });
-    console.log(newData.data['0'])
+    console.log(newData.data)
   }
 
 
