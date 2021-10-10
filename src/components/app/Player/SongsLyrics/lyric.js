@@ -29,7 +29,7 @@ const Wrapper = ({ songLyrics, currentTime }) => {
   const onCurrentLineChange = useCallback((lrcLine, index) => {
     console.log("\n");
     console.log(lrcLine, index);
-    scroll.scrollMore(15);
+    scroll.scrollMore(41);
   }, []);
 
 
