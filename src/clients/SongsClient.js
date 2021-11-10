@@ -4,7 +4,6 @@ export class SongsClient {
     async getAllSongs() {
         const url = "https://karaokeapi.josevenegasv.com/karaoke/getAllSongs"
         return await axios(url)
-        return response
     }
 
     async getSongById(songId){
