@@ -3,38 +3,33 @@ import axios from "axios";
 export class SongsClient {
     async getAllSongs() {
         const url = "https://karaokeapi.josevenegasv.com/karaoke/getAllSongs"
-        const response =  await axios(url)
+        return await axios(url)
         return response
     }
 
     async getSongById(songId){
         const url = `https://karaokeapi.josevenegasv.com/karaoke/getSong/{"id":"` + songId + `"}`
-        const response =  await axios(url)
-        return response
+        return await axios(url)
     }
 
     async getSongsByName(songName){
         const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songName", "filter":"` + songName + `"}`
-        const response =  await axios(url)
-        return response
+        return await axios(url)
     }
 
     async getSongsByAuthor(songAuthor){
         const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songAuthor", "filter":"` + songAuthor + `"}`
-        const response =  await axios(url)
-        return response
+        return await axios(url)
     }
 
     async getSongsByAlbum(songAlbum){
         const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songAlbum", "filter":"` + songAlbum + `"}`
-        const response =  await axios(url, {params: {"songAlbum": songAlbum}})
-        return response
+        return await axios(url, {params: {"songAlbum": songAlbum}})
     }
 
     async getSongsByLyrics(songLyrics){
         const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songLRC", "filter":"` + songLyrics + `"}`
-        const response =  await axios(url, {params: {"songLyrics": songLyrics}})
-        return response
+        return await axios(url, {params: {"songLyrics": songLyrics}})
     }
 
 
