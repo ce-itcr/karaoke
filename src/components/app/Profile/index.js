@@ -29,7 +29,7 @@ export class ProfileSection extends React.Component{
   }
 
   render(){
-    var user = this.props.userData;
+    var user = this.props.userData[0];
 
     if(!this.props.userData){
       return <></>;

@@ -2,33 +2,39 @@ import axios from "axios";
 
 export class SongsClient {
     async getAllSongs() {
-        const url = "https://karaokeapi.josevenegasv.com/karaoke/getAllSongs"
-        return await axios(url)
+        const url = "https://sheet.best/api/sheets/0fc1da4d-2cfe-460f-8354-67e7b2f0c8fd/tabs/songs"
+        const response =  await axios(url)
+        return response
     }
 
     async getSongById(songId){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/getSong/{"id":"` + songId + `"}`
-        return await axios(url)
+        const url = "https://sheet.best/api/sheets/0fc1da4d-2cfe-460f-8354-67e7b2f0c8fd/tabs/songs/search?"
+        const response =  await axios(url, {params: {"id": songId}})
+        return response
     }
 
     async getSongsByName(songName){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songName", "filter":"` + songName + `"}`
-        return await axios(url)
+        const url = "https://sheet.best/api/sheets/0fc1da4d-2cfe-460f-8354-67e7b2f0c8fd/tabs/songs/search?"
+        const response =  await axios(url, {params: {"songName": songName}})
+        return response
     }
 
     async getSongsByAuthor(songAuthor){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songAuthor", "filter":"` + songAuthor + `"}`
-        return await axios(url)
+        const url = "https://sheet.best/api/sheets/0fc1da4d-2cfe-460f-8354-67e7b2f0c8fd/tabs/songs/search?"
+        const response =  await axios(url, {params: {"songAuthor": songAuthor}})
+        return response
     }
 
     async getSongsByAlbum(songAlbum){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songAlbum", "filter":"` + songAlbum + `"}`
-        return await axios(url, {params: {"songAlbum": songAlbum}})
+        const url = "https://sheet.best/api/sheets/0fc1da4d-2cfe-460f-8354-67e7b2f0c8fd/tabs/songs/search?"
+        const response =  await axios(url, {params: {"songAlbum": songAlbum}})
+        return response
     }
 
     async getSongsByLyrics(songLyrics){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songLRC", "filter":"` + songLyrics + `"}`
-        return await axios(url, {params: {"songLyrics": songLyrics}})
+        const url = "https://sheet.best/api/sheets/0fc1da4d-2cfe-460f-8354-67e7b2f0c8fd/tabs/songs/search?"
+        const response =  await axios(url, {params: {"songLyrics": songLyrics}})
+        return response
     }
 
 
@@ -38,7 +44,7 @@ export class SongsClient {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({"id":songName+"&"+songAuthor, "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"creationAuthor":creationAuthor, "songMp3":songMP3, "songLRC":songLRC, "songCover":songCover})
         };
-        fetch('https://karaokeapi.josevenegasv.com/karaoke/createSong/', requestOptions)
+        fetch('https://sheet.best/api/sheets/0fc1da4d-2cfe-460f-8354-67e7b2f0c8fd/tabs/songs', requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
@@ -53,7 +59,7 @@ export class SongsClient {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ "songMp3":songMP3, "songLRC":songLRC, "modificationAuthor":modificationAuthor})
         };
-        fetch(`https://karaokeapi.josevenegasv.com/karaoke/updateSong/{"id":"` + songId + `"}`, requestOptions)
+        fetch('https://sheet.best/api/sheets/0fc1da4d-2cfe-460f-8354-67e7b2f0c8fd/tabs/songs/id/' + songId, requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
@@ -68,7 +74,7 @@ export class SongsClient {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify()
         };
-        fetch(`https://karaokeapi.josevenegasv.com/karaoke/deleteSong/{"id":"` + songId + `"}`, requestOptions)
+        fetch('https://sheet.best/api/sheets/0fc1da4d-2cfe-460f-8354-67e7b2f0c8fd/tabs/songs/id/' + songId, requestOptions)
             .then(
                 function(response) {
                 response.text().then(function(data) {
