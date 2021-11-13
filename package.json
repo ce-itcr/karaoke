@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
@@ -17,6 +18,7 @@
     "bootstrap": "^5.1.0",
     "devextreme-react": "^21.1.5",
     "md5": "^2.3.0",
+    "pm2": "^5.1.2",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
     "react-bootstrap-dropdown-menu": "^1.1.23",
@@ -40,8 +42,7 @@
     "reactstrap": "^8.10.0",
     "styled-components": "^5.3.1",
     "universal-cookie": "^4.0.4",
-    "web-vitals": "^1.0.1",
-    "pm2": "^5.1.2"
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

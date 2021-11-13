@@ -52,28 +52,32 @@ class Signin extends Component {
   }
 
   render(){
-      return (
-        <>
-        <Container>
-            <div><Toaster/></div>
-            <FormWrap>
-            <Icon to="/">karaoke!</Icon>
-            <FormContent>
-                <Form action="#">
-                <FormH1>Inicie Sesión en su cuenta</FormH1>
-                <FormLabel htmlFor="for">Nombre de Usuario</FormLabel>
-                <FormInput name="username" type="text" required onChange={this.handleChange}/>
-                <FormLabel htmlFor="for">Contraseña</FormLabel>
-                <FormInput name="password" type="password" required onChange={this.handleChange}/>
-                <FormButton type="button" onClick={this.login} >Iniciar Sesión</FormButton>
-                {/*<Text>Olvidó su Contraseña?</Text>*/}
-                </Form>
-            </FormContent>
-            </FormWrap>
-            
-        </Container>
-        </>
-    )
+   
+        return (
+            <>
+            <Container>
+                <div><Toaster/></div>
+                <FormWrap>
+                <Icon to="/">karaoke!</Icon>
+                <FormContent>
+                    <Form action="#">
+                    <FormH1>Inicie Sesión en su cuenta</FormH1>
+                    <FormLabel htmlFor="for">Nombre de Usuario</FormLabel>
+                    <FormInput name="username" type="text" required onChange={this.handleChange}/>
+                    <FormLabel htmlFor="for">Contraseña</FormLabel>
+                    <FormInput name="password" type="password" required onChange={this.handleChange}/>
+                    <FormButton type="button" onClick={this.login} >Iniciar Sesión</FormButton>
+                    {/*<Text>Olvidó su Contraseña?</Text>*/}
+                    </Form>
+                </FormContent>
+                </FormWrap>
+                
+            </Container>
+            </>
+        )
+
+      
+      
     }
 }
 

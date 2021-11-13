@@ -1,13 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './tests/reportWebVitals';
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import './assets/styles/tailwind.css';
+import './assets/styles/player.css';
+
+import App from './layouts/App';
+import SigninPage from './pages/Signin';
+import Landing from './views/Landing';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      {/* add routes with layouts */}
+      <Route path="/app" component={App}/>
+      {/* add routes without layouts */}
+      <Route path="/" exact component={Landing} />
+      <Route path="/signin" exact component={SigninPage} />
+      {/* add redirect for first page */}
+      {/* <Redirect from="*" to="/" /> */}
+    </Switch>
+  </BrowserRouter>
+  ,
   document.getElementById('root')
 );
 
-reportWebVitals();
