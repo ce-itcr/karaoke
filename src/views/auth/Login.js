@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { SigninClient } from "../../clients/SigninClient";
 import {toast, Toaster} from 'react-hot-toast';
+import { sleep } from "../../components/utils/Sleep";
+import { useHistory } from "react-router-dom";
 
 
 export default function Login() {
 
+    let history = useHistory();
 
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
@@ -32,7 +35,9 @@ export default function Login() {
             toast.error("Nombre de usuario o contraseña incorrecta.");
         } else{
             toast.success("Bienvenido " + userId);
-            window.location.assign('/app')
+            sleep(2500).then(()=>{
+                history.push('/app');
+              })   
         }    
     }
     
