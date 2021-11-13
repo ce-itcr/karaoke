@@ -88,7 +88,7 @@ export default function Footer() {
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                         href="https://github.com/ce-labs/labs-reservation/blob/main/LICENSE.md"
                       >
-                        Licencia MIT 
+                        Licencia 
                       </a>
                     </li>
                     <li>
