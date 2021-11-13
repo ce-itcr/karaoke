@@ -21,12 +21,12 @@ export default function Index() {
               <b>Principales Servicios y Funciones:</b> Como usuario puede buscar y reproducir una canción para lo cual la aplicación Karaoke, hará streaming del audio y sincronizará la letra para que pueda cantar al ritmo de la música
 
               </p>
-              <div className="mt-12" to='/auth'>
+              <div className="mt-12" to='/auth/login'>
                 <button 
                   className="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
                   type="button"
                 >
-                    <a href="/signin">
+                    <a href="/auth/login">
                         <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
                     </a>
                 </button>

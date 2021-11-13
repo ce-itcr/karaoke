@@ -25,7 +25,7 @@ export class ProfileSection extends React.Component{
   }
 
   logout = () => {
-    window.location.assign('/signin');
+    window.location.assign('/auth');
   }
 
   render(){
