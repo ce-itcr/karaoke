@@ -48,19 +48,56 @@ export default function CardTableSongs({ color }) {
   const handleInputChangeForCategory = async(e) => {
     var value = e.target.value;
     setCategory(value);
-}
+  }
 
     const searchSongs = async() => {
-    if(category === 'option'){
+    if(category === 'option' || category === ''){
       toast.error('Debe seleccionar alguna opción')
-    } else {
-      {/*const response = await .searchUsers(category, filter);
+    } if(filter === ''){
+      const response = await songsClient.getAllSongs();
+      toast.success('Mostrando ' + response.data.length + ' resultado (s).')
+      setSongs(response.data)
+    } 
+    else {
+      switch (category) {
+        case 'songName':
+          const byNameResponse = await songsClient.getSongsByName(filter);
+          if(byNameResponse.data.length === 0) {
+            toast.error('No se encontraron resultados con las especificaciones indicadas ...');
+          } else {
+            toast.success('Mostrando ' + byNameResponse.data.length + ' resultado (s).')
+            setSongs(byNameResponse.data)
+          }
+          break;
+        case 'songAlbum':
+          const byAlbumResponse = await songsClient.getSongsByAlbum(filter);
+          if(byAlbumResponse.data.length === 0) {
+            toast.error('No se encontraron resultados con las especificaciones indicadas ...');
+          } else {
+            toast.success('Mostrando ' + byAlbumResponse.data.length + ' resultado (s).')
+            setSongs(byAlbumResponse.data)
+          }
+          break;
+          case 'songAuthor':
+            const byAuthorResponse = await songsClient.getSongsByAuthor(filter);
+            if(byAuthorResponse.data.length === 0) {
+              toast.error('No se encontraron resultados con las especificaciones indicadas ...');
+            } else {
+              toast.success('Mostrando ' + byAuthorResponse.data.length + ' resultado (s).')
+              setSongs(byAuthorResponse.data)
+            }
+            break;      
+        default:
+          break;
+      }
+      
+      {/*const response = await songsClient. .searchUsers(category, filter);
       if(response.length === 0){
         toast.error('No se encontraron resultados con las especificaciones indicadas ...');
       } else {
         toast.success('Mostrando ' + response.length + ' resultados.')
       }
-    setCurrentUsers(response);*/}
+    setSongs(response);*/}
     }
 
   }
@@ -151,10 +188,10 @@ export default function CardTableSongs({ color }) {
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     >
                         <option value="option">Seleccione una opción</option>
-                        <option value="firstName">Primer Nombre</option>
-                        <option value="lastName">Segundo Nombre</option>
-                        <option value="userId">Identificación</option>
-                        <option value="userType">Tipo de Usuario</option>
+                        <option value="songName">Nombre de la Canción</option>
+                        <option value="songAuthor">Nombre del Autor</option>
+                        <option value="songAlbum">Nombre del Album</option>
+                        {/*<option value="songDifficulty">Dificultad</option>*/}
                     </select>
                 </div>
             </div>
