@@ -5,10 +5,13 @@ import PropTypes from "prop-types";
 
 import TableDropdown from "../Dropdowns/TableDropdown.js";
 import { SongsClient } from "../../clients/SongsClient.js";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function CardTableSongs({ color }) {
 
   const [songs, setSongs] = useState([]);
+  const [category, setCategory] = useState('');
+  const [filter, setFilter] = useState('');
 
   let songsClient = new SongsClient();
   
@@ -20,6 +23,65 @@ export default function CardTableSongs({ color }) {
     const currentSongs = await songsClient.getAllSongs();
     setSongs(currentSongs.data);
   }
+
+  const handleInputChangeForFilter = async(e) => {
+    var value = e.target.value;
+    switch (value) {
+      case 'Administrador':
+        value = 'admin'
+        break;
+      case 'Personal Asistente':
+        value = 'coordinationStaff'
+        break;
+      case 'Personal Administrativo':
+        value = 'teachingStaff'
+        break;
+      case 'Operador':
+        value = 'operator'
+        break;  
+      default:
+        break;
+    }
+    setFilter(value);
+  }
+
+  const handleInputChangeForCategory = async(e) => {
+    var value = e.target.value;
+    setCategory(value);
+}
+
+    const searchSongs = async() => {
+    if(category === 'option'){
+      toast.error('Debe seleccionar alguna opción')
+    } else {
+      {/*const response = await .searchUsers(category, filter);
+      if(response.length === 0){
+        toast.error('No se encontraron resultados con las especificaciones indicadas ...');
+      } else {
+        toast.success('Mostrando ' + response.length + ' resultados.')
+      }
+    setCurrentUsers(response);*/}
+    }
+
+  }
+
+  const setCreateSongsButton = () => {
+    if(localStorage.getItem('userType') !== 'premium' ){
+      return(<></>)
+    } else {
+      return(
+        <>
+            <button
+              className="bg-blueGray-700 active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+              type="button"
+              onClick='{openModal}'
+            >
+              <i className="fas fa-plus"></i> Crear Canción
+            </button>
+        </>
+      )
+    }
+    }
 
   const setSongLevel = (level) => {
     switch (level) {
@@ -70,6 +132,47 @@ export default function CardTableSongs({ color }) {
 
   return (
     <>
+          <Toaster />
+      <div className="flex flex-wrap">
+            <div className="w-full lg:w-4/12 ">
+                <div className="relative w-full mb-3">
+                    <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        onChange={handleInputChangeForFilter}
+                    />
+                </div>
+            </div>
+            <div className="w-full lg:w-3/12 " style={{paddingLeft:'20px'}}>
+                <div className="relative w-full mb-3">
+                    <select 
+                        name="category" id="category"        
+                        onChange={handleInputChangeForCategory}
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    >
+                        <option value="option">Seleccione una opción</option>
+                        <option value="firstName">Primer Nombre</option>
+                        <option value="lastName">Segundo Nombre</option>
+                        <option value="userId">Identificación</option>
+                        <option value="userType">Tipo de Usuario</option>
+                    </select>
+                </div>
+            </div>
+            <div className="w-full lg:w-3/12" style={{paddingLeft:'20px'}}>
+            <div className="relative w-full mb-3">
+                <button 
+                  className="r sm:ml-1 text-white font-bold px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
+                  type="button"
+                  onClick={searchSongs}
+                >
+                    <a>
+                        <i class="fas fa-sign-in-alt"></i> Buscar Cancion (es)
+                    </a>
+                </button>
+              </div>
+            </div>
+
+        </div>
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
@@ -88,6 +191,7 @@ export default function CardTableSongs({ color }) {
                 Listado de Canciones
               </h3>
             </div>
+            {setCreateSongsButton()}
           </div>
         </div>
         <div className="block w-full overflow-x-auto">

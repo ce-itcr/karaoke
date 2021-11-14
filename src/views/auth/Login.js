@@ -25,22 +25,29 @@ export default function Login() {
     }
 
     const verifyUser = async() => {
-        localStorage.setItem('currentUsername', userId);
-        localStorage.setItem('currentPassword', password);
         const response = await signinClient.verifyUser(userId, password);
-        localStorage.setItem('userType', response.data.userType)
-  
         
         if(response.data.length === 0){
             toast.error("Nombre de usuario o contraseña incorrecta.");
+            sleep(2500).then(()=>{
+                history.push('/auth');
+              })  
         } else{
             toast.success("Bienvenido " + userId);
-            sleep(2500).then(()=>{
+            localStorage.setItem('userType', response.data[0].userType)
+            localStorage.setItem('currentUsername', userId);
+            localStorage.setItem('currentPassword', password);
+            localStorage.setItem('activeSession', true);
+
+            sleep(1500).then(()=>{
                 history.push('/app');
-              })   
+              })  
         }    
     }
     
+    if(localStorage.getItem('activeSession')){
+        history.push('/app');
+    }
 
     return (
         <>

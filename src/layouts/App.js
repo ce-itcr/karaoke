@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Sidebar from "../components/Sidebars/Sidebar";
 import Create from "../views/app/Create";
 import AppNavbar from "../components/Navbars/AppNavbar"
@@ -11,11 +12,30 @@ import Home from "../views/app/Home";
 
 export default function App() {
 
+    let history = useHistory();
+    
+    if(!localStorage.getItem('activeSession')){
+        history.push('/auth')
+    }
+
     const setHeaderStats = () => {
-        if(window.location.pathname != '/app/profile'){ 
-            return(<></>)
+        if(window.location.pathname !== '/app/profile'){ 
+            return(
+            <>
+                <div className="relative bg-emerald-500 md:pt-24 pb-32 pt-12">
+
+                </div>
+            </>)
         } else {
-            return(<HeaderStats />)
+            return(
+            <>
+                <div className="relative bg-emerald-500 md:pt-32 pb-32 pt-12">
+                    <div className="px-4 md:px-10 mx-auto w-full">
+                        <HeaderStats />   
+                    </div>
+                </div>
+            </>
+            )
         }
     }
 
@@ -25,11 +45,8 @@ export default function App() {
                 <div className="relative md:ml-64 bg-blueGray-100">
                     <AppNavbar />
                     {/* Header */}
-                    <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12">
-                        <div className="px-4 md:px-10 mx-auto w-full">
-                            {setHeaderStats()}
-                        </div>
-                    </div>
+                    {setHeaderStats()}
+       
                     <div className="px-4 md:px-10 mx-auto w-full -m-24">
                     <Switch>
                         <Route path="/app/home" exact component={Home} />

@@ -78,16 +78,16 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/dashboard") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    (window.location.href.indexOf("/app/home") !== -1
+                      ? "text-emerald-500 hover:text-emerald-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/app"
+                  to="/app/home"
                 >
                   <i
                     className={
-                      "fas fa-tv mr-2 text-sm " +
-                      (window.location.href.indexOf("/app") !== -1
+                      "fas fa-home mr-2 text-sm " +
+                      (window.location.href.indexOf("/app/home") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
@@ -100,43 +100,21 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/settings") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    (window.location.href.indexOf("/app/profile") !== -1
+                      ? "text-emerald-500 hover:text-emerald-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
                   to="/app/profile"
                 >
                   <i
                     className={
-                      "fas fa-tools mr-2 text-sm " +
+                      "fas fa-user mr-2 text-sm " +
                       (window.location.href.indexOf("/app/profile") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
                   Perfil
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/tables") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/tables"
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/tables") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Tables
                 </Link>
               </li>
 

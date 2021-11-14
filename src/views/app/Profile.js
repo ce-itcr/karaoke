@@ -4,7 +4,6 @@ import React from "react";
 
 import CardProfile from "../../components/Cards/CardProfile.js";
 import CardProfileUpdate from "../../components/Cards/CardProfileUpdate.js";
-import HeaderStats from "../../components/Headers/HeaderStats.js";
 
 export default function Profile() {
   return (

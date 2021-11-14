@@ -21,12 +21,12 @@ export default function CardProfile() {
       setUserData(currentData.data[0]);
   }
 
-  const logout = async() => {
-
+  const logout = () => {
         toast.success('Cerrando Sesión ....')
+        localStorage.removeItem('activeSession');
+        localStorage.setItem('currentUsername', '');
+        localStorage.setItem('currentPassword', '');
         sleep(2500).then(()=>{
-            localStorage.setItem('currentUsername', '');
-            localStorage.setItem('currentPassword', '');
             history.push('/auth');
           })  
     }
@@ -36,20 +36,6 @@ export default function CardProfile() {
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-6">
         <div className="px-6">
-        {/*<div className="flex flex-wrap justify-center">
-            <div className="w-full px-4 flex justify-center">
-              <div className="relative">
-                <img
-                  alt="..."
-                  src={require("../../assets/images/profilePicture.png").default}
-                  className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                />
-              </div>
-            </div>
-            <div className="w-full px-4 text-center mt-20">
-            </div>
-        </div>*/}
-
             <div className=" py-4 w-full  flex justify-center">
               <div className="relative">
                 <img
