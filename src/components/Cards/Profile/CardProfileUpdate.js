@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { ProfileClient } from "../../clients/ProfileClient";
+import { ProfileClient } from "../../../clients/ProfileClient";
 
 // components
 

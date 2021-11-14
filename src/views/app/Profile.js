@@ -2,8 +2,8 @@ import React from "react";
 
 // components
 
-import CardProfile from "../../components/Cards/CardProfile.js";
-import CardProfileUpdate from "../../components/Cards/CardProfileUpdate.js";
+import CardProfile from "../../components/Cards/Profile/CardProfile.js";
+import CardProfileUpdate from "../../components/Cards/Profile/CardProfileUpdate.js";
 
 export default function Profile() {
   return (

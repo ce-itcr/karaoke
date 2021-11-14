@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
-import { ProfileClient } from "../../clients/ProfileClient";
-import { sleep } from "../utils/Sleep";
+import { ProfileClient } from "../../../clients/ProfileClient";
+import { sleep } from "../../utils/Sleep";
 
 // components
 
@@ -40,7 +40,7 @@ export default function CardProfile() {
               <div className="relative">
                 <img
                   alt="..."
-                  src={require("../../assets/images/profilePicture.png").default}
+                  src={require("../../../assets/images/profilePicture.png").default}
                   className="shadow-xl rounded-full h-auto align-middle border-none max-w-150-px"
                 />
               </div>

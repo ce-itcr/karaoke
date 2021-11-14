@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import toast, { Toaster } from "react-hot-toast";
+import Modal from 'react-modal';
+
 
 // components
 
 import TableDropdown from "../Dropdowns/TableDropdown.js";
 import { SongsClient } from "../../clients/SongsClient.js";
-import toast, { Toaster } from "react-hot-toast";
+import CardCreateSong from "./SongsActions/CardCreateSong.js";
+
+const customStyles = { content: { top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-50%, -50%)' }, };
 
 export default function CardTableSongs({ color }) {
 
   const [songs, setSongs] = useState([]);
   const [category, setCategory] = useState('');
   const [filter, setFilter] = useState('');
+  const [createSongsIsOpen, setCreateSongsIsOpen] = useState(false);
+
+  const openModal = () => {setCreateSongsIsOpen(true)};
+  const closeModal = () => {setCreateSongsIsOpen(false)};
 
   let songsClient = new SongsClient();
   
@@ -90,14 +99,6 @@ export default function CardTableSongs({ color }) {
         default:
           break;
       }
-      
-      {/*const response = await songsClient. .searchUsers(category, filter);
-      if(response.length === 0){
-        toast.error('No se encontraron resultados con las especificaciones indicadas ...');
-      } else {
-        toast.success('Mostrando ' + response.length + ' resultados.')
-      }
-    setSongs(response);*/}
     }
 
   }
@@ -111,7 +112,7 @@ export default function CardTableSongs({ color }) {
             <button
               className="bg-blueGray-700 active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
               type="button"
-              onClick='{openModal}'
+              onClick={openModal}
             >
               <i className="fas fa-plus"></i> Crear Canción
             </button>
@@ -341,6 +342,13 @@ export default function CardTableSongs({ color }) {
           </table>
         </div>
       </div>
+      <Modal
+        isOpen={createSongsIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+      >
+        <CardCreateSong/>
+      </Modal>
     </>
   );
 }
