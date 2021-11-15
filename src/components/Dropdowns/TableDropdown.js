@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { createPopper } from "@popperjs/core";
+import Modal from 'react-modal';
+import { SongsClient } from "../../clients/SongsClient";
+import { sleep } from "../utils/Sleep";
+import { useHistory } from "react-router-dom";
+import toast from "react-hot-toast";
 
-const NotificationDropdown = () => {
+const customStyles = { content: { top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-50%, -50%)' }, };
+
+const NotificationDropdown = (props) => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
+  const [removeSongsIsOpen, setRemoveSongsIsOpen] = useState(false);
+
+  const openRemoveModal = () => {setRemoveSongsIsOpen(true)};
+  const closeRemoveModal = () => {setRemoveSongsIsOpen(false)};
+
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "left-start",
@@ -15,11 +27,23 @@ const NotificationDropdown = () => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  let songsClient = new SongsClient();
+  let history = useHistory();
+
+  const removeSong = async() => {
+    await songsClient.deleteSong(props.songId);
+    toast.success("Canción eliminada correctamente.");
+    sleep(2500).then(()=>{
+        history.push('/app');
+      }) 
+
+  }
+
   return (
     <>
       <a
         className="text-blueGray-500 py-1 px-3"
-        href="#pablo"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
@@ -36,7 +60,6 @@ const NotificationDropdown = () => {
         }
       >
         <a
-          href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
@@ -45,7 +68,6 @@ const NotificationDropdown = () => {
           <i class="fas fa-play"></i>  Reproducir
         </a>
         <a
-          href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
@@ -54,15 +76,27 @@ const NotificationDropdown = () => {
           <i class="fas fa-edit"></i>  Actualizar
         </a>
         <a
-          href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={openRemoveModal}
         >
           <i class="fas fa-trash"></i>  Eliminar
         </a>
       </div>
+      <Modal
+            isOpen={removeSongsIsOpen}
+            onRequestClose={closeRemoveModal}
+            style={customStyles}
+        >
+            <h2><b>karaoke! v2.0</b></h2>
+            <div>¿Está seguro que desea eliminar la canción con el Id: {props.songId}?</div>
+            <form style={{marginTop:'20px'}}>
+            <input />
+            <button onClick={closeRemoveModal} style={{marginRight:'20px', color:'red'}}>Cancelar</button>
+            <button type="button" onClick={removeSong} style={{color:'green'}}>Eliminar Canción</button>
+            </form>
+        </Modal>
     </>
   );
 };
