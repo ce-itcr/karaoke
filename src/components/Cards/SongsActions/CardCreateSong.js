@@ -5,7 +5,7 @@ import { SongsClient } from "../../../clients/SongsClient";
 import { useHistory } from "react-router-dom";
 import { sleep } from "../../utils/Sleep";
 
-const customStyles = { content: { top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-50%, -50%)' }, };
+const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-80%, -50%)' }, };
 
 
 export default function CardCreateSong() {
@@ -63,10 +63,10 @@ export default function CardCreateSong() {
 
   return(
       <>
-        <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-        <div className="rounded-t bg-white mb-0 px-6 py-6">
+        <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-spotify-grey border-0">
+        <div className="rounded-t bg-spotify-grey mb-0 px-6 py-6">
           <div className="text-center flex justify-between">
-            <h6 className="text-blueGray-700 text-xl font-bold">Crear Nueva Canción </h6>
+            <h6 className="text-white text-xl font-bold">Crear Nueva Canción </h6>
           </div>
           <p className="text-blueGray-400 text-sm ">Nota: La canción debe ser en formato MP3 y debe estar hosteada en línea.</p>
         </div>
@@ -80,13 +80,13 @@ export default function CardCreateSong() {
             <div className="w-full lg:w-4/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-white text-xs font-bold mb-2"
                   >
                     Nombre
                   </label>
                   <input
                     type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=''
                     onChange={handleSongName}
                   />
@@ -95,13 +95,13 @@ export default function CardCreateSong() {
               <div className="w-full lg:w-4/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-white text-xs font-bold mb-2"
                   >
                     Autor
                   </label>
                   <input
                     type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=''
                     onChange={handleSongAuthor}
                   />
@@ -110,13 +110,13 @@ export default function CardCreateSong() {
               <div className="w-full lg:w-4/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-white text-xs font-bold mb-2"
                   >
                     Album
                   </label>
                   <input
                     type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     onChange={handleSongAlbum}
                   />
                 </div>
@@ -136,13 +136,13 @@ export default function CardCreateSong() {
             <div className="w-full lg:w-10/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-white text-xs font-bold mb-2"
                   >
                     Link de Cover Album
                   </label>
                   <input
                     type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=''
                     onChange={handleSongCover}
                   />
@@ -151,13 +151,13 @@ export default function CardCreateSong() {
               <div className="w-full lg:w-10/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-white text-xs font-bold mb-2"
                   >
                     Link de Canción MP3
                   </label>
                   <input
                     type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=''
                     onChange={handleSongMp3}
                   />
@@ -166,14 +166,14 @@ export default function CardCreateSong() {
               <div className="w-full lg:w-10/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-white text-xs font-bold mb-2"
                   >
                     Letra de Canción en formato LRC
                   </label>
 
                   <input
                     type="file"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     onChange={(e) => showFile(e)}
                   />
                 </div>
@@ -186,7 +186,7 @@ export default function CardCreateSong() {
             <div className="w-full lg:w-8/12 px-4" style={{marginLeft: 'auto', paddingTop:'25px'}}>
                 <button
                   type="button"
-                  className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                  className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-spotify-green active:bg-spotify-dark-green uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                   onClick={verifyInputData}
                 >
                   <i class="fas fa-plus"></i> Crear Nueva Canción

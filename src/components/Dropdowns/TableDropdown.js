@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import CardUpdateSong from "../Cards/SongsActions/CardUpdateSong";
 import Player from "../app/Player";
 
-const customStyles = { content: { top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-50%, -50%)' }, };
+const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-60%, -50%)' }, };
 
 const NotificationDropdown = (props) => {
   // dropdown props
@@ -130,9 +130,8 @@ const NotificationDropdown = (props) => {
             <h2><b>karaoke! v2.0</b></h2>
             <div>¿Está seguro que desea eliminar la canción con el Id: {props.songId}?</div>
             <form style={{marginTop:'20px'}}>
-            <input />
-            <button onClick={closeRemoveModal} style={{marginRight:'20px', color:'red'}}>Cancelar</button>
-            <button type="button" onClick={removeSong} style={{color:'green'}}>Eliminar Canción</button>
+              <button onClick={closeRemoveModal} style={{marginRight:'20px',marginLeft:'400px', color:'#d4443c'}}>Cancelar</button>
+              <button type="button" onClick={removeSong} style={{color:'#1db954'}}>Eliminar Canción</button>
             </form>
         </Modal>
         <Modal
@@ -142,6 +141,8 @@ const NotificationDropdown = (props) => {
         >
           <CardUpdateSong songId={props.songId}/>
         </Modal>
+
+
     </>
   );
 };

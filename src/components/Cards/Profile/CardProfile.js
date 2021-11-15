@@ -5,7 +5,7 @@ import { ProfileClient } from "../../../clients/ProfileClient";
 import { sleep } from "../../utils/Sleep";
 import Modal from 'react-modal';
 
-const customStyles = { content: { top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-50%, -50%)' }, };
+const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-80%, -50%)' }, };
 
 export default function CardProfile() {
 
@@ -28,7 +28,7 @@ export default function CardProfile() {
   }
 
   const logout = () => {
-        toast.success('Cerrando Sesión ....')
+        toast.success('Cerrando Sesión ....');
         localStorage.removeItem('activeSession');
         localStorage.setItem('currentUsername', '');
         localStorage.setItem('currentPassword', '');
@@ -40,7 +40,7 @@ export default function CardProfile() {
 
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-6">
+      <div className="relative flex flex-col min-w-0 break-words bg-spotify-grey w-full mb-6 shadow-xl rounded-lg mt-6">
         <div className="px-6">
             <div className=" py-4 w-full  flex justify-center">
               <div className="relative">
@@ -54,15 +54,15 @@ export default function CardProfile() {
           <div className="text-center mt-12">
 
               
-            <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+            <h3 className="text-xl font-semibold leading-normal mb-2 text-white mb-2">
               {userData.fullName}
             </h3>
-            <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold ">
-              <i className="fas fa-user mr-2 text-lg text-blueGray-400"></i>{" "}
+            <div className="text-sm leading-normal mt-0 mb-2 text-white font-bold ">
+              <i className="fas fa-user mr-2 text-lg text-white"></i>{" "}
               @{userData.username}
             </div>
-            <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-              <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
+            <div className="text-sm leading-normal mt-0 mb-2 text-white font-bold uppercase">
+              <i className="fas fa-map-marker-alt mr-2 text-lg text-white"></i>{" "}
               {userData.location}
             </div>
           </div>
@@ -70,7 +70,8 @@ export default function CardProfile() {
             <div className="flex flex-wrap justify-center">
               <div className="mt-12">
                 <button 
-                  className="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-spotify-green active:bg-spotify-dark-green uppercase text-sm shadow hover:shadow-lg"
+                style={{paddingBottom:'22px'}}
+                  className="bg-spotify-green active:bg-spotify-dark-green text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                   type="button"
                   onClick={openLogoutModal}
                 >
@@ -89,9 +90,8 @@ export default function CardProfile() {
             <h2><b>karaoke! v2.0</b></h2>
             <div>¿Está seguro que desea cerrar sesión?</div>
             <form style={{marginTop:'20px'}}>
-            <input />
-            <button onClick={closeLogoutModal} style={{marginRight:'20px', color:'red'}}>Cancelar</button>
-            <button type="button" onClick={logout} style={{color:'green'}}>Cerrar Sesión</button>
+              <button onClick={closeLogoutModal} style={{marginRight:'20px',marginLeft:'200px', color:'#d4443c'}}>Cancelar</button>
+              <button type="button" onClick={logout} style={{color:'#1db954'}}>Cerrar Sesión</button>
             </form>
         </Modal>
     </>

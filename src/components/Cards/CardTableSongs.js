@@ -10,7 +10,7 @@ import TableDropdown from "../Dropdowns/TableDropdown.js";
 import { SongsClient } from "../../clients/SongsClient.js";
 import CardCreateSong from "./SongsActions/CardCreateSong.js";
 
-const customStyles = { content: { top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-50%, -50%)' }, };
+const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-60%, -50%)' }, };
 
 export default function CardTableSongs({ color }) {
 
@@ -171,12 +171,12 @@ export default function CardTableSongs({ color }) {
   return (
     <>
           <Toaster />
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap ">
             <div className="w-full lg:w-4/12 ">
                 <div className="relative w-full mb-3">
                     <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={handleInputChangeForFilter}
                     />
                 </div>
@@ -186,7 +186,7 @@ export default function CardTableSongs({ color }) {
                     <select 
                         name="category" id="category"        
                         onChange={handleInputChangeForCategory}
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     >
                         <option value="option">Seleccione una opción</option>
                         <option value="songName">Nombre de la Canción</option>
@@ -214,7 +214,7 @@ export default function CardTableSongs({ color }) {
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-          (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
+          (color === "light" ? "bg-spotify-grey text-white" : "bg-lightBlue-900 text-white")
         }
       >
         <div className="rounded-t mb-0 px-4 py-3 border-0">
@@ -223,7 +223,7 @@ export default function CardTableSongs({ color }) {
               <h3
                 className={
                   "font-semibold text-lg " +
-                  (color === "light" ? "text-blueGray-700" : "text-white")
+                  (color === "light" ? "text-white" : "text-white")
                 }
               >
                 Listado de Canciones
@@ -241,7 +241,7 @@ export default function CardTableSongs({ color }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      ? "bg-black-2 text-white border-spotify-grey"
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
@@ -251,7 +251,7 @@ export default function CardTableSongs({ color }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                    ? "bg-black-2 text-white border-spotify-grey"
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
@@ -261,7 +261,7 @@ export default function CardTableSongs({ color }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                    ? "bg-black-2 text-white border-spotify-grey"
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
@@ -271,7 +271,7 @@ export default function CardTableSongs({ color }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                    ? "bg-black-2 text-white border-spotify-grey"
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
@@ -281,8 +281,8 @@ export default function CardTableSongs({ color }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                    ? "bg-black-2 text-white border-spotify-grey"
+                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
                   Dificultad
@@ -291,8 +291,8 @@ export default function CardTableSongs({ color }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                    ? "bg-black-2 text-white border-spotify-grey"
+                     : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 ></th>
               </tr>

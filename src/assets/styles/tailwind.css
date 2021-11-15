@@ -15,6 +15,7 @@ Use a better box model (opinionated).
 *::before,
 *::after {
   box-sizing: border-box;
+  
 }
 
 /**
@@ -24,6 +25,7 @@ Use a more readable tab size (opinionated).
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
+  
 }
 
 /**
@@ -36,6 +38,8 @@ html {
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
+
+
 /*
 Sections
 ========
@@ -47,6 +51,7 @@ Remove the margin in all browsers.
 
 body {
   margin: 0;
+  background-color: rgba(28, 27, 27, 1);
 }
 
 /**
@@ -345,6 +350,7 @@ body {
   line-height: inherit;
 }
 
+
 /**
  * 1. Prevent padding and border from affecting element width.
  *
@@ -467,6 +473,7 @@ textarea {
   padding: 0;
   line-height: inherit;
   color: inherit;
+  
 }
 
 /**
@@ -549,11 +556,11 @@ video {
   --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
-  --tw-ring-color: #2563eb;
+  --tw-ring-color: #1db954;
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-  border-color: #2563eb;
+  border-color: #1db954;
 }
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
@@ -685,6 +692,7 @@ select {
 .container {
   width: 100%;
 }
+
 
 @media (min-width: 640px) {
   .container {
@@ -1103,6 +1111,20 @@ select {
   color: white;
 }
 
+.bg-colored {
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+
+.bg-spotify-grey {
+  --tw-bg-opacity: 1;
+  background-color: rgba(36, 36, 36, var(--tw-bg-opacity));
+}
+
+.bg-spotify-grey-2 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(56, 56, 56, var(--tw-bg-opacity));
+}
+
 .bg-spotify-landing {
   --tw-bg-opacity: 1;
   background-color: rgba(41, 65, 171, var(--tw-bg-opacity));
@@ -1121,6 +1143,11 @@ select {
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgba(25, 20, 20, var(--tw-bg-opacity));
+}
+
+.bg-black-2 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(28, 27, 27, var(--tw-bg-opacity));
 }
 
 .bg-white {
@@ -1321,6 +1348,11 @@ select {
 .border-lightBlue-700 {
   --tw-border-opacity: 1;
   border-color: rgba(3, 105, 161, var(--tw-border-opacity));
+}
+
+.border-spotify-grey {
+  --tw-border-opacity: 1;
+  border-color: rgba(36, 36, 36, var(--tw-border-opacity));
 }
 
 .border-blueGray-50 {
