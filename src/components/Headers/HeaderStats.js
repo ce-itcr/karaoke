@@ -18,10 +18,10 @@ export default function HeaderStats() {
                   statTitle="350,897"
                   statArrow="up"
                   statPercent="3.48"
-                  statPercentColor="text-emerald-500"
+                  statPercentColor="text-spotify-landing"
                   statDescripiron="Since last month"
-                  statIconName="far fa-chart-bar"
-                  statIconColor="bg-red-500"
+                  statIconName="fas fa-music"
+                  statIconColor="bg-spotify-green"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -30,10 +30,10 @@ export default function HeaderStats() {
                   statTitle="2,356"
                   statArrow="down"
                   statPercent="3.48"
-                  statPercentColor="text-red-500"
+                  statPercentColor="text-spotify-landing"
                   statDescripiron="Since last week"
-                  statIconName="fas fa-chart-pie"
-                  statIconColor="bg-orange-500"
+                  statIconName="fas fa-users"
+                  statIconColor="bg-spotify-green"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -42,10 +42,10 @@ export default function HeaderStats() {
                   statTitle="924"
                   statArrow="down"
                   statPercent="1.10"
-                  statPercentColor="text-orange-500"
+                  statPercentColor="text-spotify-landing"
                   statDescripiron="Since yesterday"
-                  statIconName="fas fa-users"
-                  statIconColor="bg-pink-500"
+                  statIconName="fas fa-plus"
+                  statIconColor="bg-spotify-green"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -54,10 +54,10 @@ export default function HeaderStats() {
                   statTitle="49,65%"
                   statArrow="up"
                   statPercent="12"
-                  statPercentColor="text-emerald-500"
+                  statPercentColor="text-spotify-landing"
                   statDescripiron="Since last month"
-                  statIconName="fas fa-percent"
-                  statIconColor="bg-lightBlue-500"
+                  statIconName="fas fa-minus"
+                  statIconColor="bg-spotify-green"
                 />
               </div>
             </div>

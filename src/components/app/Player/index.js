@@ -1,10 +1,10 @@
 import React from 'react';
-import { InfoContainer2, InfoContainer3, InfoWrapper } from '../Home/HomeScreenElements';
+import { InfoContainer2, InfoContainer3, InfoWrapper } from '../Player/PlayerElements';
 import PlayerBottom from './PlayerBottom';
 import SongsLyrics from './SongsLyrics';
 import ProgressBar from '../../utils/ProgressBar';
 
-export class Player extends React.Component {
+export class ExternalPlayer extends React.Component {
 
     state = {
         form:{
@@ -16,6 +16,7 @@ export class Player extends React.Component {
     
     render(){
         //alert(JSON.stringify(this.props.songData))
+        console.log(this.props)
         const lyrics = this.props.songData.songLRC;
         console.log(lyrics)
         localStorage.setItem('songLyrics', lyrics)
@@ -41,4 +42,4 @@ export class Player extends React.Component {
 
 }
 
-export default Player;
+export default ExternalPlayer;

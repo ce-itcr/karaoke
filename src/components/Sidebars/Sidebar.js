@@ -79,7 +79,7 @@ export default function Sidebar() {
                   className={
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/app/home") !== -1
-                      ? "text-emerald-500 hover:text-emerald-600"
+                      ? "text-spotify-green hover:text-spotify-dark-green"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
                   to="/app/home"
@@ -101,7 +101,7 @@ export default function Sidebar() {
                   className={
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/app/profile") !== -1
-                      ? "text-emerald-500 hover:text-emerald-600"
+                      ? "text-spotify-green hover:text-spotify-dark-green"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
                   to="/app/profile"

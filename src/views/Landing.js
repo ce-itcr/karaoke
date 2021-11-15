@@ -39,7 +39,7 @@ export default function Index() {
           className="absolute top-0  right-0  sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-600px"
           //src="https://www-growth.scdn.co/static/home/bursts-tablet.svg"
           //src={require("../assets/images/pattern.png").default}
-          src="https://res.cloudinary.com/dek4evg4t/image/upload/v1636948126/karaoke-app/pattern.png"
+          //src="https://res.cloudinary.com/dek4evg4t/image/upload/v1636948126/karaoke-app/pattern.png"
           alt="Background Image"
         />
       </section>  

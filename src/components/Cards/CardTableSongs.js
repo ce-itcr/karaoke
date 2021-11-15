@@ -110,7 +110,7 @@ export default function CardTableSongs({ color }) {
       return(
         <>
             <button
-              className="bg-blueGray-700 active:bg-blueGray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+              className="bg-spotify-green active:bg-spotify-dark-green uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
               type="button"
               onClick={openModal}
             >
@@ -128,10 +128,10 @@ export default function CardTableSongs({ color }) {
             <div className="flex items-center">
                 <span className="mr-2">Dificil</span>
                 <div className="relative w-full">
-                <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
+                <div className="overflow-hidden h-2 text-xs flex rounded bg-red-400">
                     <div
                     style={{ width: "90%" }}
-                    className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
+                    className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-400"
                     ></div>
                 </div>
                 </div>
@@ -144,7 +144,7 @@ export default function CardTableSongs({ color }) {
                   <div className="overflow-hidden h-2 text-xs flex rounded bg-orange-200">
                     <div
                       style={{ width: "60%" }}
-                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500"
+                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-200"
                     ></div>
                   </div>
                 </div>
@@ -154,10 +154,10 @@ export default function CardTableSongs({ color }) {
                 <div className="flex items-center">
                 <span className="mr-2">Facil</span>
                 <div className="relative w-full">
-                  <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-500">
+                  <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-400">
                     <div
                       style={{ width: "20%" }}
-                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
+                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-400"
                     ></div>
                   </div>
                 </div>
@@ -199,7 +199,7 @@ export default function CardTableSongs({ color }) {
             <div className="w-full lg:w-3/12" style={{paddingLeft:'20px'}}>
             <div className="relative w-full mb-3">
                 <button 
-                  className="r sm:ml-1 text-white font-bold px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
+                  className="r sm:ml-1 text-white font-bold px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 bg-spotify-green active:bg-spotify-dark-green uppercase text-sm shadow hover:shadow-lg"
                   type="button"
                   onClick={searchSongs}
                 >

@@ -1080,6 +1080,29 @@ select {
   }
 }
 
+.hero {
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.landing-container {
+  padding: 0 20.5rem;
+}
+
+.title {
+  font-size: 3.7rem;
+  color: white;
+}
+
 .bg-spotify-landing {
   --tw-bg-opacity: 1;
   background-color: rgba(41, 65, 171, var(--tw-bg-opacity));
@@ -2357,6 +2380,18 @@ select {
 .text-spotify-green{
   --tw-text-opacity: 1;
   color: rgba(29, 185, 84, var(--tw-text-opacity));
+}
+
+.text-spotify-landing{
+  --tw-text-opacity: 1;
+  color: rgba(41, 65, 171, var(--tw-text-opacity));
+}
+
+
+
+.text-spotify-dark-green{
+  --tw-text-opacity: 1;
+  color: rgba(19,119,54, var(--tw-text-opacity));
 }
 
 .text-black {

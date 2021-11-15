@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { InfoContainer } from "../../Home/HomeScreenElements";
+import { InfoContainer } from "../../Player/PlayerElements";
 import Lyric from "./lyric";
 
 const SongsLyrics = (props) => {

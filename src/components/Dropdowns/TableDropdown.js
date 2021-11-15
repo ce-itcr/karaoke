@@ -6,6 +6,7 @@ import { sleep } from "../utils/Sleep";
 import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
 import CardUpdateSong from "../Cards/SongsActions/CardUpdateSong";
+import Player from "../app/Player";
 
 const customStyles = { content: { top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-50%, -50%)' }, };
 
@@ -16,6 +17,7 @@ const NotificationDropdown = (props) => {
   const popoverDropdownRef = React.createRef();
   const [removeSongsIsOpen, setRemoveSongsIsOpen] = useState(false);
   const [updateSongIsOpen, setUpdateSongIsOpen] = useState(false);
+  const [songData, setSongData] = useState({});
 
   const openRemoveModal = () => {setRemoveSongsIsOpen(true)};
   const closeRemoveModal = () => {setRemoveSongsIsOpen(false)};
@@ -36,6 +38,15 @@ const NotificationDropdown = (props) => {
   let songsClient = new SongsClient();
   let history = useHistory();
 
+  const loadSongData = async() => {
+    const newData = await songsClient.getSongById(props.songId);
+    localStorage.setItem('songMp3', newData.data[0].songMp3);
+    setSongData(newData.data[0]);
+    
+    history.push('/app/player/' + props.songId);
+    
+  }
+
   const removeSong = async() => {
     await songsClient.deleteSong(props.songId);
     toast.success("Canción eliminada correctamente.");
@@ -45,7 +56,10 @@ const NotificationDropdown = (props) => {
 
   }
   const openPlayer = () => {
-    history.push('/app/player/' + props.songId);
+    //history.push('/app/player/' + props.songId);
+    return(
+      <Player songsData={songData}/>
+    )
   }
 
   const setUserActions = () => {
@@ -101,7 +115,7 @@ const NotificationDropdown = (props) => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          onClick={openPlayer}
+          onClick={loadSongData}
         >
           <i class="fas fa-play"></i>  Reproducir
         </a>
