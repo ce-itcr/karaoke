@@ -154,7 +154,7 @@ export default function CardTableSongs({ color }) {
                 <div className="flex items-center">
                 <span className="mr-2">Facil</span>
                 <div className="relative w-full">
-                  <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
+                  <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-500">
                     <div
                       style={{ width: "20%" }}
                       className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
