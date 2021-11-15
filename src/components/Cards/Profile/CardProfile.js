@@ -3,13 +3,19 @@ import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import { ProfileClient } from "../../../clients/ProfileClient";
 import { sleep } from "../../utils/Sleep";
+import Modal from 'react-modal';
 
-// components
+const customStyles = { content: { top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-50%, -50%)' }, };
 
 export default function CardProfile() {
 
   let profileClient = new ProfileClient();
   const [userData, setUserData] = useState([]);
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+
+  const openLogoutModal = () => {setLogoutModalOpen(true)};
+  const closeLogoutModal = () => {setLogoutModalOpen(false)};
+
   let history = useHistory();
 
   useEffect(() => {
@@ -66,7 +72,7 @@ export default function CardProfile() {
                 <button 
                   className="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
                   type="button"
-                  onClick={logout}
+                  onClick={openLogoutModal}
                 >
                     <i class="fas fa-sign-in-alt"></i> Cerrar Sesión
                 </button>
@@ -75,6 +81,19 @@ export default function CardProfile() {
           </div>
         </div>
       </div>
+      <Modal
+            isOpen={logoutModalOpen}
+            onRequestClose={closeLogoutModal}
+            style={customStyles}
+        >
+            <h2><b>karaoke! v2.0</b></h2>
+            <div>¿Está seguro que desea cerrar sesión?</div>
+            <form style={{marginTop:'20px'}}>
+            <input />
+            <button onClick={closeLogoutModal} style={{marginRight:'20px', color:'red'}}>Cancelar</button>
+            <button type="button" onClick={logout} style={{color:'green'}}>Cerrar Sesión</button>
+            </form>
+        </Modal>
     </>
   );
 }

@@ -5,6 +5,7 @@ import { SongsClient } from "../../clients/SongsClient";
 import { sleep } from "../utils/Sleep";
 import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
+import CardUpdateSong from "../Cards/SongsActions/CardUpdateSong";
 
 const customStyles = { content: { top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-50%, -50%)' }, };
 
@@ -14,9 +15,13 @@ const NotificationDropdown = (props) => {
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
   const [removeSongsIsOpen, setRemoveSongsIsOpen] = useState(false);
+  const [updateSongIsOpen, setUpdateSongIsOpen] = useState(false);
 
   const openRemoveModal = () => {setRemoveSongsIsOpen(true)};
   const closeRemoveModal = () => {setRemoveSongsIsOpen(false)};
+
+  const openUpdateModal = () => {setUpdateSongIsOpen(true)};
+  const closeUpdateModal = () => {setRemoveSongsIsOpen(false)};
 
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
@@ -38,6 +43,36 @@ const NotificationDropdown = (props) => {
         history.push('/app');
       }) 
 
+  }
+
+  const setUserActions = () => {
+    if(localStorage.getItem('userType') !== 'premium') {
+      return(
+        <>
+        </>
+      )
+    } else {
+      return(
+        <>
+        <a
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          }
+          onClick={openUpdateModal}
+        >
+          <i class="fas fa-edit"></i>  Actualizar
+        </a>
+        <a
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          }
+          onClick={openRemoveModal}
+        >
+          <i class="fas fa-trash"></i>  Eliminar
+        </a>
+        </>
+      )
+    }
   }
 
   return (
@@ -67,22 +102,8 @@ const NotificationDropdown = (props) => {
         >
           <i class="fas fa-play"></i>  Reproducir
         </a>
-        <a
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          <i class="fas fa-edit"></i>  Actualizar
-        </a>
-        <a
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={openRemoveModal}
-        >
-          <i class="fas fa-trash"></i>  Eliminar
-        </a>
+        {setUserActions()}
+
       </div>
       <Modal
             isOpen={removeSongsIsOpen}
@@ -96,6 +117,13 @@ const NotificationDropdown = (props) => {
             <button onClick={closeRemoveModal} style={{marginRight:'20px', color:'red'}}>Cancelar</button>
             <button type="button" onClick={removeSong} style={{color:'green'}}>Eliminar Canción</button>
             </form>
+        </Modal>
+        <Modal
+          isOpen={updateSongIsOpen}
+          onRequestClose={closeUpdateModal}
+          style={customStyles}
+        >
+          <CardUpdateSong songId={props.songId}/>
         </Modal>
     </>
   );
