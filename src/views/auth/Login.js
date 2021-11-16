@@ -3,6 +3,7 @@ import { SigninClient } from "../../clients/SigninClient";
 import {toast, Toaster} from 'react-hot-toast';
 import { sleep } from "../../components/utils/Sleep";
 import { useHistory } from "react-router-dom";
+import { ProfileClient } from "../../clients/ProfileClient";
 
 
 export default function Login() {
@@ -12,7 +13,8 @@ export default function Login() {
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
 
-    let signinClient = new SigninClient(); 
+    let signinClient = new SigninClient();
+    let profileClient = new ProfileClient(); 
 
     const handleInputChangeForUserId = async(e) => {
         var value = e.target.value;
@@ -27,13 +29,14 @@ export default function Login() {
     const verifyUser = async() => {
         const response = await signinClient.verifyUser(userId, password);
         
-        if(response.data.length === 0){
+        {/*if(response.data.length === 0){
             toast.error("Nombre de usuario o contraseña incorrecta.");
             sleep(2500).then(()=>{
                 history.push('/auth');
               })  
         } else{
             toast.success("Bienvenido " + userId);
+            alert(response)
             localStorage.setItem('userType', response.data[0].userType)
             localStorage.setItem('currentUsername', userId);
             localStorage.setItem('currentPassword', password);
@@ -42,7 +45,28 @@ export default function Login() {
             sleep(1500).then(()=>{
                 history.push('/app');
               })  
-        }    
+        }    */}
+        switch (response) {
+            case '⚠️ There are no users with the specified specifications ... \n[Error]: Incorrect userId':
+                toast.error('Usuario o contraseña incorrectos.');
+                break;
+            case '⚠️ There are no users with the specified specifications ... \n[Error]: Incorrect userId or password':
+                toast.error('Contraseña incorrecta.');
+                break;
+            case 'Welcome to karaoke!':
+                toast.success("Bienvenido " + userId);
+                const userData = await profileClient.getUserData(userId);
+                localStorage.setItem('userType', userData.data.userType)
+                localStorage.setItem('currentUsername', userData.data.userId);
+                localStorage.setItem('currentPassword', userData.data.password);
+                localStorage.setItem('activeSession', true);
+                sleep(1500).then(()=>{
+                    history.push('/app');
+                  })  
+                break;
+            default:
+                break;
+        }
     }
     
     if(localStorage.getItem('activeSession')){

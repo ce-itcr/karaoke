@@ -14,8 +14,8 @@ export default function CardProfileUpdate() {
   
     const getUserData = async() => {
         const currentData = await profileClient.getUserData(localStorage.getItem('currentUsername'));
-        setUserData(currentData.data[0]);
-        console.log(currentData.data[0])
+        setUserData(currentData.data);
+        console.log(currentData.data)
     }
 
   return (
@@ -44,7 +44,7 @@ export default function CardProfileUpdate() {
                     disabled="true"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue={userData.username}
+                    defaultValue={userData.userId}
                   />
                 </div>
               </div>

@@ -24,7 +24,8 @@ export default function CardProfile() {
 
   const getUserData = async() => {
       const currentData = await profileClient.getUserData(localStorage.getItem('currentUsername'));
-      setUserData(currentData.data[0]);
+      console.log(currentData)
+      setUserData(currentData.data);
   }
 
   const logout = () => {
@@ -59,7 +60,7 @@ export default function CardProfile() {
             </h3>
             <div className="text-sm leading-normal mt-0 mb-2 text-white font-bold ">
               <i className="fas fa-user mr-2 text-lg text-white"></i>{" "}
-              @{userData.username}
+              @{userData.userId}
             </div>
             <div className="text-sm leading-normal mt-0 mb-2 text-white font-bold uppercase">
               <i className="fas fa-map-marker-alt mr-2 text-lg text-white"></i>{" "}

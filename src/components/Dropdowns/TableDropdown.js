@@ -40,21 +40,22 @@ const NotificationDropdown = (props) => {
 
   const loadSongData = async() => {
     const newData = await songsClient.getSongById(props.songId);
-    localStorage.setItem('songMp3', newData.data[0].songMp3);
-    setSongData(newData.data[0]);
+    localStorage.setItem('songMp3', newData.data.songMp3);
+    setSongData(newData.data);
     
     history.push('/app/player/' + props.songId);
     
   }
 
   const removeSong = async() => {
-    await songsClient.deleteSong(props.songId);
-    toast.success("Canción eliminada correctamente.");
+    await songsClient.deleteSong(props.songId).then(
+        toast.success('Canción eliminada exitosamente'),
+    );
     sleep(2500).then(()=>{
         history.push('/app');
       }) 
-
   }
+
   const openPlayer = () => {
     //history.push('/app/player/' + props.songId);
     return(

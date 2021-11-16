@@ -31,7 +31,7 @@ export default function CardCreateSong() {
   const handleSongMp3 = async(e) => { var value = e.target.value; setSongMp3(value);}
 
   const createSong = async() => {
-    await songsClient.postSong(songName, songAuthor, songAlbum, localStorage.getItem('currentUsername'), songMp3, songLRCLyrics, songCover).then(
+    await songsClient.createSong(songName, songAuthor, songAlbum, localStorage.getItem('currentUsername'), songMp3, songLRCLyrics, songCover).then(
         toast.success('Canción creada exitosamente'),
     );
     sleep(2500).then(()=>{
@@ -40,7 +40,7 @@ export default function CardCreateSong() {
   }
 
   const verifyInputData = () => {
-      if(songName === '' || songAlbum === '' || songAuthor === ''){
+      if(songName === '' || songAlbum === '' || songAuthor === '' || songCover === '' || songMp3 === '' || songLRCLyrics === ''){
           toast.error('Debe llenar todos los espacios');
       } else {
           openModal();
@@ -205,9 +205,9 @@ export default function CardCreateSong() {
             <h2><b>karaoke! v2.0</b></h2>
             <div>¿Está seguro que desea crear la canción con las especificaciones indicada?</div>
             <form style={{marginTop:'20px'}}>
-            <input />
-            <button onClick={closeModal} style={{marginRight:'20px', color:'red'}}>Cancelar</button>
-            <button type="button" onClick={createSong} style={{color:'green'}}>Crear Canción</button>
+            
+              <button onClick={closeModal} style={{marginRight:'20px', marginLeft:'330px', color:'#d4443c'}}>Cancelar</button>
+              <button type="button" onClick={createSong} style={{color:'#1db954'}}>Crear Canción</button>
             </form>
         </Modal>
         </div>

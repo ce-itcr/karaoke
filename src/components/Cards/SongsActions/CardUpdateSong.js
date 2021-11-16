@@ -11,6 +11,7 @@ const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top
 export default function CardUpdateSong(props) {
 
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [songData, setSongData] = useState({});
   const [songName, setSongName] = useState('');
   const [songAuthor, setSongAuthor] = useState('');
   const [songAlbum, setSongAlbum] = useState('');
@@ -24,9 +25,7 @@ export default function CardUpdateSong(props) {
   let history = useHistory();
   let songsClient = new SongsClient();
 
-  const handleSongName = async(e) => { var value = e.target.value; setSongName(value);}
-  const handleSongAuthor = async(e) => { var value = e.target.value; setSongAuthor(value);}
-  const handleSongAlbum = async(e) => { var value = e.target.value; setSongAlbum(value);}
+
   const handleSongCover = async(e) => { var value = e.target.value; setSongCover(value);}
   const handleSongMp3 = async(e) => { var value = e.target.value; setSongMp3(value);}
  
@@ -37,16 +36,17 @@ export default function CardUpdateSong(props) {
 
   const getSongData = async() => {
     const response = await songsClient.getSongById(props.songId);
-    setSongName(response.data[0].songName);
-    setSongAlbum(response.data[0].songAlbum);
-    setSongAuthor(response.data[0].songAuthor);
-    setSongLRCLyrics(response.data[0].songLRC);
-    setSongMp3(response.data[0].songMp3);
-    setSongCover(response.data[0].songCover);
+    setSongData(response.data);
+    setSongName(response.data.songName);
+    setSongAlbum(response.data.songAlbum);
+    setSongAuthor(response.data.songAuthor);
+    setSongLRCLyrics(response.data.songLRC);
+    setSongMp3(response.data.songMp3);
+    setSongCover(response.data.songCover);
   }
 
   const updateSong = async() => {
-    await songsClient.updateSong(props.songId, songMp3, songLRCLyrics, localStorage.getItem('currentUsername')).then(
+    await songsClient.updateSong(props.songId, songMp3, songCover, songLRCLyrics, localStorage.getItem('currentUsername')).then(
         toast.success('Canción actualizada exitosamente'),
     );
     sleep(2500).then(()=>{
@@ -57,9 +57,10 @@ export default function CardUpdateSong(props) {
 
 
   const verifyInputData = () => {
-      if(songName === ''){
-
-      } else {
+      if(songMp3 === ''){ setSongName(songData.songMp3) } 
+      if(songCover === ''){ setSongCover(songData.songCover) } 
+      if(songLRCLyrics === ''){ setSongLRCLyrics(songData.songLRC) } 
+      else {
           openModal();
       }
   }
@@ -195,9 +196,6 @@ export default function CardUpdateSong(props) {
                   />
                 </div>
               </div>
- 
-
-
        
             </div>
             <div className="w-full lg:w-8/12 px-4" style={{marginLeft: 'auto', paddingTop:'25px'}}>
@@ -206,7 +204,7 @@ export default function CardUpdateSong(props) {
                   className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-spotify-green active:bg-spotify-dark-green uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                   onClick={verifyInputData}
                 >
-                  <i class="fas fa-plus"></i> Actualizar Canción
+                  <i class="fas fa-edit"></i> Actualizar Canción
                 </button>
               </div>
 

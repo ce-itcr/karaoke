@@ -62,45 +62,16 @@ export default function CardTableSongs({ color }) {
     const searchSongs = async() => {
     if(category === 'option' || category === ''){
       toast.error('Debe seleccionar alguna opción')
-    } if(filter === ''){
-      const response = await songsClient.getAllSongs();
-      toast.success('Mostrando ' + response.data.length + ' resultado (s).')
-      setSongs(response.data)
-    } 
-    else {
-      switch (category) {
-        case 'songName':
-          const byNameResponse = await songsClient.getSongsByName(filter);
-          if(byNameResponse.data.length === 0) {
-            toast.error('No se encontraron resultados con las especificaciones indicadas ...');
-          } else {
-            toast.success('Mostrando ' + byNameResponse.data.length + ' resultado (s).')
-            setSongs(byNameResponse.data)
-          }
-          break;
-        case 'songAlbum':
-          const byAlbumResponse = await songsClient.getSongsByAlbum(filter);
-          if(byAlbumResponse.data.length === 0) {
-            toast.error('No se encontraron resultados con las especificaciones indicadas ...');
-          } else {
-            toast.success('Mostrando ' + byAlbumResponse.data.length + ' resultado (s).')
-            setSongs(byAlbumResponse.data)
-          }
-          break;
-          case 'songAuthor':
-            const byAuthorResponse = await songsClient.getSongsByAuthor(filter);
-            if(byAuthorResponse.data.length === 0) {
-              toast.error('No se encontraron resultados con las especificaciones indicadas ...');
-            } else {
-              toast.success('Mostrando ' + byAuthorResponse.data.length + ' resultado (s).')
-              setSongs(byAuthorResponse.data)
-            }
-            break;      
-        default:
-          break;
+    } else {
+      const response = await songsClient.searchSongs(category, filter);
+      if(response.length === 0){
+        toast.error('No se encontraron resultados con las especificaciones indicadas ...');
+      } else {
+        toast.success('Mostrando ' + response.length + ' resultados.')
       }
+      setSongs(response);
     }
-
+    
   }
 
   const setCreateSongsButton = () => {
