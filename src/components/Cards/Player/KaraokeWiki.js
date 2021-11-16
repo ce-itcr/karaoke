@@ -35,16 +35,6 @@ export default function KaraokeWiki(props) {
             toast.error('No se encontró información asociada para ' + props.songAuthor);
         } else {
             console.log(response);
-            //setArtistName(info[0].strArtist);
-            //setBornYear(info[0].intBornYear);
-            //setDiedYear(info[0].intDiedYear);
-            //setFormedYear(info[0].intFormedYear);
-            //setCountry(info[0].strCountry);
-            //setWebsite(info[0].strWebsite);
-            //setGenre(info[0].strGenre);
-            //setArtistThumb(info[0].strArtistThumb);
-            setBiography(info[0].strBiographyEN);
-
             if(info[0].strArtist === null){setArtistName('----')} else{ setArtistName(info[0].strArtist); }
             if(info[0].strArtistThumb === null){setArtistThumb('----')} else{ setArtistThumb(info[0].strArtistThumb); }
             if(info[0].intBornYear === null){setBornYear('----')} else{ setBornYear(info[0].intBornYear); }
@@ -55,7 +45,6 @@ export default function KaraokeWiki(props) {
             if(info[0].strWebsite === null){setWebsite('----')} else{ setWebsite(info[0].strWebsite); }
             if(info[0].strBiographyEN === null){setBiography('----')} else{ setBiography(info[0].strBiographyEN); }
             if(info[0].strFacebook === null){setFacebook('----')} else{ setFacebook(info[0].strFacebook); }
-
         }
     } 
 
@@ -150,13 +139,13 @@ export default function KaraokeWiki(props) {
                                 <div className="w-full lg:w-9/12 px-4">
                                 <p className="mb-4 text-md leading-relaxed text-white">
                                     <i className="fa fa-facebook mr-2 text-lg text-white"></i>{" "}
-                                    Facebook:<a href={facebook} className="text-spotify-green">{facebook}</a>
+                                    Facebook: <a href={facebook} className="text-spotify-green">{facebook}</a>
                                 </p>
                                 </div>
                                 <div className="w-full lg:w-9/12 px-4">
                                 <p className="mb-4 text-md leading-relaxed text-white">
                                     <i className="fa fa-facebook mr-2 text-lg text-white"></i>{" "}
-                                    Sitio Web:<a href={website} className="text-spotify-green">{website}</a>
+                                    Sitio Web: <a href={website} className="text-spotify-green">{website}</a>
                                 </p>
                                 </div>
                             </div>

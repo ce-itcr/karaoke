@@ -20,7 +20,7 @@ export default function Sidebar() {
           {/* Brand */}
           <Link
             className="md:block text-left md:pb-2 text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            to="/"
+            to="/app"
           >
             karaoke! v2.0
           </Link>
@@ -38,7 +38,7 @@ export default function Sidebar() {
                 <div className="w-6/12">
                   <Link
                     className="md:block text-left md:pb-2 text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    to="/"
+                    to="/app"
                   >
                     karaoke! v2.0
                   </Link>

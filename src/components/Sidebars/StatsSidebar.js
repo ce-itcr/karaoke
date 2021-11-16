@@ -1,14 +1,37 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ProfileClient } from "../../clients/ProfileClient";
 
 
 export default function StatsSidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
+  const [favoriteArtist, setFavoriteArtist] = useState([]);
+
+  let profileClient = new ProfileClient();
+
+  useEffect(() => {
+    getUserStats();
+  }, [])
+
+  const getUserStats = async() => {
+    const response = await profileClient.getUserData(localStorage.getItem('currentUsername'));
+    //console.log(response)
+    setFavoriteArtist(response.data.favoriteArtists);
+  } 
+
+  const favoriteArtistItems = favoriteArtist.map((artist) => 
+    <>
+      <li className=" text-left flex items-center" style={{paddingBottom:'5px'}}>
+        <img className="h-10 w-10 bg-white rounded-full border" src={artist[1]}/>
+        <span className="text-white ml-3">{artist[0]}</span>
+      </li>
+    </>)
+
   return (
     <>
       <nav className="right-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-black flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
-        <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
+      <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Toggler */}
           <button
             className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
@@ -20,7 +43,7 @@ export default function StatsSidebar() {
           {/* Brand */}
           <Link
             className="md:block text-left md:pb-2 text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            to="/"
+            to="/app"
           >
             Estadísticas Generales
           </Link>
@@ -32,7 +55,21 @@ export default function StatsSidebar() {
               collapseShow
             }
           >
-   
+            {/* Divider */}
+            <hr className="my-4 md:min-w-full border-spotify-green" />
+            {/* Heading */}
+            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+              Artistas Favoritos
+            </h6>
+            {/* Navigation */}
+
+            <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+
+              {favoriteArtistItems}
+              
+
+            </ul>
+
           </div>
         </div>
       </nav>
