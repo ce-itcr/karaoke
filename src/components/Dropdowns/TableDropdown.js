@@ -40,7 +40,9 @@ const NotificationDropdown = (props) => {
 
   const loadSongData = async() => {
     const newData = await songsClient.getSongById(props.songId);
-    localStorage.setItem('songMp3', newData.data.songMp3);
+    localStorage.setItem('currentSession-songMP3', newData.data.songMp3);
+    localStorage.setItem('currentSession-songLRC', newData.data.songLRC);
+    localStorage.setItem('currentSession-songCover', newData.data.songCover);
     setSongData(newData.data);
     
     history.push('/app/player/' + props.songId);

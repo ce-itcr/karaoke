@@ -41,6 +41,7 @@ export default function App() {
         }
     }
 
+
     return(
         <>
               <Sidebar />
@@ -51,7 +52,7 @@ export default function App() {
                     {/* Header */}
                     {setHeaderStats()}
        
-                    <div className=" mx-auto -m-24 ">
+                    <div className=" mx-auto -m-24">
                     <Switch>
                         <Route path="/app/home" exact component={Home} />
                         <Route path="/app/profile" exact component={Profile} />
