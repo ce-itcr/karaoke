@@ -15,7 +15,7 @@ export default function CardProfileUpdate() {
     const getUserData = async() => {
         const currentData = await profileClient.getUserData(localStorage.getItem('currentUsername'));
         setUserData(currentData.data);
-        console.log(currentData.data)
+        //console.log(currentData.data)
     }
 
   return (

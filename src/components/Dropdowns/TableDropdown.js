@@ -43,6 +43,8 @@ const NotificationDropdown = (props) => {
     localStorage.setItem('currentSession-songMP3', newData.data.songMp3);
     localStorage.setItem('currentSession-songLRC', newData.data.songLRC);
     localStorage.setItem('currentSession-songCover', newData.data.songCover);
+    localStorage.setItem('currentSession-songAuthor', newData.data.songAuthor);
+
     setSongData(newData.data);
     
     history.push('/app/player/' + props.songId);

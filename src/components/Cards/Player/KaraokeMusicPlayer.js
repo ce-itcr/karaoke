@@ -15,7 +15,7 @@ export default function KaraokeMusicPlayer(props) {
                 </div>
                 </div>
                 <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <MusicPlayer playlist={data} mode="vertical" autoplay="false" width={320} btnColor="#1db954" progressColor="#1db954" style={{textColor:'#fff'}}/>
+                    <MusicPlayer playlist={data} mode="vertical" autoplay={false} width={320} btnColor="#1db954" progressColor="#1db954" style={{textColor:'#fff'}}/>
                 </div>
             </div>
         </>

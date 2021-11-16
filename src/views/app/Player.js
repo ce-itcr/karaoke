@@ -8,6 +8,7 @@ import CardProfile from "../../components/Cards/Profile/CardProfile.js";
 import CardProfileUpdate from "../../components/Cards/Profile/CardProfileUpdate.js";
 import KaraokeLyricsPlayer from "../../components/Cards/Player/KaraokeLyricsPlayer.js";
 import KaraokeWiki from "../../components/Cards/Player/KaraokeWiki.js";
+import SessionStats from "../../components/Cards/Player/SessionStats.js";
 
 export default function Player() {
 
@@ -25,12 +26,16 @@ export default function Player() {
     const songData = await songsClient.getSongById(songId);
     setCurrentSong(songData.data)
   }
+  
 
   return (
     <>
 
 
       <div className="flex flex-wrap">
+        <div className="w-full lg:w-12/12 px-4" >
+          <SessionStats {...currentSong}/>
+        </div>
         <div className="w-full lg:w-4/12 px-4" >
           <KaraokeMusicPlayer {...currentSong}/>
         </div>
