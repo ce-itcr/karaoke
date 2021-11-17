@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import toast, { Toaster } from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import api from "../../../clients/ArtistInfo";
+import { ProfileClient } from "../../../clients/ProfileClient";
 import { sleep } from "../../utils/Sleep";
 
 export default function KaraokeWiki(props) {
@@ -17,12 +18,36 @@ export default function KaraokeWiki(props) {
     const [artistThumb, setArtistThumb] = useState('');
     const [biography, setBiography] = useState('');
 
+    const [favoriteArtist, setFavoriteArtist] = useState(true);
+    const [favoriteArtistList, setFavoriteArtistList] = useState([]);
+     
+
+    let profileClient = new ProfileClient();
+
 
     useEffect(() => {
-        sleep(500).then(()=>{
-            loadArtistInfo();
-          })  
+        loadArtistInfo();
     }, [])
+
+    const getFavoriteArtists = async(currentArtist) => {
+        const response = await profileClient.getUserData(localStorage.getItem('currentUsername'));
+        setFavoriteArtistList(response.data.favoriteArtists);
+        setLikedActions(response.data.favoriteArtists, currentArtist);
+    }
+
+    const setLikedActions = (artistsList, currentArtist) => {
+        var artists = [];
+        for(var k in artistsList){
+            artists.push(artistsList[k][0]);
+        }
+        if(artists.includes(currentArtist)){
+            //console.log('Favorite Artist')
+            setFavoriteArtist(true);
+        } else {
+            //console.log('Add Artist')
+            setFavoriteArtist(false);
+        }
+    }
 
     const loadArtistInfo = async() => {
         const response = await api.get('/search.php', {
@@ -31,10 +56,10 @@ export default function KaraokeWiki(props) {
             }
         })
         let info = response.data.artists;
-        if(info === undefined) {
+        if(info === undefined || info === '') {
             toast.error('No se encontró información asociada para ' + props.songAuthor);
         } else {
-            console.log(response);
+            //console.log(response);
             if(info[0].strArtist === null){setArtistName('----')} else{ setArtistName(info[0].strArtist); }
             if(info[0].strArtistThumb === null){setArtistThumb('----')} else{ setArtistThumb(info[0].strArtistThumb); }
             if(info[0].intBornYear === null){setBornYear('----')} else{ setBornYear(info[0].intBornYear); }
@@ -45,8 +70,53 @@ export default function KaraokeWiki(props) {
             if(info[0].strWebsite === null){setWebsite('----')} else{ setWebsite(info[0].strWebsite); }
             if(info[0].strBiographyEN === null){setBiography('----')} else{ setBiography(info[0].strBiographyEN); }
             if(info[0].strFacebook === null){setFacebook('----')} else{ setFacebook(info[0].strFacebook); }
+            getFavoriteArtists(info[0].strArtist);
         }
     } 
+
+    const addToFavorites = async() => {
+        var currentArtist = [[artistName, artistThumb]];
+        const newFavorites = favoriteArtistList.concat(currentArtist);
+        const response = await profileClient.updateFavoriteList(localStorage.getItem('currentUsername'), newFavorites);
+        if (response === '☑️ The favorite list was modified successfully ... '){
+            toast.success('Artista añadido a la lista de favoritos exitosamente');
+        }
+        sleep(1000).then(() => {
+            window.location.reload();
+        })
+    }
+
+    const removeFromFavorites = async() => {
+        var newFavorites = favoriteArtistList.filter(function(element) {
+            return element[0] !== artistName; 
+        });
+        //console.log(newFavorites)
+        const response = await profileClient.updateFavoriteList(localStorage.getItem('currentUsername'),newFavorites);
+        if (response === '☑️ The favorite list was modified successfully ... '){
+            toast.success('Artista eliminado de la lista de favoritos exitosamente');
+        }
+        sleep(1000).then(() => {
+            window.location.reload();
+        })
+    }
+
+    const setFavoritesButton = () => {
+        if(favoriteArtist){
+            return(
+                <>
+                    <button onClick={removeFromFavorites} type="button" className="bg-black-2 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150">
+                        <i className="fas fa-eye-slash"></i> Favorito
+                    </button>
+                </>)
+        } else {
+            return(
+                <>
+                    <button onClick={addToFavorites} type="button" className="bg-spotify-green uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150">
+                        <i className="fas fa-eye"></i> Añadir a Favoritos
+                    </button>
+                </>)
+        }
+    }
 
     return(
         <>
@@ -75,12 +145,9 @@ export default function KaraokeWiki(props) {
                             </div>
                             <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                                 <div className="py-6 px-3 mt-32 sm:mt-0">
-                                <button
-                                    className="bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                                    type="button"
-                                >
-                                    Connect
-                                </button>
+                                {setFavoritesButton()}
+
+            
                                 </div>
                             </div>
                             <div className="w-full lg:w-4/12 px-4 lg:order-1">
