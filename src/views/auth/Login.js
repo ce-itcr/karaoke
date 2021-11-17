@@ -82,7 +82,7 @@ export default function Login() {
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-spotify-grey border-0" >
                 <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                     <div className="text-black-2 text-center mb-3 font-bold" style={{paddingTop: '35px'}}>
-                    <h1 className="text-white" style={{paddingBottom:'35px'}}>Inicio de Sesión | karaoke! v2.0</h1>
+                    <h1 className="text-white" style={{paddingBottom:'35px'}}>Inicio de Sesión </h1>
                     </div>
                     <form>
                     <div className="relative w-full mb-3">

@@ -1,4 +1,5 @@
 import React from "react";
+import UserDropdown from "../Dropdowns/UserDropdown";
 
 
 export default function AppNavbar() {
@@ -10,11 +11,15 @@ export default function AppNavbar() {
           {/* Brand */}
           <a
             className="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-            href=""
+            href="#pablo"
             onClick={(e) => e.preventDefault()}
           >
-            karaoke! v2.0 por @ce-itcr
+            Dashboard
           </a>
+
+          <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
+            <UserDropdown />
+          </ul>
         </div>
       </nav>
       {/* End Navbar */}
