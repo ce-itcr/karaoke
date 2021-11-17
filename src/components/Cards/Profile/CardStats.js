@@ -35,21 +35,7 @@ export default function CardStats({
               </div>
             </div>
           </div>
-          <p className="text-sm text-white mt-4">
-            <span className={statPercentColor + " mr-2"}>
-              <i
-                className={
-                  statArrow === "up"
-                    ? "fas fa-arrow-up"
-                    : statArrow === "down"
-                    ? "fas fa-arrow-down"
-                    : ""
-                }
-              ></i>{" "}
-              {statPercent}%
-            </span>
-            <span className="whitespace-nowrap">{statDescripiron}</span>
-          </p>
+
         </div>
       </div>
     </>
@@ -57,12 +43,12 @@ export default function CardStats({
 }
 
 CardStats.defaultProps = {
-  statSubtitle: "Traffic",
-  statTitle: "350,897",
-  statArrow: "up",
-  statPercent: "3.48",
-  statPercentColor: "text-emerald-500",
-  statDescripiron: "Since last month",
+  statSubtitle: "",
+  statTitle: "",
+  //statArrow: "up",
+  //statPercent: "3.48",
+  //statPercentColor: "text-emerald-500",
+  //statDescripiron: "Since last month",
   statIconName: "far fa-chart-bar",
   statIconColor: "bg-red-500",
 };

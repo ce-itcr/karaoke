@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ProfileClient } from "../../clients/ProfileClient.js";
 
 // components
 
 import CardStats from "../Cards/Profile/CardStats.js";
 
 export default function HeaderStats() {
+
+  const [playedSongs, setPlayedSongs] = useState();
+  const [favoriteArtists, setFavoriteArtists] = useState();
+  const [greaterDifficulty, setGreaterDifficulty] = useState();
+  const [lessDifficulty, setLessDifficulty] = useState();
+ 
+  let profileClient = new ProfileClient();
+
+  useEffect(() => {
+    loadBasicStats();
+  }, [])
+
+  const loadBasicStats = async() => {
+    const response = await profileClient.getUserData(localStorage.getItem('currentUsername'));
+    setPlayedSongs(response.data.playedSongs.length);
+    setFavoriteArtists(response.data.favoriteArtists.length);
+    setGreaterDifficulty(response.data.greaterDifficulty.length);
+    setLessDifficulty(response.data.lessDifficulty.length);
+  }
+
+
+
   return (
     <>
       {/* Header */}
@@ -15,11 +38,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="CANCIONES REPRODUCIDAS"
-                  statTitle="350,897"
-                  statArrow="up"
-                  statPercent="3.48"
-                  statPercentColor="text-spotify-dark-green"
-                  statDescripiron="Since last month"
+                  statTitle={playedSongs}
                   statIconName="fas fa-music"
                   statIconColor="bg-black-2"
                 />
@@ -27,11 +46,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="ARTISTAS FAVORITOS"
-                  statTitle="2,356"
-                  statArrow="down"
-                  statPercent="3.48"
-                  statPercentColor="text-spotify-dark-green"
-                  statDescripiron="Since last week"
+                  statTitle={favoriteArtists}
                   statIconName="fas fa-users"
                   statIconColor="bg-black-2"
                 />
@@ -39,11 +54,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="MAYOR DIFICULTAD"
-                  statTitle="924"
-                  statArrow="down"
-                  statPercent="1.10"
-                  statPercentColor="text-spotify-dark-green"
-                  statDescripiron="Since yesterday"
+                  statTitle={greaterDifficulty}
                   statIconName="fas fa-plus"
                   statIconColor="bg-black-2"
                 />
@@ -51,11 +62,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="MENOR DIFICULTAD"
-                  statTitle="49,65%"
-                  statArrow="up"
-                  statPercent="12"
-                  statPercentColor="text-spotify-dark-green"
-                  statDescripiron="Since last month"
+                  statTitle={lessDifficulty}
                   statIconName="fas fa-minus"
                   statIconColor="bg-black-2"
                 />

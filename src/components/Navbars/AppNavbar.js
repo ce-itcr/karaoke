@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserDropdown from "../Dropdowns/UserDropdown";
 
 
 export default function AppNavbar() {
+
+  const [navbarTitle, setNavbarTitle] = useState('');
+
+  useEffect(() => {
+    getTitle();
+  });
+
+  const getTitle = () => {
+    setNavbarTitle(window.location.pathname);
+  }
+
   return (
     <>
       {/* Navbar */}
@@ -14,7 +25,7 @@ export default function AppNavbar() {
             href="#pablo"
             onClick={(e) => e.preventDefault()}
           >
-            Dashboard
+            {navbarTitle}
           </a>
 
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
