@@ -37,7 +37,7 @@ export default class ProgressBar extends Component {
         <LoadingBar
           progress={this.state.loadingBarProgress}
           height={3}
-          color='#1db954'
+          color='rgba(29, 185, 84,1)'
           onLoaderFinished={() => this.onLoaderFinished()}
         />
       </div>

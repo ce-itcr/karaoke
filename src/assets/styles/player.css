@@ -28,25 +28,13 @@
   .c-player--details .details-img img {
     display: block;
     margin: 50px auto;
-    width: 150px;
+    width: 200px;
     max-width: 350px;
     border-radius: 50%;
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.8), -6px -6px 12px rgba(255, 255, 255, 0.4);
   }
   
-  .c-player--details .details-img:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: -25px;
-    left: -25px;
-    right: -25px;
-    bottom: -25px;
-    border-radius: 50%;
-    border: 3px dashed #1db954;
-  }
-  
-  .c-player--details .details-title {
+ .c-player--details .details-title {
     color: #EEE;
     font-size: 28px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8), -2px -2px 4px rgba(255,255,255,0.4);

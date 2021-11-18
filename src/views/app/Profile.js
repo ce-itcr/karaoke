@@ -7,10 +7,12 @@ import CardProfileUpdate from "../../components/Cards/Profile/CardProfileUpdate.
 import CardSongsPlayed from "../../components/Cards/Profile/CardSongsPlayed.js";
 import GreaterDifficulty from "../../components/Cards/Profile/Words/GreaterDifficulty.js";
 import LessDifficulty from "../../components/Cards/Profile/Words/LessDifficulty.js";
+import ProgressBar from "../../components/utils/ProgressBar.js";
 
 export default function Profile() {
   return (
     <>
+      <ProgressBar/>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-4/12 px-4">
           <CardProfile />

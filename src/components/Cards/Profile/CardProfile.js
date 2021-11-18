@@ -27,6 +27,7 @@ export default function CardProfile() {
       setUserData(currentData.data);
   }
 
+
   const logout = () => {
         toast.success('Cerrando Sesión ....');
         localStorage.removeItem('activeSession');

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import toast, { Toaster } from "react-hot-toast";
 import Modal from 'react-modal';
 
-
 // components
 
 import TableDropdown from "../Dropdowns/TableDropdown.js";
@@ -141,7 +140,7 @@ export default function CardTableSongs({ color }) {
 
   return (
     <>
-          <Toaster />
+      <Toaster />
       <div className="flex flex-wrap ">
             <div className="w-full lg:w-4/12 ">
                 <div className="relative w-full mb-3">

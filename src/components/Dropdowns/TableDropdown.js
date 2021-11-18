@@ -6,7 +6,6 @@ import { sleep } from "../utils/Sleep";
 import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
 import CardUpdateSong from "../Cards/SongsActions/CardUpdateSong";
-import Player from "../app/Player";
 
 const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-60%, -50%)' }, };
 
@@ -46,9 +45,11 @@ const NotificationDropdown = (props) => {
     localStorage.setItem('currentSession-songAuthor', newData.data.songAuthor);
 
     setSongData(newData.data);
-    
-    history.push('/app/player/' + props.songId);
-    
+    //history.push('/app/player/' + props.songId, newData.data.songLRC);
+    history.push({
+      pathname: '/app/player/' + props.songId,
+      state: { lyrics: newData.data.songLRC }
+  });
   }
 
   const removeSong = async() => {
@@ -58,13 +59,6 @@ const NotificationDropdown = (props) => {
     sleep(2500).then(()=>{
         history.push('/app');
       }) 
-  }
-
-  const openPlayer = () => {
-    //history.push('/app/player/' + props.songId);
-    return(
-      <Player songsData={songData}/>
-    )
   }
 
   const setUserActions = () => {
