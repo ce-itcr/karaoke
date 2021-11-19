@@ -61,10 +61,23 @@
     display: flex;
     padding: 15px;
     border-radius: 50%;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8), -4px -4px 10px rgba(255, 255, 255, 0.4), inset -4px -4px 10px rgba(0, 0, 0, 0.4), inset 4px 4px 10px rgba(255, 255, 255, 0.4);
+    /*box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8), -4px -4px 10px rgba(255, 255, 255, 0.4), inset -4px -4px 10px rgba(0, 0, 0, 0.4), inset 4px 4px 10px rgba(255, 255, 255, 0.4);*/
     border: none;
     outline: none;
     background-color: #1db954;
+    color: #FFF;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .c-player--controls .stop-btn {
+    display: flex;
+    padding: 15px;
+    border-radius: 50%;
+    /*box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8), -4px -4px 10px rgba(255, 255, 255, 0.4), inset -4px -4px 10px rgba(0, 0, 0, 0.4), inset 4px 4px 10px rgba(255, 255, 255, 0.4);*/
+    border: none;
+    outline: none;
+    background-color: rgba(56, 56, 56, 1);
     color: #FFF;
     font-size: 24px;
     cursor: pointer;

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { SongsClient } from "../../clients/SongsClient.js";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
+import Modal from 'react-modal';
 
 // components
 import KaraokeWiki from "../../components/Cards/Player/KaraokeWiki.js";
@@ -10,6 +11,12 @@ import LyricsPlayer from "../../components/Cards/Player/LyricsPlayer.js";
 
 import Details from "../../components/Cards/Player/MusicPlayer/Details"
 import Controls from "../../components/Cards/Player/MusicPlayer/Controls"
+import { ProfileClient } from "../../clients/ProfileClient.js";
+import toast, { Toaster } from "react-hot-toast";
+import { sleep } from "../../components/utils/Sleep.js";
+
+const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-80%, -50%)' }, };
+
 
 export default function Player() {
 
@@ -23,8 +30,11 @@ export default function Player() {
   const [curMill, setCurMill] = useState(1);
   const [currentTime, setCurrentTime] = useState(1000);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isStop, setIsStop] = useState(false);
+  const [modalOpen, setModalOpen] = useState();
 
-
+  const openSessionModal = () => {setModalOpen(true)};
+  const closeSessionModal = () => {setModalOpen(false); setIsStop(false)};
 
   useEffect(() => {
     if(isPlaying){
@@ -40,8 +50,19 @@ export default function Player() {
     }
   });
 
+  useEffect(() => {
+    if(isStop){
+      openSessionModal();
+    } else {
+      closeSessionModal();
+    }
+  });
+
+
+  let history = useHistory();
 
   let songsClient = new SongsClient();
+  let profileClient = new ProfileClient();
 
   useEffect(() => { 
     getSongData();
@@ -53,10 +74,23 @@ export default function Player() {
     setSongToPlay({title: songData.data.songName, artist: songData.data.songAuthor, img_src: songData.data.songCover, src: songData.data.songMp3})
     setCurrentSong(songData.data);
   }
-  
+
+  const endSession = async() => {
+    const playedSong = [currentSong.songName, currentSong.songAuthor, currentSong.songAlbum, currentSong.songCover, "0"];
+    const response = await profileClient.updatePlayedSongs(localStorage.getItem('currentUsername'),playedSong);
+    if(response === '☑️ The song was modified successfully ... '){
+      toast.success('Sesión guardada con exito');
+
+      sleep(1000).then(() => {
+        history.push('/app');
+      })
+    }
+  }
+ 
 
   return (
     <>
+      <Toaster/>
       <ProgressBar />
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 px-4" >
@@ -74,7 +108,7 @@ export default function Player() {
             <div className="c-player">
               <audio src={currentSong.songMp3} ref={audioEl}></audio>
               <Details song={songToPlay} />
-              <Controls isPlaying={isPlaying} setIsPlaying={setIsPlaying}  />
+              <Controls isPlaying={isPlaying} setIsPlaying={setIsPlaying} isStop={isStop} setIsStop={setIsStop}/>
             </div>
             </div>
           </div>
@@ -91,6 +125,18 @@ export default function Player() {
           <KaraokeWiki {...currentSong} />
         </div>
       </div>
+      <Modal
+            isOpen={modalOpen}
+            onRequestClose={closeSessionModal}
+            style={customStyles}
+        >
+            <h2><b>karaoke! v2.0</b></h2>
+            <div>¿Está seguro que desea terminar con la sesión de reproducción actual?</div>
+            <form style={{marginTop:'20px'}}>
+              <button onClick={closeSessionModal} style={{marginRight:'20px',marginLeft:'200px', color:'#d4443c'}}>Cancelar</button>
+              <button type="button" onClick={endSession} style={{color:'#1db954'}}>Terminar Sesión</button>
+            </form>
+        </Modal>
     </>
   );
 }
