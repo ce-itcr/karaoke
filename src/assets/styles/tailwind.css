@@ -1088,6 +1088,30 @@ select {
   }
 }
 
+::-webkit-scrollbar {
+  width: 9px;
+  height: 0px;
+}
+
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(29, 185, 84,1); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(19,119,54,1); 
+}
+
+
 .hero {
   height: 100vh;
   width: 100%;

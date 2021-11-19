@@ -2,6 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { SongsClient } from "../../clients/SongsClient.js";
 import { useLocation, useHistory } from "react-router-dom";
 import Modal from 'react-modal';
+import { Slider } from "@material-ui/core";
+import VolumeDown from '@material-ui/icons/VolumeDown';
+import { VolumeUp } from '@material-ui/icons';
+
 
 // components
 import KaraokeWiki from "../../components/Cards/Player/KaraokeWiki.js";
@@ -32,6 +36,7 @@ export default function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isStop, setIsStop] = useState(false);
   const [modalOpen, setModalOpen] = useState();
+  const [volume, setVolume] = useState(100);
 
   const openSessionModal = () => {setModalOpen(true)};
   const closeSessionModal = () => {setModalOpen(false); setIsStop(false)};
@@ -86,6 +91,19 @@ export default function Player() {
       })
     }
   }
+
+  const handleChange = (event, newValue) => {
+    setVolume(newValue);
+    var fraction;
+    if(newValue >= '100'){
+      fraction = "1.0";
+    } else {
+      fraction = "0." + newValue;
+    }
+    var localAudio = document.getElementById("localAudio");
+    localAudio.volume = fraction;
+
+  };
  
 
   return (
@@ -106,9 +124,21 @@ export default function Player() {
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
 
             <div className="c-player">
-              <audio src={currentSong.songMp3} ref={audioEl}></audio>
+              <audio id="localAudio" src={currentSong.songMp3} ref={audioEl}></audio>
+              
               <Details song={songToPlay} />
+              <div className="footer__right">
+                <VolumeDown className="text-white"/>
+                <Slider 
+                  className="text-spotify-green slider"
+                  value={volume} 
+                  onChange={handleChange} 
+                />
+                <VolumeUp className="text-white"/>
+              </div>
+              
               <Controls isPlaying={isPlaying} setIsPlaying={setIsPlaying} isStop={isStop} setIsStop={setIsStop}/>
+
             </div>
             </div>
           </div>

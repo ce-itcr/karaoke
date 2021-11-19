@@ -162,6 +162,7 @@
     align-items: center;
     color: white;
     flex: 0.25;
+    margin-bottom: 20px;
   }
   
   .footer__right__slider {
@@ -174,3 +175,8 @@
     padding-right: 10px !important;
   }
   
+  .slider{
+    color: #1db954 !important;
+    padding-left: 5px !important;
+    width: 70% !important;
+  }
