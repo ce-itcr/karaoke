@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import { Slider } from "@material-ui/core";
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import { VolumeUp } from '@material-ui/icons';
-
+import SpeechRecognition, { useSpeechRecognition, } from "react-speech-recognition";
 
 // components
 import KaraokeWiki from "../../components/Cards/Player/KaraokeWiki.js";
@@ -18,6 +18,7 @@ import Controls from "../../components/Cards/Player/MusicPlayer/Controls"
 import { ProfileClient } from "../../clients/ProfileClient.js";
 import toast, { Toaster } from "react-hot-toast";
 import { sleep } from "../../components/utils/Sleep.js";
+
 
 const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-80%, -50%)' }, };
 
@@ -38,11 +39,42 @@ export default function Player() {
   const [modalOpen, setModalOpen] = useState();
   const [volume, setVolume] = useState(100);
 
+  // session stats
+  const [score, setScore] = useState(0);
+  const [precision, setPrecision] = useState(0);
+  const [rightWords, setRightWords] = useState(0);
+  const [missingWords, setMissingWords] = useState(0);
+
+  // speech recognition
+  const commands = [
+    { 
+      command: [
+        "abrir caja",
+        "Yo pensé que podía quedarme sin tí y no puedo",
+        "yo he peleado con cocodrilos",
+        "más difícil de lo que pensé"
+      ],
+      callback: () => setScore(score + 10), 
+      isFuzzyMatch: true,
+      fuzzyMatchingThreshold: 0.2,
+      //bestMatchOnly: true
+    }
+  ];
+
+  const { transcript, resetTranscript } = useSpeechRecognition({ commands });
+
+
   const openSessionModal = () => {setModalOpen(true)};
   const closeSessionModal = () => {setModalOpen(false); setIsStop(false)};
 
+
   useEffect(() => {
     if(isPlaying){
+      SpeechRecognition.startListening({
+        continuous: SpeechRecognition.browserSupportsSpeechRecognition(),
+        language: "es-CR",
+      });
+
       audioEl.current.play();
       const interval = setInterval(() => {
         //console.log(currentTime)
@@ -51,6 +83,7 @@ export default function Player() {
       },1000);
       return() => clearInterval(interval)
     } else{
+      SpeechRecognition.stopListening();
       audioEl.current.pause();
     }
   });
@@ -70,8 +103,13 @@ export default function Player() {
   let profileClient = new ProfileClient();
 
   useEffect(() => { 
+    if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+      return null;
+    }
+  
     getSongData();
   }, [])
+
 
   const getSongData = async() => {
     let songId = window.location.pathname.slice(12).replace(/%20/, ' ');
@@ -81,7 +119,8 @@ export default function Player() {
   }
 
   const endSession = async() => {
-    const playedSong = [currentSong.songName, currentSong.songAuthor, currentSong.songAlbum, currentSong.songCover, "0"];
+    resetTranscript();
+    const playedSong = [currentSong.songName, currentSong.songAuthor, currentSong.songAlbum, currentSong.songCover, score];
     const response = await profileClient.updatePlayedSongs(localStorage.getItem('currentUsername'),playedSong);
     if(response === '☑️ The song was modified successfully ... '){
       toast.success('Sesión guardada con exito');
@@ -95,11 +134,8 @@ export default function Player() {
   const handleChange = (event, newValue) => {
     setVolume(newValue);
     var fraction;
-    if(newValue >= '100'){
-      fraction = "1.0";
-    } else {
-      fraction = "0." + newValue;
-    }
+    if(newValue >= '100'){ fraction = "1.0"; }
+    else { fraction = "0." + newValue; }
     var localAudio = document.getElementById("localAudio");
     localAudio.volume = fraction;
 
@@ -112,7 +148,7 @@ export default function Player() {
       <ProgressBar />
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 px-4" >
-          <SessionStats {...currentSong}/>
+          <SessionStats currentScore={score} currentPrecision={precision} currentRight={rightWords} currentMissing={missingWords}/>
         </div>
         <div className="w-full lg:w-4/12 px-4" >
           <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-spotify-grey border-0 mt-6">
@@ -151,6 +187,8 @@ export default function Player() {
             songAuthor={currentSong.songAuthor}
           />
         </div>
+        <h1 className="text-spotify-green">{transcript}</h1>
+
         <div className="w-full lg:w-12/12 px-4" >
           <KaraokeWiki {...currentSong} />
         </div>

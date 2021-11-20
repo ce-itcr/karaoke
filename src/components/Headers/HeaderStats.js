@@ -3,7 +3,7 @@ import { ProfileClient } from "../../clients/ProfileClient.js";
 
 // components
 
-import CardStats from "../Cards/Profile/CardStats.js";
+import CardStats from "../Cards/CardStats.js";
 
 export default function HeaderStats() {
 
@@ -20,11 +20,16 @@ export default function HeaderStats() {
 
   const loadBasicStats = async() => {
     const response = await profileClient.getUserData(localStorage.getItem('currentUsername'));
-    setPlayedSongs(response.data.playedSongs.length);
+    let totalSongs = 0;
+    for(var k in response.data.playedSongs){
+      totalSongs += response.data.playedSongs[k][4];
+    }
+    setPlayedSongs(totalSongs);
     setFavoriteArtists(response.data.favoriteArtists.length);
     setGreaterDifficulty(response.data.greaterDifficulty.length);
     setLessDifficulty(response.data.lessDifficulty.length);
   }
+
 
 
 
@@ -37,34 +42,38 @@ export default function HeaderStats() {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="CANCIONES REPRODUCIDAS"
-                  statTitle={playedSongs}
+                  statSubtitle="TOTAL REPRODUCCIONES"
+                  statTitle={playedSongs + ' reproducciones'}
                   statIconName="fas fa-music"
                   statIconColor="bg-black-2"
+                  statPercentColor="font-semibold text-xl text-white"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="ARTISTAS FAVORITOS"
-                  statTitle={favoriteArtists}
+                  statTitle={favoriteArtists + ' artistas'}
                   statIconName="fas fa-users"
                   statIconColor="bg-black-2"
+                  statPercentColor="font-semibold text-xl text-white"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="MAYOR DIFICULTAD"
-                  statTitle={greaterDifficulty}
+                  statTitle={greaterDifficulty + ' palabras'}
                   statIconName="fas fa-plus"
                   statIconColor="bg-black-2"
+                  statPercentColor="font-semibold text-xl text-white"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="MENOR DIFICULTAD"
-                  statTitle={lessDifficulty}
+                  statTitle={lessDifficulty + ' palabras'}
                   statIconName="fas fa-minus"
                   statIconColor="bg-black-2"
+                  statPercentColor="font-semibold text-xl text-white"
                 />
               </div>
             </div>

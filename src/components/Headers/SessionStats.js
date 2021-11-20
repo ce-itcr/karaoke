@@ -2,9 +2,9 @@ import React from "react";
 
 // components
 
-import CardStats from "../Cards/Profile/CardStats";
+import CardStats from "../Cards/CardStats";
 
-export default function SessionStats() {
+export default function SessionStats(props) {
   return (
     <>
       {/* Header */}
@@ -15,49 +15,37 @@ export default function SessionStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="PUNTOS EN ESTA PARTIDA"
-                  statTitle="350,897"
-                  statArrow="up"
-                  statPercent="3.48"
-                  statPercentColor="text-spotify-dark-green"
-                  statDescripiron="Since last month"
+                  statTitle={props.currentScore + ' puntos'}
                   statIconName="fas fa-music"
                   statIconColor="bg-black-2"
+                  statPercentColor="font-semibold text-xl text-spotify-green"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="PRECISIÓN"
-                  statTitle="2,356"
-                  statArrow="down"
-                  statPercent="3.48"
-                  statPercentColor="text-spotify-dark-green"
-                  statDescripiron="Since last week"
-                  statIconName="fas fa-users"
+                  statTitle={props.currentPrecision + ' %'}
+                  statIconName="fas fa-percentage"
                   statIconColor="bg-black-2"
+                  statPercentColor="font-semibold text-xl text-white"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="PALABRAS ACERTADAS"
-                  statTitle="924"
-                  statArrow="down"
-                  statPercent="1.10"
-                  statPercentColor="text-spotify-dark-green"
-                  statDescripiron="Since yesterday"
+                  statTitle={props.currentRight + ' palabras'}
                   statIconName="fas fa-plus"
                   statIconColor="bg-black-2"
+                  statPercentColor="font-semibold text-xl text-white"
                 />
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="PALABRAS FALLADAS"
-                  statTitle="49,65%"
-                  statArrow="up"
-                  statPercent="12"
-                  statPercentColor="text-spotify-dark-green"
-                  statDescripiron="Since last month"
+                  statTitle={props.currentMissing + ' palabras'}
                   statIconName="fas fa-minus"
                   statIconColor="bg-black-2"
+                  statPercentColor="font-semibold text-xl text-white"
                 />
               </div>
             </div>

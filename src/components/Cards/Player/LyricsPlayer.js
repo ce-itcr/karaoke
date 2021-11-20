@@ -27,12 +27,10 @@ const LyricsPlayer = ({ songLyrics, currentTime, songName, songAuthor }) => {
 
 
   const onCurrentLineChange = useCallback((lrcLine, index) => {
-    console.log("\n");
-    console.log(lrcLine, index);
+    //console.log("\n");
+    //console.log(lrcLine, index);
     //scroll.scrollMore(41);
   }, []);
-
-
 
   return (
     <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-spotify-grey border-0 mt-6 localBar">

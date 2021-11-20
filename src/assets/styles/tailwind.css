@@ -1102,13 +1102,13 @@ select {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(29, 185, 84,1); 
+  background: rgba(19,119,54,1); 
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(19,119,54,1); 
+  background: rgba(29,185,84,1); 
 }
 
 

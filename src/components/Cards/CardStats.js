@@ -4,10 +4,7 @@ import PropTypes from "prop-types";
 export default function CardStats({
   statSubtitle,
   statTitle,
-  statArrow,
-  statPercent,
   statPercentColor,
-  statDescripiron,
   statIconName,
   statIconColor,
 }) {
@@ -20,7 +17,7 @@ export default function CardStats({
               <h5 className="text-blueGray-400 uppercase font-bold text-xs">
                 {statSubtitle}
               </h5>
-              <span className="font-semibold text-xl text-white">
+              <span className={statPercentColor}>
                 {statTitle}
               </span>
             </div>
@@ -47,7 +44,7 @@ CardStats.defaultProps = {
   statTitle: "",
   //statArrow: "up",
   //statPercent: "3.48",
-  //statPercentColor: "text-emerald-500",
+  statPercentColor: "text-emerald-500",
   //statDescripiron: "Since last month",
   statIconName: "far fa-chart-bar",
   statIconColor: "bg-red-500",
