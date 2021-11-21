@@ -110,6 +110,9 @@ export default function Player() {
     getSongData();
   }, [])
 
+  useEffect(() => {
+    document.title = 'karaoke! - En Reproducción: '  + currentSong.songName + ' por ' + currentSong.songAuthor;
+  })
 
   const getSongData = async() => {
     let songId = window.location.pathname.slice(12).replace(/%20/, ' ');

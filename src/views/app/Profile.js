@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // components
 
@@ -10,6 +10,10 @@ import LessDifficulty from "../../components/Cards/Profile/Words/LessDifficulty.
 import ProgressBar from "../../components/utils/ProgressBar.js";
 
 export default function Profile() {
+  useEffect(() => {
+    document.title = 'karaoke! - Perfil: '  + localStorage.getItem('currentUsername');
+  })
+  
   return (
     <>
       <ProgressBar/>

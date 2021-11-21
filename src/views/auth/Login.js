@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SigninClient } from "../../clients/SigninClient";
 import {toast, Toaster} from 'react-hot-toast';
 import { sleep } from "../../components/utils/Sleep";
@@ -15,6 +15,10 @@ export default function Login() {
 
     let signinClient = new SigninClient();
     let profileClient = new ProfileClient(); 
+
+    useEffect(() => {
+        document.title = 'karaoke! - Inicio de Sesión';
+      })
 
     const handleInputChangeForUserId = async(e) => {
         var value = e.target.value;

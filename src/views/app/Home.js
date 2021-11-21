@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 // components
@@ -12,6 +12,10 @@ export default function Home() {
   if(localStorage.getItem('currentUsername' ===  '')){
     history.push('/auth')
   }
+
+  useEffect(() => {
+    document.title = 'karaoke! - Inicio' ;
+  })
 
   return (
     <>
