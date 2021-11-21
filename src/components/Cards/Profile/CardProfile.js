@@ -47,7 +47,8 @@ export default function CardProfile() {
               <div className="relative">
                 <img
                   alt="..."
-                  src={require("../../../assets/images/profilePicture.png").default}
+                  src={userData.profilePicture}
+                  //src={require("../../../assets/images/profilePicture.png").default}
                   className="shadow-xl rounded-full h-auto align-middle border-none max-w-150-px"
                 />
               </div>

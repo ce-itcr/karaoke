@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createPopper } from "@popperjs/core";
 import toast from "react-hot-toast";
 import { sleep } from "../utils/Sleep";
 import { useHistory } from "react-router-dom";
 import Modal from 'react-modal';
+import { ProfileClient } from "../../clients/ProfileClient";
 
 const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-80%, -50%)' }, };
 
@@ -12,12 +13,24 @@ const UserDropdown = () => {
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
+
+  const [userData, setUserData] = useState([]);
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
   const openLogoutModal = () => {setLogoutModalOpen(true)};
   const closeLogoutModal = () => {setLogoutModalOpen(false)};
 
   let history = useHistory();
+  let profileClient = new ProfileClient();
+
+  useEffect(() => {
+    getUserData();
+  }, [])
+
+  const getUserData = async() => {
+      const currentData = await profileClient.getUserData(localStorage.getItem('currentUsername'));
+      setUserData(currentData.data);
+  }
 
   
   const logout = () => {
@@ -44,7 +57,6 @@ const UserDropdown = () => {
     <>
       <a
         className="text-blueGray-500 block"
-        href="#pablo"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
@@ -56,7 +68,8 @@ const UserDropdown = () => {
             <img
               alt="..."
               className="w-full rounded-full align-middle border-none shadow-lg"
-              src={require("../../assets/images/profilePicture.png").default}
+              //src={require("../../assets/images/profilePicture.png").default}
+              src={userData.profilePicture}
             />
           </span>
         </div>

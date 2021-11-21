@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, HeroContainer, VideoBg, HeroBg, HeroContent, HeroH1, HeroP, HeroBtnWrapper, ArrowForward, ArrowRight } from "../assets/styles/HeroElements";
 import Video from "../assets/videos/karaoke-landing.mp4";
+import Video2 from "../assets/videos/landing-2.mp4";
 
 import IndexNavbar from "../components/Navbars/IndexNavbar";
 import Footer from "../components/Footers/Footer";
@@ -19,6 +20,7 @@ export default function Index() {
 
       <HeroContainer>
         <HeroBg>
+          <VideoBg autoPlay loop muted src={Video2} type="video/mp4" />
         </HeroBg>
         <HeroContent>
           <HeroH1>Diversión asegurada</HeroH1>

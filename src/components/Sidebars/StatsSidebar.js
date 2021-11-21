@@ -71,6 +71,13 @@ export default function StatsSidebar() {
             </ul>
 
           </div>
+          <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+              <li className="items-center">
+                <a className="text-blueGray-400 align-middle text-xs mt-0 mb-2" href="https://github.com/ce-itcr/karaoke" target="_blank">
+                    karaoke! v2.0 <br></br> Desarrollado por <b className="text-spotify-dark-green hover:text-spotify-green">ce-itcr</b>
+                </a>
+              </li>
+            </ul>
         </div>
       </nav>
     </>
