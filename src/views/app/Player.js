@@ -5,7 +5,6 @@ import Modal from 'react-modal';
 import { Slider } from "@material-ui/core";
 import VolumeDown from '@material-ui/icons/VolumeDown';
 import { VolumeUp } from '@material-ui/icons';
-import SpeechRecognition, { useSpeechRecognition, } from "react-speech-recognition";
 
 // components
 import KaraokeWiki from "../../components/Cards/Player/KaraokeWiki.js";
@@ -18,6 +17,7 @@ import Controls from "../../components/Cards/Player/MusicPlayer/Controls"
 import { ProfileClient } from "../../clients/ProfileClient.js";
 import toast, { Toaster } from "react-hot-toast";
 import { sleep } from "../../components/utils/Sleep.js";
+import KaraokeSpeechRecognition from "../../components/Cards/Player/SpeechRecognition.js";
 
 
 const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-80%, -50%)' }, };
@@ -45,24 +45,6 @@ export default function Player() {
   const [rightWords, setRightWords] = useState(0);
   const [missingWords, setMissingWords] = useState(0);
 
-  // speech recognition
-  const commands = [
-    { 
-      command: [
-        "abrir caja",
-        "Yo pensé que podía quedarme sin tí y no puedo",
-        "yo he peleado con cocodrilos",
-        "más difícil de lo que pensé"
-      ],
-      callback: () => setScore(score + 10), 
-      isFuzzyMatch: true,
-      fuzzyMatchingThreshold: 0.2,
-      //bestMatchOnly: true
-    }
-  ];
-
-  const { transcript, resetTranscript } = useSpeechRecognition({ commands });
-
 
   const openSessionModal = () => {setModalOpen(true)};
   const closeSessionModal = () => {setModalOpen(false); setIsStop(false)};
@@ -70,11 +52,6 @@ export default function Player() {
 
   useEffect(() => {
     if(isPlaying){
-      SpeechRecognition.startListening({
-        continuous: SpeechRecognition.browserSupportsSpeechRecognition(),
-        language: "es-CR",
-      });
-
       audioEl.current.play();
       const interval = setInterval(() => {
         //console.log(currentTime)
@@ -83,7 +60,6 @@ export default function Player() {
       },1000);
       return() => clearInterval(interval)
     } else{
-      SpeechRecognition.stopListening();
       audioEl.current.pause();
     }
   });
@@ -103,10 +79,6 @@ export default function Player() {
   let profileClient = new ProfileClient();
 
   useEffect(() => { 
-    if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-      return null;
-    }
-  
     getSongData();
   }, [])
 
@@ -122,7 +94,6 @@ export default function Player() {
   }
 
   const endSession = async() => {
-    resetTranscript();
     const playedSong = [currentSong.songName, currentSong.songAuthor, currentSong.songAlbum, currentSong.songCover, score];
     const response = await profileClient.updatePlayedSongs(localStorage.getItem('currentUsername'),playedSong);
     if(response === '☑️ The song was modified successfully ... '){
@@ -190,8 +161,11 @@ export default function Player() {
             songAuthor={currentSong.songAuthor}
           />
         </div>
-        <h1 className="text-spotify-green">{transcript}</h1>
-
+        {/*<h1 className="text-spotify-green">{transcript}</h1>*/}
+        <div className="w-full lg:w-12/12 px-4" >
+          <KaraokeSpeechRecognition isPlaying={isPlaying} isStop={isStop} score={score} setScore={setScore}/> 
+        </div>
+        
         <div className="w-full lg:w-12/12 px-4" >
           <KaraokeWiki {...currentSong} />
         </div>

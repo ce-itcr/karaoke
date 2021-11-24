@@ -4,6 +4,7 @@ import {toast, Toaster} from 'react-hot-toast';
 import { sleep } from "../../components/utils/Sleep";
 import { useHistory } from "react-router-dom";
 import { ProfileClient } from "../../clients/ProfileClient";
+import { Link } from "react-router-dom";
 
 
 export default function Login() {
@@ -84,7 +85,7 @@ export default function Login() {
             <div className="flex content-center items-center justify-center h-full" > 
             <div className="w-full lg:w-6/12 px-4">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-spotify-grey border-0" >
-                <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                     <div className="text-black-2 text-center mb-3 font-bold" style={{paddingTop: '35px'}}>
                     <h1 className="text-white" style={{paddingBottom:'35px'}}>Inicio de Sesión </h1>
                     </div>
@@ -130,6 +131,21 @@ export default function Login() {
                     </form>
                 </div>
                 </div>
+                <div className="flex flex-wrap mt-6 relative">
+              <div className="w-1/2">
+                <a
+                  onClick={(e) => e.preventDefault()}
+                  className="text-blueGray-200"
+                >
+                  <small>¿Olvidó su contraseña?</small>
+                </a>
+              </div>
+              <div className="w-1/2 text-right">
+                <Link to="/auth/register" className="text-blueGray-200">
+                  <small>Crear nueva cuenta de usuario</small>
+                </Link>
+              </div>
+            </div>
 
             </div>
             </div>
