@@ -1,10 +1,11 @@
-import { React, useEffect }from 'react' ;
+import { text } from '@fortawesome/fontawesome-svg-core';
+import { React, useEffect, useState }from 'react' ;
 import SpeechRecognition, { useSpeechRecognition, } from "react-speech-recognition";
 
 export default function KaraokeSpeechRecognition(props) {
 
     const commands = [
-        {command: ["Yo pensé que podía quedarme sin ti y no puedo"], callback: () => props.setScore(props.score + 10), isFuzzyMatch: true, fuzzyMatchingThreshold: 0.2}
+        {command: ["Hola mundo"], callback: () => props.setScore(props.score + 10), isFuzzyMatch: true, fuzzyMatchingThreshold: 0.2}
     ]
 
     const { transcript, resetTranscript } = useSpeechRecognition({ commands });
@@ -21,7 +22,8 @@ export default function KaraokeSpeechRecognition(props) {
                 continuous: SpeechRecognition.browserSupportsSpeechRecognition(),
                 language: "es-CR",
              });
-        } else {
+        } else if(!props.isStop) {
+            props.setText(transcript);
             SpeechRecognition.stopListening(); 
         }
     })
@@ -46,7 +48,6 @@ export default function KaraokeSpeechRecognition(props) {
                 </div>
                 <div className="flex-auto px-4 lg:px-10 py-10 pt-0" style={{ display: 'flex', flexDirection: 'column', }}>
                     <p className="text-spotify-green">{transcript}</p>
-
                 </div>
             </div>
 

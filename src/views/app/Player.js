@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { SongsClient } from "../../clients/SongsClient.js";
+import { StatsClient } from "../../clients/StatsClient.js";
 import { useLocation, useHistory } from "react-router-dom";
 import Modal from 'react-modal';
 import { Slider } from "@material-ui/core";
@@ -18,6 +19,7 @@ import { ProfileClient } from "../../clients/ProfileClient.js";
 import toast, { Toaster } from "react-hot-toast";
 import { sleep } from "../../components/utils/Sleep.js";
 import KaraokeSpeechRecognition from "../../components/Cards/Player/SpeechRecognition.js";
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 
 const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top: '50%', left: '58%', right: 'auto', bottom: 'auto', marginRight: '-50%', transform: 'translate(-80%, -50%)' }, };
@@ -25,8 +27,8 @@ const customStyles = { content: { backgroundColor: '#242424', color: '#fff', top
 
 export default function Player() {
 
+  
   const audioEl = useRef(null);
-
   const location = useLocation();
   const lyrics = location.state.lyrics
 
@@ -40,11 +42,16 @@ export default function Player() {
   const [volume, setVolume] = useState(100);
 
   // session stats
+  const [text, setText] = useState();
   const [score, setScore] = useState(0);
   const [precision, setPrecision] = useState(0);
   const [rightWords, setRightWords] = useState(0);
   const [missingWords, setMissingWords] = useState(0);
 
+  //var text = "";
+  //function setText (message) {
+  //  text = message;
+  //}
 
   const openSessionModal = () => {setModalOpen(true)};
   const closeSessionModal = () => {setModalOpen(false); setIsStop(false)};
@@ -76,6 +83,7 @@ export default function Player() {
   let history = useHistory();
 
   let songsClient = new SongsClient();
+  let statsClient = new StatsClient();
   let profileClient = new ProfileClient();
 
   useEffect(() => { 
@@ -94,15 +102,23 @@ export default function Player() {
   }
 
   const endSession = async() => {
-    const playedSong = [currentSong.songName, currentSong.songAuthor, currentSong.songAlbum, currentSong.songCover, score];
+    const statsResults = await statsClient.getScore(text, lyrics);
+    setScore(statsResults["score"]);
+    setPrecision(statsResults["accuracy"]);
+    setRightWords(statsResults["successCounter"]);
+    setMissingWords(statsResults["errorCounter"]);
+    const playedSong = [currentSong.songName, currentSong.songAuthor, currentSong.songAlbum, currentSong.songCover, statsResults["score"]];
     const response = await profileClient.updatePlayedSongs(localStorage.getItem('currentUsername'),playedSong);
     if(response === '☑️ The song was modified successfully ... '){
       toast.success('Sesión guardada con exito');
-
+      closeSessionModal();
+      /** 
       sleep(1000).then(() => {
         history.push('/app');
       })
+      */
     }
+
   }
 
   const handleChange = (event, newValue) => {
@@ -163,7 +179,7 @@ export default function Player() {
         </div>
         {/*<h1 className="text-spotify-green">{transcript}</h1>*/}
         <div className="w-full lg:w-12/12 px-4" >
-          <KaraokeSpeechRecognition isPlaying={isPlaying} isStop={isStop} score={score} setScore={setScore}/> 
+          <KaraokeSpeechRecognition isPlaying={isPlaying} isStop={isStop} score={score} setScore={setScore} setText={setText}/> 
         </div>
         
         <div className="w-full lg:w-12/12 px-4" >
