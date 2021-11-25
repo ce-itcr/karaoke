@@ -91,6 +91,28 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/app/stats") !== -1
+                      ? "text-spotify-green hover:text-spotify-dark-green"
+                      : "text-white hover:text-blueGray-300")
+                  }
+                  to="/app/stats"
+                >
+                  <i
+                    className={
+                      "fas fa-chart-bar mr-2 text-sm " +
+                      (window.location.href.indexOf("/app/stats") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Estadísticas
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/app/profile") !== -1
                       ? "text-spotify-green hover:text-spotify-dark-green"
                       : "text-white hover:text-blueGray-300")

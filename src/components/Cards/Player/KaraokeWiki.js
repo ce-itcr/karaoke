@@ -205,13 +205,13 @@ export default function KaraokeWiki(props) {
                             <div className="flex flex-wrap justify-center">
                                 <div className="w-full lg:w-9/12 px-4">
                                 <p className="mb-4 text-md leading-relaxed text-white">
-                                    <i className="fa fa-facebook mr-2 text-lg text-white"></i>{" "}
+                                    <i className="fab fa-facebook mr-2 text-lg text-white"></i>{" "}
                                     Facebook: <a href={facebook} className="text-spotify-green">{facebook}</a>
                                 </p>
                                 </div>
                                 <div className="w-full lg:w-9/12 px-4">
                                 <p className="mb-4 text-md leading-relaxed text-white">
-                                    <i className="fa fa-facebook mr-2 text-lg text-white"></i>{" "}
+                                    <i className="fas fa-laptop mr-2 text-lg text-white"></i>{" "}
                                     Sitio Web: <a href={website} className="text-spotify-green">{website}</a>
                                 </p>
                                 </div>

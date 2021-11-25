@@ -9,6 +9,7 @@ import FooterApp from "../components/Footers/FooterApp";
 import Home from "../views/app/Home";
 import Player from "../views/app/Player";
 import StatsSidebar from "../components/Sidebars/StatsSidebar";
+import Stats from "../views/app/Stats";
 
 
 export default function App() {
@@ -20,7 +21,7 @@ export default function App() {
     }
 
     const setHeaderStats = () => {
-        if(window.location.pathname !== '/app/profile'){ 
+        if(window.location.pathname !== '/app/profile' && window.location.pathname !== '/app/stats'){ 
             return(
             <>
                 <div className="relative bg-black-2  pb-20 pt-12">
@@ -56,6 +57,7 @@ export default function App() {
                     <Switch>
                         <Route path="/app/home" exact component={Home} />
                         <Route path="/app/profile" exact component={Profile} />
+                        <Route path="/app/stats" exact component={Stats} />
                         <Route path="/app/player/:songId" exact component={Player} />
 
                         {/*<Route path="/app/songs/edit/:songId" component={AppEdit} exact />
