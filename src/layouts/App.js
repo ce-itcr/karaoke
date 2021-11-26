@@ -11,15 +11,11 @@ import Player from "../views/app/Player";
 import StatsSidebar from "../components/Sidebars/StatsSidebar";
 import Stats from "../views/app/Stats";
 import ReactGa from 'react-ga';
+import useGaTracker from "../components/utils/useGaTracker";
 
 export default function App() {
 
-    useEffect(() => {
-        ReactGa.initialize('G-W1W5CS734X')
-
-        // to report page view
-        ReactGa.pageview(window.location.pathname + window.location.search);
-    },[])
+    useGaTracker();
 
     let history = useHistory();
     
