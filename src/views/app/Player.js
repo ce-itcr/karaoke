@@ -112,13 +112,7 @@ export default function Player() {
     if(response === '☑️ The song was modified successfully ... '){
       toast.success('Sesión guardada con exito');
       closeSessionModal();
-      /** 
-      sleep(1000).then(() => {
-        history.push('/app');
-      })
-      */
     }
-
   }
 
   const handleChange = (event, newValue) => {

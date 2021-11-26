@@ -57,7 +57,7 @@ export default function Sidebar() {
 
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            <hr className="my-4 md:min-w-full border-spotify-green" />
             {/* Heading */}
             {/*<h6 className="md:min-w-full text-white text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Páginas Principales

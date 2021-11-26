@@ -1,34 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart } from "chart.js";
+import { ProfileClient } from "../../../clients/ProfileClient";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function CardLineChart() {
+
+  const [songsNames, setSongsNames] = useState([]);
+  const [currentSong, setCurrentSong] = useState('');
+  const [currentSongStats, setCurrentSongStats] = useState('');
+  const [labels, setLabels] = useState();
+
+  let profileClient = new ProfileClient();
+
+  useEffect(() => {
+    getSongsNames();
+  }, [])
+
+  const getSongsNames = async() => {
+    const response = await profileClient.getUserData(localStorage.getItem('currentUsername'));
+    var currentSongsNames = [];
+    for(var k in response.data.playedSongs){
+      currentSongsNames.push(response.data.playedSongs[k][0]);
+    }
+    setSongsNames(currentSongsNames);
+  }
+
+  const handleInputSong = async(e) => { var value = e.target.value; setCurrentSong(value);}
+
+  const searchSongData = async() => {
+    if(currentSong === 'option' || currentSong === ''){
+      toast.error('Debe seleccionar alguna opción.')
+    } else {
+      const response = await profileClient.getUserData(localStorage.getItem('currentUsername'));
+      setCurrentSongStats(response.data.playedSongs[0][6]);
+      //console.log(response.data.playedSongs.findIndex(song => song === currentSong))
+      for(var k in response.data.playedSongs){
+        if(response.data.playedSongs[k].indexOf(currentSong) !== -1){
+          setCurrentSongStats(response.data.playedSongs[k][6])
+          var currentLabels = [];
+          var counter = 0;
+          while (counter < response.data.playedSongs[k][6].length){
+            currentLabels.push(counter);
+            counter ++;
+          }
+          //console.log(currentLabels)
+          setLabels(currentLabels);
+        }
+      }
+    }
+  }
+
   React.useEffect(() => {
     var config = {
       type: "line",
       data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
+        /*labels: [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],*/
+        labels: labels,
         datasets: [
           {
-            label: new Date().getFullYear(),
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: [65, 78, 66, 44, 56, 67, 75],
+            //label: new Date().getFullYear(),
+            label: "Puntaje",
+            backgroundColor: "#1db954",
+            borderColor: "#1db954",
+            data: currentSongStats,
+            //data: [12, 45, 56, 0, 15],
             fill: false,
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#fff",
-            borderColor: "#fff",
-            data: [40, 68, 86, 74, 56, 60, 87],
           },
         ],
       },
@@ -105,17 +147,45 @@ export default function CardLineChart() {
     };
     var ctx = document.getElementById("line-chart").getContext("2d");
     window.myLine = new Chart(ctx, config);
-  }, []);
+  }, );
+
   return (
     <>
+      <Toaster/>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-spotify-grey">
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
-            <div className="relative w-full max-w-full flex-grow flex-1">
-              <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
-                Overview
-              </h6>
-              <h2 className="text-white text-xl font-semibold">Sales value</h2>
+
+          <div className="w-full lg:w-3/12 ">
+            <div className="relative w-full mb-3">
+              <h6 className="text-white text-xl font-bold">Puntaje vs Reproducción</h6>
+          </div>
+        </div>
+        <div className="w-full lg:w-3/12 ">
+          <div className="relative w-full mb-3">
+                  <select 
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-spotify-grey-2 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        onChange={handleInputSong}
+                    >
+                        <option value="option">Seleccione una opción</option>
+                        {songsNames.map(data =>
+                            <option value={data}>{data}</option>
+                        )};
+                        </select>
+                </div>
+            </div>
+            <div className="w-full lg:w-3/12" style={{paddingLeft:'20px'}}>
+            <div className="relative w-full mb-3">
+                <button 
+                  className="r sm:ml-1 text-white font-bold px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 bg-spotify-green active:bg-spotify-dark-green uppercase text-sm shadow hover:shadow-lg"
+                  type="button"
+                  onClick={searchSongData}
+                >
+                    <a>
+                        <i class="fas fa-search"></i> Buscar 
+                    </a>
+                </button>
+              </div>
             </div>
           </div>
         </div>
