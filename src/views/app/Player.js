@@ -102,7 +102,7 @@ export default function Player() {
   }
 
   const endSession = async() => {
-    const statsResults = await statsClient.getScore(text, lyrics);
+    const statsResults = await statsClient.getScore(text, lyrics, localStorage.getItem("currentUsername"));
     setScore(statsResults["score"]);
     setPrecision(statsResults["accuracy"]);
     setRightWords(statsResults["successCounter"]);
