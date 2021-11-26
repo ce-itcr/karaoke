@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Sidebar from "../components/Sidebars/Sidebar";
@@ -10,9 +10,16 @@ import Home from "../views/app/Home";
 import Player from "../views/app/Player";
 import StatsSidebar from "../components/Sidebars/StatsSidebar";
 import Stats from "../views/app/Stats";
-
+import ReactGa from 'react-ga';
 
 export default function App() {
+
+    useEffect(() => {
+        ReactGa.initialize('G-W1W5CS734X')
+
+        // to report page view
+        ReactGa.pageview(window.location.pathname + window.location.search);
+    },[])
 
     let history = useHistory();
     
