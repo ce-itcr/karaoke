@@ -2,78 +2,53 @@ import axios from "axios";
 
 export class SongsClient {
     async getAllSongs() {
-        const url = "https://karaokeapi.josevenegasv.com/karaoke/getAllSongs"
-        return await axios(url)
+        const url = "https://songs-microservices.herokuapp.com/api/v1/songs/all"
+        const response =  await axios(url)
+        return response;
     }
 
     async getSongById(songId){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/getSong/{"id":"` + songId + `"}`
-        return await axios(url)
+        const url = "https://songs-microservices.herokuapp.com/api/v1/songs/" + songId
+        const response =  await axios(url)
+        return response;
     }
 
-    async getSongsByName(songName){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songName", "filter":"` + songName + `"}`
-        return await axios(url)
-    }
-
-    async getSongsByAuthor(songAuthor){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songAuthor", "filter":"` + songAuthor + `"}`
-        return await axios(url)
-    }
-
-    async getSongsByAlbum(songAlbum){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songAlbum", "filter":"` + songAlbum + `"}`
-        return await axios(url, {params: {"songAlbum": songAlbum}})
-    }
-
-    async getSongsByLyrics(songLyrics){
-        const url = `https://karaokeapi.josevenegasv.com/karaoke/search/{"category":"songLRC", "filter":"` + songLyrics + `"}`
-        return await axios(url, {params: {"songLyrics": songLyrics}})
+    async searchSongs(category, filter) {
+        const url = 'https://songs-microservices.herokuapp.com/api/v1/songs/search/{"category":"' + category + '","filter":"' + filter + '"}';
+        const response =  await axios(url);
+        return response.data;
     }
 
 
-    async postSong(songName, songAuthor, songAlbum, creationAuthor, songMP3, songLRC, songCover){
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({"id":songName+"&"+songAuthor, "songName": songName,"songAuthor":songAuthor,"songAlbum":songAlbum,"creationAuthor":creationAuthor, "songMp3":songMP3, "songLRC":songLRC, "songCover":songCover})
-        };
-        fetch('https://karaokeapi.josevenegasv.com/karaoke/createSong/', requestOptions)
-            .then(
-                function(response) {
-                response.text().then(function(data) {
-                    //alert(data)
-                });
-                })   
-    } 
+    async createSong(songName, songAuthor, songAlbum, creationAuthor, songMP3, songLRC, songCover){
+        const requestUrl = 'https://songs-microservices.herokuapp.com/api/v1/songs/';
+        const songData = {"songName":songName, "songAuthor":songAuthor, "songAlbum":songAlbum, "creationAuthor":creationAuthor, "songMp3": songMP3, "songLRC": songLRC, "songCover":songCover};
+        const headers = { 'Content-Type': 'application/json' };
+        const response = await axios.post(requestUrl, songData, headers)
+          .catch((error) => {
+            return(error.response);
+          });
+        return response.data;
+    }
 
-    async updateSong(songId, songMP3, songLRC, modificationAuthor){
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "songMp3":songMP3, "songLRC":songLRC, "modificationAuthor":modificationAuthor})
-        };
-        fetch(`https://karaokeapi.josevenegasv.com/karaoke/updateSong/{"id":"` + songId + `"}`, requestOptions)
-            .then(
-                function(response) {
-                response.text().then(function(data) {
-                    //alert(data)
-                });
-                })   
-    } 
+    async updateSong(songId, songMP3, songCover, songLRC, modificationAuthor) {
+        const requestUrl = 'https://songs-microservices.herokuapp.com/api/v1/songs/' + songId;
+        const userData = {"songMp3": songMP3, "songCover": songCover, "songLRC":songLRC, "modificationAuthor":modificationAuthor};
+        const headers = { 'Content-Type': 'application/json' };
+        const response = await axios.put(requestUrl, userData, headers)
+          .catch((error) => {
+            return(error.response);
+          });
+        return response.data;
+    }
 
     async deleteSong(songId){
-        const requestOptions = {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify()
-        };
-        fetch(`https://karaokeapi.josevenegasv.com/karaoke/deleteSong/{"id":"` + songId + `"}`, requestOptions)
-            .then(
-                function(response) {
-                response.text().then(function(data) {
-                    //alert(data)
-                });
-                })   
+        const requestUrl = 'https://songs-microservices.herokuapp.com/api/v1/songs/' + songId;
+        const headers = { 'Content-Type': 'application/json' };
+        const response = await axios.delete(requestUrl, headers)
+          .catch((error) => {
+            return(error.response);
+          });
+        return response;
     } 
 }
